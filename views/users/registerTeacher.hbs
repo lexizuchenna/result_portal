@@ -1,0 +1,117 @@
+<header class="header" data-header>
+  <div class="container">
+    <h1>
+      <a href="/users/admin" class="logo">Result Portal</a>
+    </h1>
+    <button
+      class="menu-toggle-btn icon-box"
+      data-menu-toggle-btn
+      aria-label="Toggle Menu"
+    >
+      <span class="material-symbols-rounded icon">menu</span>
+    </button>
+
+    <nav class="navbar">
+      <div class="container">
+        <ul class="navbar-list">
+          <li>
+            <a href="/users/admin" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">home</span>
+
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/admin/teachers" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">group</span>
+
+              <span>Teachers</span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/admin/register-teachers" class="navbar-link active icon-box">
+              <span class="material-symbols-rounded icon">how_to_reg</span>
+
+              <span>Register Teacher</span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/admin/setting" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">settings</span>
+
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="user-action-list">
+          <li>
+            <a href="#" class="header-profile">
+              <div>
+                <p class="profile-title">{{name}}</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/users/logout" class="header-profile">
+              <div>
+                <p class="profile-title">logout</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+  <article class="container article">
+
+    <p class="article-subtitle">Register a new teacher</p>
+
+    <section class="home" style="width: 100%;">
+
+      <div class="card profile-card" style="width: 100%;">
+        <div class="profile-card-wrapper">
+          <form class="fund-form" action="/users/admin/register-teachers" method="POST" style="width: 100%;">
+            <div class="form-control" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Class"
+                name="className"
+              />
+            </div>
+            <div class="form-control" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Teacher's Username"
+                name="username"
+              />
+            </div>
+            <div class="form-control" style="width: 100%;">
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+              />
+            </div>
+            <div class="form-control" style="width: 100%;">
+              <input
+                type="password"
+                placeholder="Repeat Password"
+                name="password2"
+              />
+            </div>
+            <button class="user-button">Register</button>
+          </form>
+
+        </div>
+      </div>
+
+      
+      </div>
+    </section>
+  </article>
+</main>

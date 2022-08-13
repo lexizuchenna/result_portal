@@ -1,0 +1,41 @@
+{
+  "name": "result_portal",
+  "version": "1.0.0",
+  "description": "Online result portal for school",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lexizuchenna/result_portal.git"
+  },
+  "keywords": [
+    "Result",
+    "Management"
+  ],
+  "author": "Lexiz Technology",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lexizuchenna/result_portal/issues"
+  },
+  "homepage": "https://github.com/lexizuchenna/result_portal#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.2",
+    "moment": "^2.29.4",
+    "mongoose": "^6.5.2",
+    "nodemailer": "^6.7.7",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
