@@ -20,9 +20,10 @@ connectDB();
 
 // Body Parser
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json({extended: true, limit: '30mb'}))
 
 // Handlebars Helpers
-const { formatDate } = require("./middlewares/hbsHelper");
+const { formatDate, addNumbers, checkGrade, checkRemark } = require("./middlewares/hbsHelper");
 
 // Express-Handlbars Engine
 app.engine(
@@ -32,6 +33,9 @@ app.engine(
     extname: "hbs",
     helpers: {
       formatDate,
+      addNumbers,
+      checkGrade,
+      checkRemark
     },
   })
 );
@@ -51,7 +55,7 @@ app.use(
       mongoUrl: process.env.MONGO_URI,
     }),
     cookie: {
-      maxAge: 3600000,
+      maxAge: 18000000,
     },
   })
 );
@@ -64,7 +68,7 @@ app.use(passport.session());
 app.use("/", require("./routes/index"));
 app.use("/login", require("./routes/login"));
 app.use("/users", require("./routes/users"));
-// app.use("/results", require("./routes/results"));
+app.use("/results", require("./routes/results"));
 
 // Port listening
 app.listen(process.env.PORT, () => {

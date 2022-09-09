@@ -1,0 +1,146 @@
+<header class="header" data-header>
+  <div class="container">
+    <h1>
+      <a href="/users/teacher" class="logo">Result Portal</a>
+    </h1>
+    <button
+      class="menu-toggle-btn icon-box"
+      data-menu-toggle-btn
+      aria-label="Toggle Menu"
+    >
+      <span class="material-symbols-rounded icon">menu</span>
+    </button>
+
+    <nav class="navbar">
+      <div class="container">
+        <ul class="navbar-list">
+          <li>
+            <a href="/users/teacher" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">home</span>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/teacher/results" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">local_library</span>
+              <span>Results</span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/teacher/generate-results" class="navbar-link active icon-box">
+              <span class="material-symbols-rounded icon">library_books</span>
+              <span>Generate Results</span>
+            </a>
+          </li>
+          {{!-- <li>
+            <a href="/users/admin/setting" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">settings</span>
+
+              <span>Settings</span>
+            </a>
+          </li> --}}
+        </ul>
+
+        <ul class="user-action-list">
+          <li>
+            <a href="#" class="header-profile">
+              <div>
+                <p class="profile-title">{{name}}</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/users/logout" class="header-profile">
+              <div>
+                <p class="profile-title">logout</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<section class="home">
+  <div class="card-wrapper">
+    <div class="card">
+      <form id="submit" action="/users/api/teacher/get-record" method="POST">
+        <div class="input-group">
+          <label for="name">Select Year and Term</label>
+          {{#if one}}
+           <input type="text" name="year" id="year" placeholder="Year" value="{{one.year}}">
+          <input type="text" id="term" name="term" placeholder="Term" value="{{one.term}}">
+          {{else}}
+          <input type="text" name="year" id="year" placeholder="Year">
+          <input type="text" id="term" name="term" placeholder="Term">
+          {{/if}}
+          <button style="padding: 5px; margin-top: 10px; font-size: 13px;" class="btn" type="submit">Submit</button>
+        </div>
+      </form>
+      <form action="/users/teacher/generate-result" method="POST">
+        <div class="input-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" placeholder="Enter Name">
+        </div>
+
+        <div class="input-group">
+          <label for="name">Position</label>
+          <input type="text" name="position" placeholder="Enter position">
+        </div>
+        <div class="subjects" id="subjects">
+            {{#if updatedRecord}}
+            {{#each updatedRecord}}
+              <div class="input-group subject">
+                {{!-- <label for="{{this.id}}">{{this.sub}}</label> --}}
+                <input type="text" name="{{this.id}}title" value="{{this.sub}}" readonly style="font-weight: bolder;">
+                <input type="text" name="{{this.id}}firstAss" placeholder="First Assesment">
+                <input type="text" name="{{this.id}}secAss" placeholder="Second Assesment">
+                <input type="text" name="{{this.id}}thirdAss" placeholder="Third Assesment">
+                <input type="text" name="{{this.id}}project" placeholder="Project">
+                <input type="text" name="{{this.id}}exam" placeholder="Exam">
+                
+                <input type="text" name="{{this.id}}subAve" placeholder="Sub Average">
+              </div>
+              {{/each}}
+            {{/if}}
+        </div>      
+        {{!-- <div class="input-group average">
+          <label for="">Term Perfomance</label>
+          <input type="text" name="perfomance" placeholder="Perfomance">
+        </div> --}}
+
+        <div class="input-group comment">
+          <label for="">Teachers Comment</label>
+          <input type="text" name="tcomment" placeholder="Enter Comment">
+        </div>
+        <div class="input-group comment">
+          <label for="">Head Teachers Comment</label>
+          <input type="text" name="hcomment" placeholder="Enter Comment">
+        </div>
+        <div class="input-group comment">
+          <label for="">Resumption Date</label>
+          <input type="text" name="resDate" placeholder="Resumption date">
+        </div>
+        <div class="input-group comment">
+          <label for="">Total Subject</label>
+          <input type="text" id="totalSubject" name="totalSubject" placeholder="Term" value="{{tSubject}}" readonly>
+        </div>
+        <div class="input-group">
+          {{#if one}}
+           <input type="text" name="year" id="year" placeholder="Year" value="{{one.year}}" readonly>
+          <input type="text" id="term" name="term" placeholder="Term" value="{{one.term}}" readonly>
+          {{else}}
+
+          {{/if}}
+        </div>
+        <button class="btn btn-block" type="submit">Generate</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+{{!-- <script src="/js/result.js"></script> --}}

@@ -1,0 +1,141 @@
+<header class="header" data-header>
+  <div class="container">
+    <h1>
+      <a href="/users/admin" class="logo">Result Portal</a>
+    </h1>
+    <button
+      class="menu-toggle-btn icon-box"
+      data-menu-toggle-btn
+      aria-label="Toggle Menu"
+    >
+      <span class="material-symbols-rounded icon">menu</span>
+    </button>
+
+    <nav class="navbar">
+      <div class="container">
+        <ul class="navbar-list">
+          <li>
+            <a href="/users/admin" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">home</span>
+
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/admin/teachers" class="navbar-link active icon-box">
+              <span class="material-symbols-rounded icon">group</span>
+
+              <span>Teachers</span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/admin/register-teachers" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">how_to_reg</span>
+
+              <span>Register Teacher</span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/admin/setting" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">settings</span>
+
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="user-action-list">
+          <li>
+            <a href="#" class="header-profile">
+              <div>
+                <p class="profile-title">{{name}}</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/users/logout" class="header-profile">
+              <div>
+                <p class="profile-title">logout</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+  <article class="container article">
+
+    <h2 class="h2 article-title">Hi {{user}}</h2>
+
+    <p class="article-subtitle">Welcome to Result Portal</p>
+
+    <section class="tasks">
+
+      <div class="section-title-wrapper">
+        <h2 class="section-title">Teachers</h2>
+      </div>
+
+      {{#if newTeachers}}
+        {{#each newTeachers}}
+          <form action="/users/admin/delete-teacher" method="post" style="margin-bottom: 10px;">
+            <ul class="tasks-list">
+              <li class="tasks-item">
+                <div class="card task-card">
+
+                  <div class="card-input">
+                    {{!-- <input type="checkbox" name="task-1" id="task-1" /> --}}
+
+                    <label for="task-1" class="task-label">
+                      <a href="#">{{this.username}}</a>
+                    </label>
+                  </div>
+
+                  <div class="card-badge cyan radius-pill">{{this.class}}</div>
+
+                  <ul class="card-meta-list">
+
+                    <li>
+                      <div class="meta-box icon-box">
+                        <span>
+                          <input type="text" value="{{this._id}}" name="id"  style="display: none;" />
+                          {{!-- <input type="text" value="{{this.name}}" name="studName" style="display: none;" /> --}}
+                        </span>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="card-badge red">
+                          <button type="submit">Delete</button>
+                      </div>
+                    </li>
+
+                  </ul>
+
+                </div>
+              </li>
+            </ul>
+          </form>
+        {{/each}}
+      {{else}}
+        <ul class="tasks-list">
+              <li class="tasks-item">
+                <div class="card task-card">
+                  <div class="card-input">
+                    <input type="checkbox" name="task-1" id="task-1" />
+                    <label for="task-1" class="task-label">
+                      No Teacher
+                    </label>
+                  </div>
+                </div>
+              </li>
+            </ul>
+      {{/if}}
+    </section>
+  </article>
+</main>
+
+<script src="/js/gen-result.js"></script>
