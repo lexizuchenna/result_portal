@@ -113,7 +113,7 @@ const getRecord = async (req, res) => {
   let Record = await Records.find({term: req.body.term, year: req.body.year, user: req.user.id}).lean()
   // res.json(Record)
   let one = Record[0]
-  let newRecord = _.omit(one, ['term', 'year', '_id', 'user',  'createdAt', 'updatedAt', '__v'])
+  let newRecord = _.omit(one, ['term', 'year', '_id', 'user',  'createdAt', 'updatedAt', '__v', 'resDate'])
   
   let updatedRecord = Object.entries(newRecord).map(entry => {
     return {sub:  entry[1], id: entry[0]}
