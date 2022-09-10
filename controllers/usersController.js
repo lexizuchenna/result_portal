@@ -141,10 +141,14 @@ const generateResults = async (req, res) => {
   let id = uuid()
   req.body.resultId = id
   req.body.resultLink = `/results/student/${id}`
-  const Result = await Results.create(req.body)
-  await Result.save()
+  if(!req.body.name || !req.body.position || !req.body.term || !req.body.year || !req.body.class) {
+    res.redirect('/users/teacher/generate-results')
+  } else {
+    const Result = await Results.create(req.body)
+    await Result.save()
+    res.redirect('/users/teacher/generate-results')
+  }
 
-  res.redirect('/users/teacher/generate-results')
 }
 
 // View Results 
