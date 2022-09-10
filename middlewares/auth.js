@@ -32,10 +32,31 @@ const isTeacherLoggedOut = (req, res, next) => {
   res.redirect("/users/teacher");
 };
 
+// Login Only Admin
+const checkAdmin = async (req, res, next) => {
+  if(req.body.username !== 'admin') {
+    res.redirect('/login/teacher')
+  } else {
+    next()
+  }
+}
+
+// Login Only Teacher
+const checkTeacher = async (req, res, next) => {
+  if(req.body.username === 'admin') {
+    res.redirect('/login/admin')
+  } else {
+    next()
+  }
+}
+
 
 module.exports = {
   isAdminLoggedIn,
   isAdminLoggedOut,
+  checkAdmin,
+
   isTeacherLoggedIn,
-  isTeacherLoggedOut
+  isTeacherLoggedOut,
+  checkTeacher
 };

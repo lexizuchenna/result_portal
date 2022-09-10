@@ -85,3 +85,29 @@ label {
   outline: none;
 }
 
+@media (max-width: 600px) { 
+  .mobile {
+    flex-direction: column;
+  }
+
+  .mobile li {
+    margin-bottom: 10px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .login {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .home-page {
+    padding: 20vh 10px;
+  }
+
+  .home-page p {
+    min-width: 0;
+  }
+}
