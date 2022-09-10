@@ -15,6 +15,7 @@ const RecordsSchema = new mongoose.Schema({
     sub1: {
       type: String,
     },
+    resDate: String
   },
   {
     timestamps: true,

@@ -96,16 +96,19 @@ const viewTeacher = async (req, res) => {
 
 // Set Teacher Record
 const setRecord = async (req, res) => {
-  let subjects = _.omit(req.body, ['term', 'year', 'sub1'])
+  let subjects = _.omit(req.body, ['term', 'year', 'sub1', 'resDate'])
   for (let key in subjects) {
     RecordsSchema.add({[key]: {type: String}})
   }
 
   req.body.user = req.user.id
-  const Record = await Records.create(req.body)
-  await Record.save()
-
-  res.redirect('/users/teacher')
+  if(!req.body) {
+    res.redirect('/users/teacher')
+  } else {
+    const Record = await Records.create(req.body)
+    await Record.save()
+    res.redirect('/users/teacher')
+  }
 }
 
 // Get Records API
