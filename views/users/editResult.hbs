@@ -1,0 +1,421 @@
+<header class="header" data-header>
+  <div class="container">
+    <h1>
+      <a href="/users/teacher" class="logo">Result Portal</a>
+    </h1>
+    <button
+      class="menu-toggle-btn icon-box"
+      data-menu-toggle-btn
+      aria-label="Toggle Menu"
+    >
+      <span class="material-symbols-rounded icon">menu</span>
+    </button>
+
+    <nav class="navbar">
+      <div class="container">
+        <ul class="navbar-list">
+          <li>
+            <a href="/users/teacher" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">home</span>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/teacher/results" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">local_library</span>
+              <span>Results</span>
+            </a>
+          </li>
+          <li>
+            <a href="/users/teacher/generate-results" class="navbar-link active icon-box">
+              <span class="material-symbols-rounded icon">library_books</span>
+              <span>Generate Results</span>
+            </a>
+          </li>
+          {{!-- <li>
+            <a href="/users/admin/setting" class="navbar-link icon-box">
+              <span class="material-symbols-rounded icon">settings</span>
+
+              <span>Settings</span>
+            </a>
+          </li> --}}
+        </ul>
+
+        <ul class="user-action-list">
+          <li>
+            <a href="#" class="header-profile">
+              <div>
+                <p class="profile-title">{{name}}</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="/users/logout" class="header-profile">
+              <div>
+                <p class="profile-title">logout</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<section class="home">
+  <div class="card-wrapper">
+    <div class="card">
+      {{#if Result}}
+      <form action="/users/teacher/update-result" method="POST">
+        <div class="input-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" placeholder="Enter Name" value="{{Result.name}}">
+        </div>
+
+        {{!-- <div class="input-group">
+          <label for="name">Position</label>
+          <input type="text" name="position" placeholder="Enter position">
+        </div> --}}
+        <div class="subjects" id="subjects">
+            {{#if Result.sub1title}}
+            <div class="input-group subject">
+                <input type="text" name="sub1title" value="{{Result.sub1title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub1firstAss" placeholder="First Assesment" value="{{Result.sub1firstAss}}" >
+                <input type="text" name="sub1secAss" placeholder="Second Assesment" value="{{Result.sub1secAss}}">
+                <input type="text" name="sub1thirdAss" placeholder="Third Assesment" value="{{Result.sub1thirdAss}}">
+                <input type="text" name="sub1project" placeholder="Project" value="{{Result.sub1project}}">
+                <input type="text" name="sub1exam" placeholder="Exam" value="{{Result.sub1exam}}">
+                
+                <input type="text" name="sub1subAve" placeholder="Sub Average" value="{{Result.sub1subAve}}">
+            </div>
+            {{/if}}
+            {{#if Result.sub2title}}
+            <div class="input-group subject">
+                <input type="text" name="sub2title" value="{{Result.sub2title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub2firstAss" placeholder="First Assesment" value="{{Result.sub2firstAss}}" >
+                <input type="text" name="sub2secAss" placeholder="Second Assesment" value="{{Result.sub2secAss}}">
+                <input type="text" name="sub2thirdAss" placeholder="Third Assesment" value="{{Result.sub2thirdAss}}">
+                <input type="text" name="sub2project" placeholder="Project" value="{{Result.sub2project}}">
+                <input type="text" name="sub2exam" placeholder="Exam" value="{{Result.sub2exam}}">
+                
+                <input type="text" name="sub2subAve" placeholder="Sub Average" value="{{Result.sub2subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub3title}}
+            <div class="input-group subject">
+                <input type="text" name="sub3title" value="{{Result.sub3title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub3firstAss" placeholder="First Assesment" value="{{Result.sub3firstAss}}" >
+                <input type="text" name="sub3secAss" placeholder="Second Assesment" value="{{Result.sub3secAss}}">
+                <input type="text" name="sub3thirdAss" placeholder="Third Assesment" value="{{Result.sub3thirdAss}}">
+                <input type="text" name="sub3project" placeholder="Project" value="{{Result.sub3project}}">
+                <input type="text" name="sub3exam" placeholder="Exam" value="{{Result.sub3exam}}">
+                
+                <input type="text" name="sub3subAve" placeholder="Sub Average" value="{{Result.sub3subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub4title}}
+            <div class="input-group subject">
+                <input type="text" name="sub4title" value="{{Result.sub4title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub4firstAss" placeholder="First Assesment" value="{{Result.sub4firstAss}}" >
+                <input type="text" name="sub4secAss" placeholder="Second Assesment" value="{{Result.sub4secAss}}">
+                <input type="text" name="sub4thirdAss" placeholder="Third Assesment" value="{{Result.sub4thirdAss}}">
+                <input type="text" name="sub4project" placeholder="Project" value="{{Result.sub4project}}">
+                <input type="text" name="sub4exam" placeholder="Exam" value="{{Result.sub4exam}}">
+                
+                <input type="text" name="sub4subAve" placeholder="Sub Average" value="{{Result.sub4subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub5title}}
+            <div class="input-group subject">
+                <input type="text" name="sub5title" value="{{Result.sub5title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub5firstAss" placeholder="First Assesment" value="{{Result.sub5firstAss}}" >
+                <input type="text" name="sub5secAss" placeholder="Second Assesment" value="{{Result.sub5secAss}}">
+                <input type="text" name="sub5thirdAss" placeholder="Third Assesment" value="{{Result.sub5thirdAss}}">
+                <input type="text" name="sub5project" placeholder="Project" value="{{Result.sub5project}}">
+                <input type="text" name="sub5exam" placeholder="Exam" value="{{Result.sub5exam}}">
+                
+                <input type="text" name="sub5subAve" placeholder="Sub Average" value="{{Result.sub5subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub6title}}
+            <div class="input-group subject">
+                <input type="text" name="sub6title" value="{{Result.sub6title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub6firstAss" placeholder="First Assesment" value="{{Result.sub6firstAss}}" >
+                <input type="text" name="sub6secAss" placeholder="Second Assesment" value="{{Result.sub6secAss}}">
+                <input type="text" name="sub6thirdAss" placeholder="Third Assesment" value="{{Result.sub6thirdAss}}">
+                <input type="text" name="sub6project" placeholder="Project" value="{{Result.sub6project}}">
+                <input type="text" name="sub6exam" placeholder="Exam" value="{{Result.sub6exam}}">
+                
+                <input type="text" name="sub6subAve" placeholder="Sub Average" value="{{Result.sub6subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub7title}}
+            <div class="input-group subject">
+                <input type="text" name="sub7title" value="{{Result.sub7title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub7firstAss" placeholder="First Assesment" value="{{Result.sub7firstAss}}" >
+                <input type="text" name="sub7secAss" placeholder="Second Assesment" value="{{Result.sub7secAss}}">
+                <input type="text" name="sub7thirdAss" placeholder="Third Assesment" value="{{Result.sub7thirdAss}}">
+                <input type="text" name="sub7project" placeholder="Project" value="{{Result.sub7project}}">
+                <input type="text" name="sub7exam" placeholder="Exam" value="{{Result.sub7exam}}">
+                
+                <input type="text" name="sub7subAve" placeholder="Sub Average" value="{{Result.sub7subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub8title}}
+            <div class="input-group subject">
+                <input type="text" name="sub8title" value="{{Result.sub8title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub8firstAss" placeholder="First Assesment" value="{{Result.sub8firstAss}}" >
+                <input type="text" name="sub8secAss" placeholder="Second Assesment" value="{{Result.sub8secAss}}">
+                <input type="text" name="sub8thirdAss" placeholder="Third Assesment" value="{{Result.sub8thirdAss}}">
+                <input type="text" name="sub8project" placeholder="Project" value="{{Result.sub8project}}">
+                <input type="text" name="sub8exam" placeholder="Exam" value="{{Result.sub8exam}}">
+                
+                <input type="text" name="sub8subAve" placeholder="Sub Average" value="{{Result.sub8subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub9title}}
+            <div class="input-group subject">
+                <input type="text" name="sub9title" value="{{Result.sub9title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub9firstAss" placeholder="First Assesment" value="{{Result.sub9firstAss}}" >
+                <input type="text" name="sub9secAss" placeholder="Second Assesment" value="{{Result.sub9secAss}}">
+                <input type="text" name="sub9thirdAss" placeholder="Third Assesment" value="{{Result.sub9thirdAss}}">
+                <input type="text" name="sub9project" placeholder="Project" value="{{Result.sub9project}}">
+                <input type="text" name="sub9exam" placeholder="Exam" value="{{Result.sub9exam}}">
+                
+                <input type="text" name="sub9subAve" placeholder="Sub Average" value="{{Result.sub9subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub10title}}
+            <div class="input-group subject">
+                <input type="text" name="sub10title" value="{{Result.sub10title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub10firstAss" placeholder="First Assesment" value="{{Result.sub10firstAss}}" >
+                <input type="text" name="sub10secAss" placeholder="Second Assesment" value="{{Result.sub10secAss}}">
+                <input type="text" name="sub10thirdAss" placeholder="Third Assesment" value="{{Result.sub10thirdAss}}">
+                <input type="text" name="sub10project" placeholder="Project" value="{{Result.sub10project}}">
+                <input type="text" name="sub10exam" placeholder="Exam" value="{{Result.sub10exam}}">
+                
+                <input type="text" name="sub10subAve" placeholder="Sub Average" value="{{Result.sub10subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub11title}}
+            <div class="input-group subject">
+                <input type="text" name="sub11title" value="{{Result.sub11title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub11firstAss" placeholder="First Assesment" value="{{Result.sub11firstAss}}" >
+                <input type="text" name="sub11secAss" placeholder="Second Assesment" value="{{Result.sub11secAss}}">
+                <input type="text" name="sub11thirdAss" placeholder="Third Assesment" value="{{Result.sub11thirdAss}}">
+                <input type="text" name="sub11project" placeholder="Project" value="{{Result.sub11project}}">
+                <input type="text" name="sub11exam" placeholder="Exam" value="{{Result.sub11exam}}">
+                
+                <input type="text" name="sub11subAve" placeholder="Sub Average" value="{{Result.sub11subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub12title}}
+            <div class="input-group subject">
+                <input type="text" name="sub12title" value="{{Result.sub12title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub12firstAss" placeholder="First Assesment" value="{{Result.sub12firstAss}}" >
+                <input type="text" name="sub12secAss" placeholder="Second Assesment" value="{{Result.sub12secAss}}">
+                <input type="text" name="sub12thirdAss" placeholder="Third Assesment" value="{{Result.sub12thirdAss}}">
+                <input type="text" name="sub12project" placeholder="Project" value="{{Result.sub12project}}">
+                <input type="text" name="sub12exam" placeholder="Exam" value="{{Result.sub12exam}}">
+                
+                <input type="text" name="sub12subAve" placeholder="Sub Average" value="{{Result.sub12subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub13title}}
+            <div class="input-group subject">
+                <input type="text" name="sub13title" value="{{Result.sub13title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub13firstAss" placeholder="First Assesment" value="{{Result.sub13firstAss}}" >
+                <input type="text" name="sub13secAss" placeholder="Second Assesment" value="{{Result.sub13secAss}}">
+                <input type="text" name="sub13thirdAss" placeholder="Third Assesment" value="{{Result.sub13thirdAss}}">
+                <input type="text" name="sub13project" placeholder="Project" value="{{Result.sub13project}}">
+                <input type="text" name="sub13exam" placeholder="Exam" value="{{Result.sub13exam}}">
+                
+                <input type="text" name="sub13subAve" placeholder="Sub Average" value="{{Result.sub13subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub14title}}
+            <div class="input-group subject">
+                <input type="text" name="sub14title" value="{{Result.sub14title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub14firstAss" placeholder="First Assesment" value="{{Result.sub14firstAss}}" >
+                <input type="text" name="sub14secAss" placeholder="Second Assesment" value="{{Result.sub14secAss}}">
+                <input type="text" name="sub14thirdAss" placeholder="Third Assesment" value="{{Result.sub14thirdAss}}">
+                <input type="text" name="sub14project" placeholder="Project" value="{{Result.sub14project}}">
+                <input type="text" name="sub14exam" placeholder="Exam" value="{{Result.sub14exam}}">
+                
+                <input type="text" name="sub14subAve" placeholder="Sub Average" value="{{Result.sub14subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub15title}}
+            <div class="input-group subject">
+                <input type="text" name="sub15title" value="{{Result.sub15title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub15firstAss" placeholder="First Assesment" value="{{Result.sub15firstAss}}" >
+                <input type="text" name="sub15secAss" placeholder="Second Assesment" value="{{Result.sub15secAss}}">
+                <input type="text" name="sub15thirdAss" placeholder="Third Assesment" value="{{Result.sub15thirdAss}}">
+                <input type="text" name="sub15project" placeholder="Project" value="{{Result.sub15project}}">
+                <input type="text" name="sub15exam" placeholder="Exam" value="{{Result.sub15exam}}">
+                
+                <input type="text" name="sub15subAve" placeholder="Sub Average" value="{{Result.sub15subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub16title}}
+            <div class="input-group subject">
+                <input type="text" name="sub16title" value="{{Result.sub16title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub16firstAss" placeholder="First Assesment" value="{{Result.sub16firstAss}}" >
+                <input type="text" name="sub16secAss" placeholder="Second Assesment" value="{{Result.sub16secAss}}">
+                <input type="text" name="sub16thirdAss" placeholder="Third Assesment" value="{{Result.sub16thirdAss}}">
+                <input type="text" name="sub16project" placeholder="Project" value="{{Result.sub16project}}">
+                <input type="text" name="sub16exam" placeholder="Exam" value="{{Result.sub16exam}}">
+                
+                <input type="text" name="sub16subAve" placeholder="Sub Average" value="{{Result.sub16subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub17title}}
+            <div class="input-group subject">
+                <input type="text" name="sub17title" value="{{Result.sub17title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub17firstAss" placeholder="First Assesment" value="{{Result.sub17firstAss}}" >
+                <input type="text" name="sub17secAss" placeholder="Second Assesment" value="{{Result.sub17secAss}}">
+                <input type="text" name="sub17thirdAss" placeholder="Third Assesment" value="{{Result.sub17thirdAss}}">
+                <input type="text" name="sub17project" placeholder="Project" value="{{Result.sub17project}}">
+                <input type="text" name="sub17exam" placeholder="Exam" value="{{Result.sub17exam}}">
+                
+                <input type="text" name="sub17subAve" placeholder="Sub Average" value="{{Result.sub17subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub18title}}
+            <div class="input-group subject">
+                <input type="text" name="sub18title" value="{{Result.sub18title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub18firstAss" placeholder="First Assesment" value="{{Result.sub18firstAss}}" >
+                <input type="text" name="sub18secAss" placeholder="Second Assesment" value="{{Result.sub18secAss}}">
+                <input type="text" name="sub18thirdAss" placeholder="Third Assesment" value="{{Result.sub18thirdAss}}">
+                <input type="text" name="sub18project" placeholder="Project" value="{{Result.sub18project}}">
+                <input type="text" name="sub18exam" placeholder="Exam" value="{{Result.sub18exam}}">
+                
+                <input type="text" name="sub18subAve" placeholder="Sub Average" value="{{Result.sub18subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub19title}}
+            <div class="input-group subject">
+                <input type="text" name="sub19title" value="{{Result.sub19title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub19firstAss" placeholder="First Assesment" value="{{Result.sub19firstAss}}" >
+                <input type="text" name="sub19secAss" placeholder="Second Assesment" value="{{Result.sub19secAss}}">
+                <input type="text" name="sub19thirdAss" placeholder="Third Assesment" value="{{Result.sub19thirdAss}}">
+                <input type="text" name="sub19project" placeholder="Project" value="{{Result.sub19project}}">
+                <input type="text" name="sub19exam" placeholder="Exam" value="{{Result.sub19exam}}">
+                
+                <input type="text" name="sub19subAve" placeholder="Sub Average" value="{{Result.sub19subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub20title}}
+            <div class="input-group subject">
+                <input type="text" name="sub20title" value="{{Result.sub20title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub20firstAss" placeholder="First Assesment" value="{{Result.sub20firstAss}}" >
+                <input type="text" name="sub20secAss" placeholder="Second Assesment" value="{{Result.sub20secAss}}">
+                <input type="text" name="sub20thirdAss" placeholder="Third Assesment" value="{{Result.sub20thirdAss}}">
+                <input type="text" name="sub20project" placeholder="Project" value="{{Result.sub20project}}">
+                <input type="text" name="sub20exam" placeholder="Exam" value="{{Result.sub20exam}}">
+                
+                <input type="text" name="sub20subAve" placeholder="Sub Average" value="{{Result.sub20subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub21title}}
+            <div class="input-group subject">
+                <input type="text" name="sub21title" value="{{Result.sub21title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub21firstAss" placeholder="First Assesment" value="{{Result.sub21firstAss}}" >
+                <input type="text" name="sub21secAss" placeholder="Second Assesment" value="{{Result.sub21secAss}}">
+                <input type="text" name="sub21thirdAss" placeholder="Third Assesment" value="{{Result.sub21thirdAss}}">
+                <input type="text" name="sub21project" placeholder="Project" value="{{Result.sub21project}}">
+                <input type="text" name="sub21exam" placeholder="Exam" value="{{Result.sub21exam}}">
+                
+                <input type="text" name="sub21subAve" placeholder="Sub Average" value="{{Result.sub21subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub22title}}
+            <div class="input-group subject">
+                <input type="text" name="sub22title" value="{{Result.sub22title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub22firstAss" placeholder="First Assesment" value="{{Result.sub22firstAss}}" >
+                <input type="text" name="sub22secAss" placeholder="Second Assesment" value="{{Result.sub22secAss}}">
+                <input type="text" name="sub22thirdAss" placeholder="Third Assesment" value="{{Result.sub22thirdAss}}">
+                <input type="text" name="sub22project" placeholder="Project" value="{{Result.sub22project}}">
+                <input type="text" name="sub22exam" placeholder="Exam" value="{{Result.sub22exam}}">
+                
+                <input type="text" name="sub22subAve" placeholder="Sub Average" value="{{Result.sub22subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub23title}}
+            <div class="input-group subject">
+                <input type="text" name="sub23title" value="{{Result.sub23title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub23firstAss" placeholder="First Assesment" value="{{Result.sub23firstAss}}" >
+                <input type="text" name="sub23secAss" placeholder="Second Assesment" value="{{Result.sub23secAss}}">
+                <input type="text" name="sub23thirdAss" placeholder="Third Assesment" value="{{Result.sub23thirdAss}}">
+                <input type="text" name="sub23project" placeholder="Project" value="{{Result.sub23project}}">
+                <input type="text" name="sub23exam" placeholder="Exam" value="{{Result.sub23exam}}">
+                
+                <input type="text" name="sub23subAve" placeholder="Sub Average" value="{{Result.sub23subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub24title}}
+            <div class="input-group subject">
+                <input type="text" name="sub24title" value="{{Result.sub24title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub24firstAss" placeholder="First Assesment" value="{{Result.sub24firstAss}}" >
+                <input type="text" name="sub24secAss" placeholder="Second Assesment" value="{{Result.sub24secAss}}">
+                <input type="text" name="sub24thirdAss" placeholder="Third Assesment" value="{{Result.sub24thirdAss}}">
+                <input type="text" name="sub24project" placeholder="Project" value="{{Result.sub24project}}">
+                <input type="text" name="sub24exam" placeholder="Exam" value="{{Result.sub24exam}}">
+                
+                <input type="text" name="sub24subAve" placeholder="Sub Average" value="{{Result.sub24subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub25title}}
+            <div class="input-group subject">
+                <input type="text" name="sub25title" value="{{Result.sub25title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub25firstAss" placeholder="First Assesment" value="{{Result.sub25firstAss}}" >
+                <input type="text" name="sub25secAss" placeholder="Second Assesment" value="{{Result.sub25secAss}}">
+                <input type="text" name="sub25thirdAss" placeholder="Third Assesment" value="{{Result.sub25thirdAss}}">
+                <input type="text" name="sub25project" placeholder="Project" value="{{Result.sub25project}}">
+                <input type="text" name="sub25exam" placeholder="Exam" value="{{Result.sub25exam}}">
+                
+                <input type="text" name="sub25subAve" placeholder="Sub Average" value="{{Result.sub25subAve}}">
+            </div>
+            {{/if}}
+        {{#if Result.sub26title}}
+            <div class="input-group subject">
+                <input type="text" name="sub26title" value="{{Result.sub26title}}" readonly style="font-weight: bolder;">
+                <input type="text" name="sub26firstAss" placeholder="First Assesment" value="{{Result.sub26firstAss}}" >
+                <input type="text" name="sub26secAss" placeholder="Second Assesment" value="{{Result.sub26secAss}}">
+                <input type="text" name="sub26thirdAss" placeholder="Third Assesment" value="{{Result.sub26thirdAss}}">
+                <input type="text" name="sub26project" placeholder="Project" value="{{Result.sub26project}}">
+                <input type="text" name="sub26exam" placeholder="Exam" value="{{Result.sub26exam}}">
+                
+                <input type="text" name="sub26subAve" placeholder="Sub Average" value="{{Result.sub26subAve}}">
+            </div>
+            {{/if}}
+        </div>      
+        <div class="input-group comment">
+          <label for="">Teachers Comment</label>
+          <input type="text" name="tcomment" placeholder="Enter Comment" value="{{Result.tcomment}}">
+        </div>
+
+        <div class="input-group comment">
+          <label for="">Resumption Date</label>
+          <input type="text" name="resDate" placeholder="Resumption date" value="{{Result.resDate}}">
+        </div>
+        <div class="input-group comment" style="display: none;">
+          <input type="text" name="resultId"  value="{{Result.resultId}}">
+        </div>
+        {{!-- <div class="input-group comment">
+          <label for="">Total Subject</label>
+          <input type="text" id="totalSubject" name="totalSubject" placeholder="Term" value="{{tSubject}}" readonly>
+        </div> --}}
+        <button class="btn btn-block" type="submit">Update</button>
+      </form>
+      {{else}}
+      {{/if}}
+      
+    </div>
+  </div>
+</section>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+{{!-- <script src="/js/dev.js"></script> --}}

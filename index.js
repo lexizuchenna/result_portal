@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json({extended: true, limit: '30mb'}))
 
 // Handlebars Helpers
-const { formatDate, addNumbers, checkGrade, checkRemark } = require("./middlewares/hbsHelper");
+const { formatDate, addNumbers, checkGrade, checkRemark, ifCond } = require("./middlewares/hbsHelper");
 
 // Express-Handlbars Engine
 app.engine(
@@ -35,7 +35,8 @@ app.engine(
       formatDate,
       addNumbers,
       checkGrade,
-      checkRemark
+      checkRemark,
+      ifCond
     },
   })
 );

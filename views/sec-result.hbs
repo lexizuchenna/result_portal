@@ -1,0 +1,664 @@
+<br />
+<page size="A4">
+  <div style="padding: 0 30px;">
+    <div class="join">
+      <div class="row"><br />
+        <div class="col-xs-3">
+          <img
+            src="/logo.png"
+            class="img-responsive"
+            style="background-color: #ccc;padding: 10px;max-width: 70%;"
+            alt="Logo"
+          />
+        </div>
+        <center>
+          <div class="col-xs-9" style="">
+            <h3
+              class="text-uppercase"
+              style="font-weight: 800; text-shadow: 2px 2px #ccc;"
+            >RESULT PORTAL SEC SCHOOL.</h3>
+            <p> 24 HOUSE ADDRESS ENUGU STATE, NIGERIA.</p>
+            {{! <p><code>https://www.portal.mbjuturu.org/ </code></p> }}
+          </div>
+        </center>
+        {{!-- <div class="col-xs-3">
+          <img
+            src="Student%20Mark%20Sheet_files/1759.jpg"
+            class="img-circle"
+            width="110"
+          />
+        </div> --}}
+        <div class="col-xs-12">
+          <div class="text-center text-uppercase"><strong>Student Termly Report
+              Sheet</strong></div>
+        </div>
+      </div>
+      <div class="row">
+        <br />
+        <div class="col-xs-4">
+          <table
+            class="table table-bordered"
+            style="text-transform: capitalize;"
+          >
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <td> {{Result.name}} </td>
+              </tr>
+              <tr>
+                <th>Class</th>
+                <td>{{Result.class}}</td>
+              </tr>
+              <tr>
+                <th>Session</th>
+                <td>{{Result.year}}</td>
+              </tr>
+              <tr>
+                <th>Term</th>
+                <td>{{Result.term}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-xs-4">
+          <table
+            class="table table-bordered"
+            style="text-transform: capitalize;"
+          >
+            <tbody>
+              <tr>
+                <th>Term Perfomance</th>
+                <td><b>{{Result.perfomance}}</b></td>
+              </tr>
+              <tr>
+                <th>Class Average</th>
+                <td><b id="cl-ave"></td>
+              </tr>
+              <tr>
+                <th>Child's Average</th>
+                <td><b id="c-ave"></b></td>
+              </tr>
+              <tr>
+                <th>Total Subjects</th>
+                <td><b id="total-sub">{{Result.totalSubject}}</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-xs-4">
+          <table
+            class="table table-bordered"
+            style="text-transform: capitalize;"
+          >
+            <tbody><tr>
+                <th>General Performance</th>
+                <td> 64%</td>
+              </tr>
+              <tr>
+                <th>Grade Performance</th>
+                <td>
+                  64.44%
+                </td>
+              </tr>
+              <tr>
+                <th>psychomotor Performance</th>
+                <td>63.33%</td>
+              </tr>
+              <tr>
+                <th>affective Performance</th>
+                <td>63.33%</td>
+              </tr>
+            </tbody></table>
+        </div>
+      </div>
+
+      <div class="row">
+        <br />
+        <div class="col-xs-12">
+          <h5 class="text-bold">Cognitive Domain</h5>
+          <table class="table table-bordered">
+            <tbody>
+                <tr class="table-warning">
+                    <th class="cap">Subjects</th>
+                    <th>RESUMPTION TEST</th>
+                    <th>ASSIGNMENT</th>
+                    <th>MID TERM TEST</th>
+                    <th>PROJECT</th><th>EXAM</th>
+                    <th class="cap">TOTAL</th>
+                    <th class="cap">SUBJECT AVERAGE</th>
+                    <th class="cap">GRADE</th>
+                    <th class="cap">REMARK</th>
+              </tr>
+                                  <tr class="table-success">
+                      {{#if Result.sub1title}}
+                       <td>{{Result.sub1title}}</td>
+                      <td class="firstAss">{{Result.sub1firstAss}}</td>
+                      <td class="secAss">{{Result.sub1secAss}}</td>
+                      <td class="thirdAss">{{Result.sub1thirdAss}}</td>
+                      <td class="project">{{Result.sub1project}}</td>
+                      <td class="exam">{{Result.sub1exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub1firstAss Result.sub1secAss Result.sub1thirdAss Result.sub1project Result.sub1exam}}</td>
+                      <td class="average">{{Result.sub1subAve}}</td>
+                      <td>{{ checkGrade Result.sub1firstAss Result.sub1secAss Result.sub1thirdAss Result.sub1project Result.sub1exam }}</td>
+                      <td>{{ checkRemark Result.sub1firstAss Result.sub1secAss Result.sub1thirdAss Result.sub1project Result.sub1exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+
+                    <tr class="table-primary">
+                      {{#if Result.sub2title}}
+                       <td>{{Result.sub2title}}</td>
+                      <td class="firstAss">{{Result.sub2firstAss}}</td>
+                      <td class="secAss">{{Result.sub2secAss}}</td>
+                      <td class="thirdAss">{{Result.sub2thirdAss}}</td>
+                      <td class="project">{{Result.sub2project}}</td>
+                      <td class="exam">{{Result.sub2exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub2firstAss Result.sub2secAss Result.sub2thirdAss Result.sub2project Result.sub2exam}}</td>
+                      <td class="average">{{Result.sub2subAve}}</td>
+                      <td>{{ checkGrade Result.sub2firstAss Result.sub2secAss Result.sub2thirdAss Result.sub2project Result.sub2exam }}</td>
+                      <td>{{ checkRemark Result.sub2firstAss Result.sub2secAss Result.sub2thirdAss Result.sub2project Result.sub2exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+            <tr class="table-success">
+                      {{#if Result.sub3title}}
+                       <td>{{Result.sub3title}}</td>
+                      <td class="firstAss">{{Result.sub3firstAss}}</td>
+                      <td class="secAss">{{Result.sub3secAss}}</td>
+                      <td class="thirdAss">{{Result.sub3thirdAss}}</td>
+                      <td class="project">{{Result.sub3project}}</td>
+                      <td class="exam">{{Result.sub3exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub3firstAss Result.sub3secAss Result.sub3thirdAss Result.sub3project Result.sub3exam}}</td>
+                      <td class="average">{{Result.sub3subAve}}</td>
+                      <td>{{ checkGrade Result.sub3firstAss Result.sub3secAss Result.sub3thirdAss Result.sub3project Result.sub3exam }}</td>
+                      <td>{{ checkRemark Result.sub3firstAss Result.sub3secAss Result.sub3thirdAss Result.sub3project Result.sub3exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+
+                    <tr class="table-success">
+                      {{#if Result.sub4title}}
+                       <td>{{Result.sub4title}}</td>
+                      <td class="firstAss">{{Result.sub4firstAss}}</td>
+                      <td class="secAss">{{Result.sub4secAss}}</td>
+                      <td class="thirdAss">{{Result.sub4thirdAss}}</td>
+                      <td class="project">{{Result.sub4project}}</td>
+                      <td class="exam">{{Result.sub4exam}}</td>
+                      <td>{{ addNumbers Result.sub4firstAss Result.sub4secAss Result.sub4thirdAss Result.sub4project Result.sub4exam}}</td>
+                      <td class="average">{{Result.sub4subAve}}</td>
+                      <td>{{ checkGrade Result.sub4firstAss Result.sub4secAss Result.sub4thirdAss Result.sub4project Result.sub4exam }}</td>
+                      <td>{{ checkRemark Result.sub4firstAss Result.sub4secAss Result.sub4thirdAss Result.sub4project Result.sub4exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub5title}}
+                       <td>{{Result.sub5title}}</td>
+                      <td class="firstAss">{{Result.sub5firstAss}}</td>
+                      <td class="secAss">{{Result.sub5secAss}}</td>
+                      <td class="thirdAss">{{Result.sub5thirdAss}}</td>
+                      <td class="project">{{Result.sub5project}}</td>
+                      <td class="exam">{{Result.sub5exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub5firstAss Result.sub5secAss Result.sub5thirdAss Result.sub5project Result.sub5exam}}</td>
+                      <td class="average">{{Result.sub5subAve}}</td>
+                      <td>{{ checkGrade Result.sub5firstAss Result.sub5secAss Result.sub5thirdAss Result.sub5project Result.sub5exam }}</td>
+                      <td>{{ checkRemark Result.sub5firstAss Result.sub5secAss Result.sub5thirdAss Result.sub5project Result.sub5exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub6title}}
+                       <td>{{Result.sub6title}}</td>
+                      <td class="firstAss">{{Result.sub6firstAss}}</td>
+                      <td class="secAss">{{Result.sub6secAss}}</td>
+                      <td class="thirdAss">{{Result.sub6thirdAss}}</td>
+                      <td class="project">{{Result.sub6project}}</td>
+                      <td class="exam">{{Result.sub6exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub6firstAss Result.sub6secAss Result.sub6thirdAss Result.sub6project Result.sub6exam}}</td>
+                      <td class="average">{{Result.sub6subAve}}</td>
+                      <td>{{ checkGrade Result.sub6firstAss Result.sub6secAss Result.sub6thirdAss Result.sub6project Result.sub6exam }}</td>
+                      <td>{{ checkRemark Result.sub6firstAss Result.sub6secAss Result.sub6thirdAss Result.sub6project Result.sub6exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub7title}}
+                       <td>{{Result.sub7title}}</td>
+                      <td class="firstAss">{{Result.sub7firstAss}}</td>
+                      <td class="secAss">{{Result.sub7secAss}}</td>
+                      <td class="thirdAss">{{Result.sub7thirdAss}}</td>
+                      <td class="project">{{Result.sub7project}}</td>
+                      <td class="exam">{{Result.sub7exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub7firstAss Result.sub7secAss Result.sub7thirdAss Result.sub7project Result.sub7exam}}</td>
+                      <td class="average">{{Result.sub7subAve}}</td>
+                      <td>{{ checkGrade Result.sub7firstAss Result.sub7secAss Result.sub7thirdAss Result.sub7project Result.sub7exam }}</td>
+                      <td>{{ checkRemark Result.sub7firstAss Result.sub7secAss Result.sub7thirdAss Result.sub7project Result.sub7exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub8title}}
+                       <td>{{Result.sub8title}}</td>
+                      <td class="firstAss">{{Result.sub8firstAss}}</td>
+                      <td class="secAss">{{Result.sub8secAss}}</td>
+                      <td class="thirdAss">{{Result.sub8thirdAss}}</td>
+                      <td class="project">{{Result.sub8project}}</td>
+                      <td class="exam">{{Result.sub8exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub8firstAss Result.sub8secAss Result.sub8thirdAss Result.sub8project Result.sub8exam}}</td>
+                      <td class="average">{{Result.sub8subAve}}</td>
+                      <td>{{ checkGrade Result.sub8firstAss Result.sub8secAss Result.sub8thirdAss Result.sub8project Result.sub8exam }}</td>
+                      <td>{{ checkRemark Result.sub8firstAss Result.sub8secAss Result.sub8thirdAss Result.sub8project Result.sub8exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub9title}}
+                       <td>{{Result.sub9title}}</td>
+                      <td class="firstAss">{{Result.sub9firstAss}}</td>
+                      <td class="secAss">{{Result.sub9secAss}}</td>
+                      <td class="thirdAss">{{Result.sub9thirdAss}}</td>
+                      <td class="project">{{Result.sub9project}}</td>
+                      <td class="exam">{{Result.sub9exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub9firstAss Result.sub9secAss Result.sub9thirdAss Result.sub9project Result.sub9exam}}</td>
+                      <td class="average">{{Result.sub9subAve}}</td>
+                      <td>{{ checkGrade Result.sub9firstAss Result.sub9secAss Result.sub9thirdAss Result.sub9project Result.sub9exam }}</td>
+                      <td>{{ checkRemark Result.sub9firstAss Result.sub9secAss Result.sub9thirdAss Result.sub9project Result.sub9exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub10title}}
+                       <td>{{Result.sub10title}}</td>
+                      <td class="firstAss">{{Result.sub10firstAss}}</td>
+                      <td class="secAss">{{Result.sub10secAss}}</td>
+                      <td class="thirdAss">{{Result.sub10thirdAss}}</td>
+                      <td class="project">{{Result.sub10project}}</td>
+                      <td class="exam">{{Result.sub10exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub10firstAss Result.sub10secAss Result.sub10thirdAss Result.sub10project Result.sub10exam}}</td>
+                      <td class="average">{{Result.sub10subAve}}</td>
+                      <td>{{ checkGrade Result.sub10firstAss Result.sub10secAss Result.sub10thirdAss Result.sub10project Result.sub10exam }}</td>
+                      <td>{{ checkRemark Result.sub10firstAss Result.sub10secAss Result.sub10thirdAss Result.sub10project Result.sub10exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub11title}}
+                       <td>{{Result.sub11title}}</td>
+                      <td class="firstAss">{{Result.sub11firstAss}}</td>
+                      <td class="secAss">{{Result.sub11secAss}}</td>
+                      <td class="thirdAss">{{Result.sub11thirdAss}}</td>
+                      <td class="project">{{Result.sub11project}}</td>
+                      <td class="exam">{{Result.sub11exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub11firstAss Result.sub11secAss Result.sub11thirdAss Result.sub11project Result.sub11exam}}</td>
+                      <td class="average">{{Result.sub11subAve}}</td>
+                      <td>{{ checkGrade Result.sub11firstAss Result.sub11secAss Result.sub11thirdAss Result.sub11project Result.sub11exam }}</td>
+                      <td>{{ checkRemark Result.sub11firstAss Result.sub11secAss Result.sub11thirdAss Result.sub11project Result.sub11exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub12title}}
+                       <td>{{Result.sub12title}}</td>
+                      <td class="firstAss">{{Result.sub12firstAss}}</td>
+                      <td class="secAss">{{Result.sub12secAss}}</td>
+                      <td class="thirdAss">{{Result.sub12thirdAss}}</td>
+                      <td class="project">{{Result.sub12project}}</td>
+                      <td class="exam">{{Result.sub12exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub12firstAss Result.sub12secAss Result.sub12thirdAss Result.sub12project Result.sub12exam}}</td>
+                      <td class="average">{{Result.sub12subAve}}</td>
+                      <td>{{ checkGrade Result.sub12firstAss Result.sub12secAss Result.sub12thirdAss Result.sub12project Result.sub12exam }}</td>
+                      <td>{{ checkRemark Result.sub12firstAss Result.sub12secAss Result.sub12thirdAss Result.sub12project Result.sub12exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub13title}}
+                       <td>{{Result.sub13title}}</td>
+                      <td class="firstAss">{{Result.sub13firstAss}}</td>
+                      <td class="secAss">{{Result.sub13secAss}}</td>
+                      <td class="thirdAss">{{Result.sub13thirdAss}}</td>
+                      <td class="project">{{Result.sub13project}}</td>
+                      <td class="exam">{{Result.sub13exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub13firstAss Result.sub13secAss Result.sub13thirdAss Result.sub13project Result.sub13exam}}</td>
+                      <td class="average">{{Result.sub13subAve}}</td>
+                      <td>{{ checkGrade Result.sub13firstAss Result.sub13secAss Result.sub13thirdAss Result.sub13project Result.sub13exam }}</td>
+                      <td>{{ checkRemark Result.sub13firstAss Result.sub13secAss Result.sub13thirdAss Result.sub13project Result.sub13exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub14title}}
+                       <td>{{Result.sub14title}}</td>
+                      <td class="firstAss">{{Result.sub14firstAss}}</td>
+                      <td class="secAss">{{Result.sub14secAss}}</td>
+                      <td class="thirdAss">{{Result.sub14thirdAss}}</td>
+                      <td class="project">{{Result.sub14project}}</td>
+                      <td class="exam">{{Result.sub14exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub14firstAss Result.sub14secAss Result.sub14thirdAss Result.sub14project Result.sub14exam}}</td>
+                      <td class="average">{{Result.sub14subAve}}</td>
+                      <td>{{ checkGrade Result.sub14firstAss Result.sub14secAss Result.sub14thirdAss Result.sub14project Result.sub14exam }}</td>
+                      <td>{{ checkRemark Result.sub14firstAss Result.sub14secAss Result.sub14thirdAss Result.sub14project Result.sub14exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+
+                    <tr class="table-success">
+                      {{#if Result.sub15title}}
+                       <td>{{Result.sub15title}}</td>
+                      <td class="firstAss">{{Result.sub15firstAss}}</td>
+                      <td class="secAss">{{Result.sub15secAss}}</td>
+                      <td class="thirdAss">{{Result.sub15thirdAss}}</td>
+                      <td class="project">{{Result.sub15project}}</td>
+                      <td class="exam">{{Result.sub15exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub15firstAss Result.sub15secAss Result.sub15thirdAss Result.sub15project Result.sub15exam}}</td>
+                      <td class="average">{{Result.sub15subAve}}</td>
+                      <td>{{ checkGrade Result.sub15firstAss Result.sub15secAss Result.sub15thirdAss Result.sub15project Result.sub15exam }}</td>
+                      <td>{{ checkRemark Result.sub15firstAss Result.sub15secAss Result.sub15thirdAss Result.sub15project Result.sub15exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub16title}}
+                       <td>{{Result.sub16title}}</td>
+                      <td class="firstAss">{{Result.sub16firstAss}}</td>
+                      <td class="secAss">{{Result.sub16secAss}}</td>
+                      <td class="thirdAss">{{Result.sub16thirdAss}}</td>
+                      <td class="project">{{Result.sub16project}}</td>
+                      <td class="exam">{{Result.sub16exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub16firstAss Result.sub16secAss Result.sub16thirdAss Result.sub16project Result.sub16exam}}</td>
+                      <td class="average">{{Result.sub16subAve}}</td>
+                      <td>{{ checkGrade Result.sub16firstAss Result.sub16secAss Result.sub16thirdAss Result.sub16project Result.sub16exam }}</td>
+                      <td>{{ checkRemark Result.sub16firstAss Result.sub16secAss Result.sub16thirdAss Result.sub16project Result.sub16exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub17title}}
+                       <td>{{Result.sub17title}}</td>
+                      <td class="firstAss">{{Result.sub17firstAss}}</td>
+                      <td class="secAss">{{Result.sub17secAss}}</td>
+                      <td class="thirdAss">{{Result.sub17thirdAss}}</td>
+                      <td class="project">{{Result.sub17project}}</td>
+                      <td class="exam">{{Result.sub17exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub17firstAss Result.sub17secAss Result.sub17thirdAss Result.sub17project Result.sub17exam}}</td>
+                      <td class="average">{{Result.sub17subAve}}</td>
+                      <td>{{ checkGrade Result.sub17firstAss Result.sub17secAss Result.sub17thirdAss Result.sub17project Result.sub17exam }}</td>
+                      <td>{{ checkRemark Result.sub17firstAss Result.sub17secAss Result.sub17thirdAss Result.sub17project Result.sub17exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub18title}}
+                       <td>{{Result.sub18title}}</td>
+                      <td class="firstAss">{{Result.sub18firstAss}}</td>
+                      <td class="secAss">{{Result.sub18secAss}}</td>
+                      <td class="thirdAss">{{Result.sub18thirdAss}}</td>
+                      <td class="project">{{Result.sub18project}}</td>
+                      <td class="exam">{{Result.sub18exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub18firstAss Result.sub18secAss Result.sub18thirdAss Result.sub18project Result.sub18exam}}</td>
+                      <td class="average">{{Result.sub18subAve}}</td>
+                      <td>{{ checkGrade Result.sub18firstAss Result.sub18secAss Result.sub18thirdAss Result.sub18project Result.sub18exam }}</td>
+                      <td>{{ checkRemark Result.sub18firstAss Result.sub18secAss Result.sub18thirdAss Result.sub18project Result.sub18exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub19title}}
+                       <td>{{Result.sub19title}}</td>
+                      <td class="firstAss">{{Result.sub19firstAss}}</td>
+                      <td class="secAss">{{Result.sub19secAss}}</td>
+                      <td class="thirdAss">{{Result.sub19thirdAss}}</td>
+                      <td class="project">{{Result.sub19project}}</td>
+                      <td class="exam">{{Result.sub19exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub19firstAss Result.sub19secAss Result.sub19thirdAss Result.sub19project Result.sub19exam}}</td>
+                      <td class="average">{{Result.sub19subAve}}</td>
+                      <td>{{ checkGrade Result.sub19firstAss Result.sub19secAss Result.sub19thirdAss Result.sub19project Result.sub19exam }}</td>
+                      <td>{{ checkRemark Result.sub19firstAss Result.sub19secAss Result.sub19thirdAss Result.sub19project Result.sub19exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub20title}}
+                       <td>{{Result.sub20title}}</td>
+                      <td class="firstAss">{{Result.sub20firstAss}}</td>
+                      <td class="secAss">{{Result.sub20secAss}}</td>
+                      <td class="thirdAss">{{Result.sub20thirdAss}}</td>
+                      <td class="project">{{Result.sub20project}}</td>
+                      <td class="exam">{{Result.sub20exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub20firstAss Result.sub20secAss Result.sub20thirdAss Result.sub20project Result.sub20exam}}</td>
+                      <td class="average">{{Result.sub20subAve}}</td>
+                      <td>{{ checkGrade Result.sub20firstAss Result.sub20secAss Result.sub20thirdAss Result.sub20project Result.sub20exam }}</td>
+                      <td>{{ checkRemark Result.sub20firstAss Result.sub20secAss Result.sub20thirdAss Result.sub20project Result.sub20exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub21title}}
+                       <td>{{Result.sub21title}}</td>
+                      <td class="firstAss">{{Result.sub21firstAss}}</td>
+                      <td class="secAss">{{Result.sub21secAss}}</td>
+                      <td class="thirdAss">{{Result.sub21thirdAss}}</td>
+                      <td class="project">{{Result.sub21project}}</td>
+                      <td class="exam">{{Result.sub21exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub21firstAss Result.sub21secAss Result.sub21thirdAss Result.sub21project Result.sub21exam}}</td>
+                      <td class="average">{{Result.sub21subAve}}</td>
+                      <td>{{ checkGrade Result.sub21firstAss Result.sub21secAss Result.sub21thirdAss Result.sub21project Result.sub21exam }}</td>
+                      <td>{{ checkRemark Result.sub21firstAss Result.sub21secAss Result.sub21thirdAss Result.sub21project Result.sub21exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub22title}}
+                       <td>{{Result.sub22title}}</td>
+                      <td class="firstAss">{{Result.sub22firstAss}}</td>
+                      <td class="secAss">{{Result.sub22secAss}}</td>
+                      <td class="thirdAss">{{Result.sub22thirdAss}}</td>
+                      <td class="project">{{Result.sub22project}}</td>
+                      <td class="exam">{{Result.sub22exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub22firstAss Result.sub22secAss Result.sub22thirdAss Result.sub22project Result.sub22exam}}</td>
+                      <td class="average">{{Result.sub22subAve}}</td>
+                      <td>{{ checkGrade Result.sub22firstAss Result.sub22secAss Result.sub22thirdAss Result.sub22project Result.sub22exam }}</td>
+                      <td>{{ checkRemark Result.sub22firstAss Result.sub22secAss Result.sub22thirdAss Result.sub22project Result.sub22exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub23title}}
+                       <td>{{Result.sub23title}}</td>
+                      <td class="firstAss">{{Result.sub23firstAss}}</td>
+                      <td class="secAss">{{Result.sub23secAss}}</td>
+                      <td class="thirdAss">{{Result.sub23thirdAss}}</td>
+                      <td class="project">{{Result.sub23project}}</td>
+                      <td class="exam">{{Result.sub23exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub23firstAss Result.sub23secAss Result.sub23thirdAss Result.sub23project Result.sub23exam}}</td>
+                      <td class="average">{{Result.sub23subAve}}</td>
+                      <td>{{ checkGrade Result.sub23firstAss Result.sub23secAss Result.sub23thirdAss Result.sub23project Result.sub23exam }}</td>
+                      <td>{{ checkRemark Result.sub23firstAss Result.sub23secAss Result.sub23thirdAss Result.sub23project Result.sub23exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub24title}}
+                       <td>{{Result.sub24title}}</td>
+                      <td class="firstAss">{{Result.sub24firstAss}}</td>
+                      <td class="secAss">{{Result.sub24secAss}}</td>
+                      <td class="thirdAss">{{Result.sub24thirdAss}}</td>
+                      <td class="project">{{Result.sub24project}}</td>
+                      <td class="exam">{{Result.sub24exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub24firstAss Result.sub24secAss Result.sub24thirdAss Result.sub24project Result.sub24exam}}</td>
+                      <td class="average">{{Result.sub24subAve}}</td>
+                      <td>{{ checkGrade Result.sub24firstAss Result.sub24secAss Result.sub24thirdAss Result.sub24project Result.sub24exam }}</td>
+                      <td>{{ checkRemark Result.sub24firstAss Result.sub24secAss Result.sub24thirdAss Result.sub24project Result.sub24exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub25title}}
+                       <td>{{Result.sub25title}}</td>
+                      <td class="firstAss">{{Result.sub25firstAss}}</td>
+                      <td class="secAss">{{Result.sub25secAss}}</td>
+                      <td class="thirdAss">{{Result.sub25thirdAss}}</td>
+                      <td class="project">{{Result.sub25project}}</td>
+                      <td class="exam">{{Result.sub25exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub25firstAss Result.sub25secAss Result.sub25thirdAss Result.sub25project Result.sub25exam}}</td>
+                      <td class="average">{{Result.sub25subAve}}</td>
+                      <td>{{ checkGrade Result.sub25firstAss Result.sub25secAss Result.sub25thirdAss Result.sub25project Result.sub25exam }}</td>
+                      <td>{{ checkRemark Result.sub25firstAss Result.sub25secAss Result.sub25thirdAss Result.sub25project Result.sub25exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+                    <tr class="table-success">
+                      {{#if Result.sub26title}}
+                       <td>{{Result.sub26title}}</td>
+                      <td class="firstAss">{{Result.sub26firstAss}}</td>
+                      <td class="secAss">{{Result.sub26secAss}}</td>
+                      <td class="thirdAss">{{Result.sub26thirdAss}}</td>
+                      <td class="project">{{Result.sub26project}}</td>
+                      <td class="exam">{{Result.sub26exam}}</td>
+                      <td class="totals">{{ addNumbers Result.sub26firstAss Result.sub26secAss Result.sub26thirdAss Result.sub26project Result.sub26exam}}</td>
+                      <td class="average">{{Result.sub26subAve}}</td>
+                      <td>{{ checkGrade Result.sub26firstAss Result.sub26secAss Result.sub26thirdAss Result.sub26project Result.sub26exam }}</td>
+                      <td>{{ checkRemark Result.sub26firstAss Result.sub26secAss Result.sub26thirdAss Result.sub26project Result.sub26exam }}</td>
+                      {{else}}
+                      {{/if}}
+                    </tr>
+            </tbody></table>
+          {{!-- <div class="row">
+            <div class="col-xs-6">
+              <div>
+                <h5 class="dock">Total Marks Obtained:
+                  <strong>1095.5 / 1700</strong>
+                  <br />&nbsp;(17 Subjects recorded)</h5>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div>
+                <h5 class="dock"><b>Position overall in UB 3 (cummulative)</b>:
+                  <strong>102</strong>
+                  out of
+                  <strong>176</strong></h5>
+              </div>
+            </div>
+          </div> --}}
+          <div class="row">
+            <br />
+            <div class="col-xs-12">
+              <p class="text-bold dock">Head Teacher's Comment: &nbsp; &nbsp;
+                <span><i>{{Result.hcomment}}</i></span>
+              </p>
+              <p class="text-bold dock">Teacher's Comment: &nbsp; &nbsp;
+                <span><i>{{Result.tcomment}}</i></span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- domians -->
+        {{!-- <div class="col-xs-3">
+          <h5 class="text-bold">PSYCHOMOTOR Domain (1-5)</h5>
+          <table class="table table-bordered">
+            <tbody><tr>
+                <th>Skills</th>
+                <th>Rating</th>
+              </tr>
+              <tr>
+                <td>GAMES</td>
+                <td>
+                  4
+                </td>
+              </tr>
+              <tr>
+                <td>CARRYING OUT ASSIGNMENT</td>
+                <td>
+                  3
+                </td>
+              </tr>
+              <tr>
+                <td>NEATNESS</td>
+                <td>
+                  2.5
+                </td>
+              </tr>
+            </tbody></table>
+          <h5 class="text-bold">AFFECTIVE Domain (1-5)</h5>
+          <table class="table table-bordered">
+            <tbody><tr>
+                <th>Skills</th>
+                <th>Rating</th>
+              </tr>
+              <tr>
+                <td>POLITENESS</td>
+                <td>
+                  3.5
+                </td>
+              </tr>
+              <tr>
+                <td>OBEDIENCE</td>
+                <td>
+                  3
+                </td>
+              </tr>
+              <tr>
+                <td>COMMUNICATION</td>
+                <td>
+                  3
+                </td>
+              </tr>
+            </tbody></table>
+        </div> --}}
+
+      </div>
+      <div class="row">
+        <br />
+        <div class="col-xs-5">
+          <h5 class="text-bold">Cognitive Keys</h5>
+          <table class="table table-striped table-bordered">
+            <tbody>
+                <tr>
+                <th>85.00 - 100.00</th>
+                <td>E (EXCELLENT)</td>
+              </tr>
+              <tr>
+                <th>79.00 - 84.00</th>
+                <td>G (GOOD)</td>
+              </tr>
+              <tr>
+                <th>65.00 - 78.00</th>
+                <td>S (SATISFACTORY)</td>
+              </tr>
+              <tr>
+                <th>55.00 - 64.00</th>
+                <td>NI (NEEDS IMPROVEMENT)</td>
+              </tr>
+              {{!-- <tr>
+                <th>0.00 - 49.99</th>
+                <td>F (FAIL)</td>
+              </tr> --}}
+            </tbody>
+            </table>
+        </div>
+        <div class="col-xs-4 text-center">
+          <img
+            src="Student%20Mark%20Sheet_files/59845.png"
+            alt="..."
+            width="150"
+          />
+          <p>&nbsp;</p>
+          <h4>Rev. Br. HENRY CHIDI UZOR (fms)</h4>
+          <h5 class="text-bold">Management </h5>
+        </div>
+
+        <div class="col-xs-3" style="float: right;">
+          <h5 class="text-bold">Next Term Begins:</h5>
+          <h4>{{Result.resDate}}</h4>
+          {{!-- <img
+            src="Student%20Mark%20Sheet_files/1759.png"
+            class="img-responsive"
+            style="width:120px"
+          /> --}}
+        </div>
+      </div>
+    </div>
+  </div>
+</page>
+
+<script src="/js/result-main.js"></script>

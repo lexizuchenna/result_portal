@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const ResultsSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.SchemaTypes.ObjectId,
+      required: true
+    },
     name: {
       type: String,
       required: true,
@@ -30,6 +34,14 @@ const ResultsSchema = new mongoose.Schema(
     resDate: String,
     resultId: String,
     resultLink: String,
+    approved: {
+      type: Boolean,
+      default: false
+    },
+    message: {
+      type: String,
+      default: 'Nill'
+    }
   },
   {
     timestamps: true,

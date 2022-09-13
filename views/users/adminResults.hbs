@@ -22,7 +22,7 @@
             </a>
           </li>
           <li>
-            <a href="/users/admin/teachers" class="navbar-link active icon-box">
+            <a href="/users/admin/teachers" class="navbar-link icon-box">
               <span class="material-symbols-rounded icon">group</span>
 
               <span>Teachers</span>
@@ -36,7 +36,7 @@
             </a>
           </li>
           <li>
-            <a href="/users/admin/results" class="navbar-link icon-box">
+            <a href="/users/admin/results" class="navbar-link active icon-box">
               <span class="material-symbols-rounded icon">local_library</span>
 
               <span>Results</span>
@@ -80,6 +80,7 @@
   </div>
 </header>
 
+
 <main>
   <article class="container article">
 
@@ -90,40 +91,43 @@
     <section class="tasks">
 
       <div class="section-title-wrapper">
-        <h2 class="section-title">Teachers</h2>
+        <h2 class="section-title">Results</h2>
       </div>
 
-      {{#if newTeachers}}
-        {{#each newTeachers}}
-          <form action="/users/admin/delete-teacher" method="post" style="margin-bottom: 10px;">
+      {{#if Result}}
+        {{#each Result}}
+          <form action="/users/admin/add-message" method="post" style="margin-bottom: 10px;">
             <ul class="tasks-list">
               <li class="tasks-item">
                 <div class="card task-card">
 
                   <div class="card-input">
-                    {{!-- <input type="checkbox" name="task-1" id="task-1" /> --}}
+                    <input type="checkbox" name="{{this.resultId}}" id="task-{{this.resultId}}" class="result" />
 
                     <label for="task-1" class="task-label">
-                      <a href="#">{{this.username}}</a>
+                      <a href="{{host}} {{this.resultLink}}" target="_blank">{{host}}{{this.resultLink}}</a>
                     </label>
                   </div>
 
-                  <div class="card-badge cyan radius-pill">{{this.class}}</div>
+                  <div class="card-badge cyan radius-pill">{{this.name}}</div>
 
                   <ul class="card-meta-list">
 
                     <li>
                       <div class="meta-box icon-box">
                         <span>
-                          <input type="text" value="{{this._id}}" name="id"  style="display: none;" />
-                          {{!-- <input type="text" value="{{this.name}}" name="studName" style="display: none;" /> --}}
+                          <input type="text" placeholder="message" name="message" />
+                          <input type="text" value="{{this.resultId}}" name="resultId"  style="display: none;" />
                         </span>
                       </div>
                     </li>
 
                     <li>
+                      <div class="card-badge green" style="margin-bottom: 5px;">
+                          <button type="submit">Send</button>
+                      </div>
                       <div class="card-badge red">
-                          <button type="submit">Delete</button>
+                        <a style="color: #000;" href="/users/admin/result/{{this.resultId}}">Edit</a>
                       </div>
                     </li>
 
@@ -141,7 +145,7 @@
                   <div class="card-input">
                     <input type="checkbox" name="task-1" id="task-1" />
                     <label for="task-1" class="task-label">
-                      No Teacher
+                      No Result Available
                     </label>
                   </div>
                 </div>
@@ -152,4 +156,5 @@
   </article>
 </main>
 
-<script src="/js/gen-result.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/admin-result.js"></script>

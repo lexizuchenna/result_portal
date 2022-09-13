@@ -61,6 +61,74 @@ const registerTeacher = async (req, res) => {
   }
 };
 
+// View Results in Admin 
+const viewAdminResults = async (req, res) => {
+  let rawResult = await Results.find().lean()
+  let Result = rawResult.filter((x) => x.approved !== true)
+  let host = req.headers.host
+  
+  res.render('users/adminResults', {Result, host})
+}
+
+// View Archives
+const viewArchives = async (req, res) => {
+  let rawResult = await Results.find().lean()
+  let Result = rawResult.filter((x) => x.approved === true)
+  let host = req.headers.host
+  
+  res.render('users/archives', {Result, host})
+}
+
+// Edit Result 
+const editAdminResult = async (req, res) => {
+  let Resp = await Results.find({resultId: req.params.resultId}).lean()
+  let Result = Resp[0]
+
+  res.render('users/editAdminResult', {Result})
+}
+
+// Update Result
+const updateAdminResult = async (req, res) => {
+    
+  await Results.findOneAndUpdate(
+    { resultId: req.body.resultId },
+    {hcomment: req.body.hcomment},
+    { new: true }
+  );
+
+  res.redirect('/users/admin/results')
+}
+
+// Add Message 
+const addMessage = async (req, res) => {
+  if(!req.body.message) {
+    await Results.findOneAndUpdate(
+      { resultId: req.body.resultId },
+      {message: 'Null'},
+      { new: true }
+      );
+      res.redirect('/users/admin/results')
+  } else {
+
+    await Results.findOneAndUpdate(
+      { resultId: req.body.resultId },
+      {message: req.body.message},
+      { new: true }
+      );
+      res.redirect('/users/admin/results')
+  }
+}
+
+// Approval
+const approve = async (req, res) => {
+  let App = await Results.findOneAndUpdate(
+    { resultId: req.body.resultId },
+    {approved: req.body.approval},
+    { new: true }
+    );
+    res.redirect('/users/admin/results')
+}
+
 // Change Admin Password
 const changeAdminPassword = async (req, res) => {
   const pwd = req.user.password;
@@ -141,6 +209,7 @@ const generateResults = async (req, res) => {
   }
 
   req.body.class = req.user.class
+  req.body.user = req.user.id
   let id = uuid()
   req.body.resultId = id
   req.body.resultLink = `/results/student/${id}`
@@ -154,12 +223,38 @@ const generateResults = async (req, res) => {
 
 }
 
+// Edit Result 
+const editResult = async (req, res) => {
+  let Resp = await Results.find({resultId: req.params.resultId}).lean()
+  let Result = Resp[0]
+
+  res.render('users/editResult', {Result})
+}
+
+// Update Result
+const updateResult = async (req, res) => {
+  let grades = _.omit(req.body, ['tcomment',  'resDate', 'name','resultId'])
+  for (let keys in grades) {
+    ResultsSchema.add({[keys]: {type: String}})
+  }
+  
+  await Results.findOneAndUpdate(
+    { resultId: req.body.resultId },
+    req.body,
+    { new: true }
+  );
+
+  res.redirect('/users/teacher/results')
+}
+
 // View Results 
 const viewResults = async (req, res) => {
-  let Result = await Results.find().lean()
+  let Result = await Results.find({user: req.user.id}).lean()
   let host = req.headers.host
+  let Messages = Result.filter((x) => x.message !== 'Null')
   
-  res.render('users/results', {Result, host})
+  
+  res.render('users/results', {Result, host, Messages})
 }
 
 // Send Result 
@@ -201,11 +296,19 @@ module.exports = {
   viewAdminTeachers,
   deleteTeacher,
   registerTeacher,
+  viewAdminResults,
+  editAdminResult,
+  updateAdminResult,
+  viewArchives,
+  addMessage,
+  approve,
   changeAdminPassword,
 
   viewTeacher,
   generateResult,
   generateResults,
+  editResult,
+  updateResult,
   setRecord,
   getRecord,
   viewResults,

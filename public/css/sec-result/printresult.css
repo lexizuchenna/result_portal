@@ -1,0 +1,16 @@
+.panel {
+    position: relative;
+    background: #fff;
+    padding: 7px 8px; 
+    border: 1px;
+    margin-bottom: 15px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.table>thead>tr>td, .table>tbody>tr>td, .table>tfood>tr>td, .table>thead>tr>th, .table>tbody>tr>th, .table>tfood>tr>th {
+    padding: 2px 5px;
+}
+.panel-default {
+    border-color: #444;
+}
