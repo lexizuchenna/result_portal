@@ -2,12 +2,12 @@ const passport = require("passport");
 
 // View Admin Login Page
 const viewAdminPage = (req, res) => {
-  res.render("login/admin");
+  res.render("login/admin", {layout: 'login'});
 };
 
 // View Teacher Login Page
 const viewTeacherPage = (req, res) => {
-  res.render("login/teacher");
+  res.render("login/teacher", {layout: 'login'});
 };
 
 //Admin Login
