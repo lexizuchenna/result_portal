@@ -5,8 +5,8 @@ for (i = 0; i < approval.length; i++) {
   approval[i].addEventListener("change", (e) => {
     let result = e.target;
     let id = result.getAttribute("name");
-    let url = `http://${host}/users/api/admin/approve`
-    console.log(url)
+    let protocol = document.location.protocol
+    let url = `${protocol}//${host}/users/api/admin/approve`
     axios
       .post(
         url,
