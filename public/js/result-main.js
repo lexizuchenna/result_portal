@@ -48,11 +48,11 @@ console.log(totalSub, totals)
 
 const getAverage = (dividend, divisor, element, text) => {
     let quotient = parseInt(dividend) / parseInt(divisor)
-    element.innerText = `${text} Average: ${quotient}`
+    element.innerText = `${quotient}`
 }
 
-getAverage(totalTotal, totalSub, subjectAverage, `Child's`)
-getAverage(averageTotal, totalSub, classAverage, `Class`)
+getAverage(totalTotal, totalSub, subjectAverage, '')
+getAverage(averageTotal, totalSub, classAverage, '')
 
 
 document.getElementById('first-ass-total').innerText = firstAssTotal
