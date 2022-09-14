@@ -5,10 +5,11 @@ for (i = 0; i < approval.length; i++) {
   approval[i].addEventListener("change", (e) => {
     let result = e.target;
     let id = result.getAttribute("name");
-
+    let url = `http://${host}/users/api/admin/approve`
+    console.log(url)
     axios
       .post(
-        `${host}/users/api/admin/approve`,
+        url,
         {
           resultId: id,
           approval: result.checked,
