@@ -156,6 +156,7 @@ const changeAdminPassword = async (req, res) => {
   }
 };
 
+
 // View Teacher
 const viewTeacher = async (req, res) => {
   const user = req.user.username;

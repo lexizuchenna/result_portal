@@ -45,11 +45,13 @@
                   aria-label="Password input field"
                   autocomplete="autocomplete"
                   name="password"
+                  id="pass"
                 />
                 <button
                   type="button"
                   tabindex="-1"
                   class="css-1bcwkbe e1ucx7br1"
+                  id="hide"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +80,9 @@
     </div>
   </div>
 </div>
+<script>
+  const hide=document.getElementById("hide"),pass=document.getElementById("pass");hide.addEventListener("click",(()=>{"password"===pass.getAttribute("type")?pass.setAttribute("type","text"):pass.setAttribute("type","password")}));
+</script>
 
 {{!-- <div class="card home-page flex">
   <h1>Login to Result Portal</h1>

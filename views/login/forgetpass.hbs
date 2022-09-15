@@ -11,32 +11,32 @@
     >Result Portal</a>
     <div class="authGridColumn authGridColumn--callToActionParent">
       <div class="createFreeAccount">
-        <span class="createFreeAccount__text font">Not an Admin?</span>
+        <span class="createFreeAccount__text font">Login as an Admin?</span>
         <a
           class="createFreeAccount__button font"
           tabindex="0"
-          href="/login/teacher"
-        >Login as Teacher</a>
+          href="/login/admin"
+        >Login as an Admin</a>
       </div>
     </div>
     <div class="authGridColumn authGridColumn--formParent">
       <div class="formContainer loginForm">
-        <form class="form" action="/login/admin" method="POST">
+        <form class="form" action="/login/forgot-password" method="POST">
           <fieldset class="form__area">
-            <h1 class="form__header" aria-level="1">Log In</h1>
+            <h1 class="form__header" aria-level="1">Forgot your password</h1>
           </fieldset>
           <fieldset class="form__area">
             <fieldset class="formInputContainer">
               <input
                 class="formInputContainer__textInput"
-                type="text"
-                placeholder="Username"
+                type="email"
+                placeholder="Email"
                 aria-label="Username input field"
                 autocomplete="autocomplete"
-                name="username"
+                name="email"
               />
             </fieldset>
-            <fieldset class="formInputContainer">
+            {{! <fieldset class="formInputContainer">
               <div class="css-lo9wpn e1ucx7br0">
                 <input
                   class="formInputContainer__textInput"
@@ -64,16 +64,13 @@
                   </svg>
                 </button>
               </div>
-            </fieldset>
+            </fieldset> }}
           </fieldset>
           <fieldset class="form__area">
-            {{! <span class="form__formAlert form__formAlert--error">Incorrect
-                email or password!</span> }}
-            <button class="form__button" type="submit" tabindex="0">Log In</button>
-            <a
-              class="form__pageLink form__pageLink--inFooter"
-              href="/login/forgot-password"
-            >Forgot password?</a>
+            {{#if err}}
+            <span class="form__formAlert form__formAlert--error">{{err}}</span>
+            {{/if}}
+            <button class="form__button" type="submit" tabindex="0">Request Password</button>
           </fieldset>
         </form>
       </div>
@@ -81,14 +78,6 @@
   </div>
 </div>
 <script>
-  const hide=document.getElementById("hide"),pass=document.getElementById("pass");hide.addEventListener("click",(()=>{"password"===pass.getAttribute("type")?pass.setAttribute("type","text"):pass.setAttribute("type","password")}));
+  const
+  hide=document.getElementById("hide"),pass=document.getElementById("pass");hide.addEventListener("click",(()=>{"password"===pass.getAttribute("type")?pass.setAttribute("type","text"):pass.setAttribute("type","password")}));
 </script>
-{{! <div class="card home-page flex">
-  <h1>Login to Result Portal</h1>
-  <form action="/login/admin" method="POST" class="login">
-    <input type="text" name="username" placeholder="Input Username" />
-    <input type="password" name="password" placeholder="Input Password" />
-    <button type="submit">Login</button>
-  </form>
-  <p>Not an Admin? Login in as a <a href="/login/teacher"  style="display: inline;">Teacher</a></p>
-</div> }}

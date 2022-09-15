@@ -10,6 +10,10 @@ const UsersSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+      default: 'null'
+    },
     password: {
       type: String,
       required: true,
