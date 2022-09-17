@@ -1,6 +1,6 @@
 {
   "name": "result_portal",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Online result portal for school",
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,8 @@
     "url": "git+https://github.com/lexizuchenna/result_portal.git"
   },
   "keywords": [
-    "Result",
-    "Management"
+    "Result Portal",
+    "Result Management System"
   ],
   "author": "Lexiz Technology",
   "license": "MIT",
