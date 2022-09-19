@@ -1,4 +1,4 @@
-const Users = require("../models/Users");
+const {Users} = require("../models/Users");
 
 // Check if Admin is logged in
 const isAdminLoggedIn = (req, res, next) => {

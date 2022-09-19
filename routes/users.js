@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {isAdminLoggedOut, isTeacherLoggedIn, isAdminLoggedIn} = require('../middlewares/auth')
+const {isTeacherLoggedIn, isAdminLoggedIn} = require('../middlewares/auth')
 const { validateUser } = require("../middlewares/userValidator");
 const {
   viewAdmin,
@@ -9,6 +9,8 @@ const {
   viewAdminTeachers,
   deleteTeacher,
   viewRegTeachers,
+  viewEditTeacher,
+  updateTeacher,
   viewAdminResults,
   viewArchives,
   addMessage,
@@ -22,8 +24,6 @@ const {
   generateResults,
   editResult,
   updateResult,
-  setRecord,
-  getRecord,
   viewResults,
   sendResult,
 
@@ -32,6 +32,7 @@ const {
 
 router.get("/admin", isAdminLoggedIn, viewAdmin);
 router.get("/admin/register-teachers", isAdminLoggedIn, viewRegTeachers);
+router.get("/admin/edit-teacher/:id", isAdminLoggedIn, viewEditTeacher);
 router.get("/admin/teachers", isAdminLoggedIn, viewAdminTeachers);
 router.get("/admin/results", isAdminLoggedIn, viewAdminResults);
 router.get("/admin/result/:resultId", isAdminLoggedIn, editAdminResult);
@@ -39,22 +40,27 @@ router.get("/admin/results-archives", isAdminLoggedIn, viewArchives);
 router.get('/admin/setting', isAdminLoggedIn, viewAdminSetting)
 
 router.post("/admin/register-teachers", isAdminLoggedIn, validateUser, registerTeacher);
+router.post("/admin/update-teacher", isAdminLoggedIn, updateTeacher);
 router.post('/admin/changePassword', isAdminLoggedIn, changeAdminPassword)
 router.post('/admin/update-result', isAdminLoggedIn, updateAdminResult)
 router.post('/admin/add-message', isAdminLoggedIn, addMessage)
 router.post('/api/admin/approve', isAdminLoggedIn, approve)
 router.post("/admin/delete-teacher", isAdminLoggedIn, deleteTeacher);
 
+/*  
+    --------------------------
+    Teacher Section
+    --------------------------
+*/
+
 router.get("/teacher", isTeacherLoggedIn, viewTeacher);
 router.get('/teacher/generate-results', isTeacherLoggedIn, generateResult)
 router.get('/teacher/results', isTeacherLoggedIn, viewResults)
 router.get('/teacher/result/:resultId', isTeacherLoggedIn, editResult)
 
-router.post('/teacher/set-record', isTeacherLoggedIn, setRecord)
 router.post('/teacher/generate-result', isTeacherLoggedIn, generateResults)
 router.post('/teacher/update-result', isTeacherLoggedIn, updateResult)
 router.post('/teacher/send-result', isTeacherLoggedIn, sendResult)
-router.post('/api/teacher/get-record', isTeacherLoggedIn, getRecord)
 
 router.get("/logout", logout);
 

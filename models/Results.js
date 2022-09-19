@@ -6,15 +6,23 @@ const ResultsSchema = new mongoose.Schema(
       type: mongoose.SchemaTypes.ObjectId,
       required: true
     },
+    teacher: {
+      type: String,
+      required: true
+    },
     name: {
       type: String,
       required: true,
     },
-    position: {
+    sex: {
       type: String,
       required: true,
     },
-    year: {
+    age: {
+      type: String,
+      required: true,
+    },
+    session: {
       type: String,
       required: true,
     },
@@ -26,8 +34,6 @@ const ResultsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    chAverage : String,
-    clAverage: String,
     perfomance: String,
     tcomment: String,
     hcomment: String,

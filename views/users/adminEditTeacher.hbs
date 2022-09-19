@@ -1,5 +1,3 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
 <header class="header" data-header>
   <div class="container">
     <h1>
@@ -17,7 +15,7 @@
       <div class="container">
         <ul class="navbar-list">
           <li>
-            <a href="/users/admin" class="navbar-link icon-box">
+            <a href="/users/admin" class="navbar-link active icon-box">
               <span class="material-symbols-rounded icon">home</span>
 
               <span>Home</span>
@@ -31,7 +29,7 @@
             </a>
           </li>
           <li>
-            <a href="/users/admin/register-teachers" class="navbar-link active icon-box">
+            <a href="/users/admin/register-teachers" class="navbar-link icon-box">
               <span class="material-symbols-rounded icon">how_to_reg</span>
 
               <span>Register Teacher</span>
@@ -107,12 +105,14 @@
     <section class="home" style="width: 100%;">
       <div class="card profile-card" style="width: 100%;">
         <div class="profile-card-wrapper">
-          <form class="fund-form" action="/users/admin/register-teachers" method="POST" style="width: 100%;">
+          <form class="fund-form" action="/users/admin/update-teacher" method="POST" style="width: 100%;">
+        {{#if Teacher}}
             <div class="form-control" style="width: 100%;">
               <input
                 type="text"
                 placeholder="Class"
                 name="class"
+                value="{{Teacher.class}}"
               />
             </div>
             <div class="form-control" style="width: 100%;">
@@ -120,6 +120,7 @@
                 type="text"
                 placeholder="Teacher's Username"
                 name="username"
+                value="{{Teacher.username}}"
               />
             </div>
             <div class="form-control" style="width: 100%;">
@@ -127,12 +128,7 @@
                 type="text"
                 placeholder="Session"
                 name="session"
-              />
-            <div class="form-control" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Term"
-                name="term"
+                value="{{Teacher.session}}"
               />
             </div>
             <div class="form-control" style="width: 100%;">
@@ -140,21 +136,125 @@
                 type="text"
                 placeholder="Resumption Date"
                 name="resDate"
+                value="{{Teacher.resDate}}"
               />
             </div>
             <div id="sub-child">
+            {{#if Teacher.sub1}}
               <div class="form-control flex" style="width: 100%;">
               <input
                 type="text"
                 placeholder="Subject..."
                 name="sub1"
                 id="sub-1"
+                value="{{Teacher.sub1}}"
               />
             </div>
+            {{/if}}
+            {{#if Teacher.sub2}}
+              <div class="form-control flex" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Subject..."
+                name="sub2"
+                id="sub-2"
+                value="{{Teacher.sub2}}"
+              />
+            </div>
+            {{/if}}
+            {{#if Teacher.sub3}}
+              <div class="form-control flex" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Subject..."
+                name="sub3"
+                id="sub-3"
+                value="{{Teacher.sub3}}"
+              />
+            </div>
+            {{/if}}
+            {{#if Teacher.sub4}}
+              <div class="form-control flex" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Subject..."
+                name="sub4"
+                id="sub-4"
+                value="{{Teacher.sub4}}"
+              />
+            </div>
+            {{/if}}
+            {{#if Teacher.sub5}}
+              <div class="form-control flex" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Subject..."
+                name="sub5"
+                id="sub-5"
+                value="{{Teacher.sub5}}"
+              />
+            </div>
+            {{/if}}
+            {{#if Teacher.sub6}}
+              <div class="form-control flex" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Subject..."
+                name="sub6"
+                id="sub-6"
+                value="{{Teacher.sub6}}"
+              />
+            </div>
+            {{/if}}
+            {{#if Teacher.sub7}}
+              <div class="form-control flex" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Subject..."
+                name="sub7"
+                id="sub-7"
+                value="{{Teacher.sub7}}"
+              />
+            </div>
+            {{/if}}
+            {{#if Teacher.sub8}}
+              <div class="form-control flex" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Subject..."
+                name="sub8"
+                id="sub-8"
+                value="{{Teacher.sub8}}"
+              />
+            </div>
+            {{/if}}
+            {{#if Teacher.sub9}}
+              <div class="form-control flex" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Subject..."
+                name="sub9"
+                id="sub-9"
+                value="{{Teacher.sub9}}"
+              />
+            </div>
+            {{/if}}
+            {{#if Teacher.sub10}}
+              <div class="form-control flex" style="width: 100%;">
+              <input
+                type="text"
+                placeholder="Subject..."
+                name="sub10"
+                id="sub-10"
+                value="{{Teacher.sub10}}"
+              />
+            </div>
+            {{/if}}
             </div>
             <div class="form-control flex" style="width: 100%;" cl>
               <button style="display:inline-block; font-size: 15px; margin-left: 5px; background-color: #17a2b8; color:white; padding: 5px; text-align: center; font-weight: bold;" type="button" id="add-subject">Add Subject</button>
             </div>
+        {{/if}}
             <div class="form-control" style="width: 100%;">
               <input
                 type="password"
@@ -169,7 +269,14 @@
                 name="password2"
               />
             </div>
-            <button class="user-button">Register</button>
+            <div class="form-control" style="width: 100%; display:none;">
+              <input
+                type="text"
+                value="{{Teacher._id}}"
+                name="id"
+              />
+            </div>
+            <button class="user-button">Updated Teacher</button>
           </form>
 
         </div>
@@ -181,9 +288,8 @@
   </article>
 </main>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
-  let errors = document.getElementsByClassName('err');
+    let errors = document.getElementsByClassName('err');
   if (errors) {
     for(let i = 0; i < errors.length; i++) {
     Toastify({
@@ -222,46 +328,4 @@
     }).showToast();
   }
   }
-
-const subChild = document.getElementById('sub-child');
-const addSubject = document.getElementById('add-subject');
-
-let removeBtn = document.getElementsByClassName('remove');
-
-
-addSubject.addEventListener('click', () => {
-    let input = document.createElement('input');
-    let div = document.createElement('div');
-    let button = document.createElement('button');
-
-    let lastChild = subChild.lastElementChild;
-    let firstChild = lastChild.firstElementChild;
-    
-    let newArray = firstChild.getAttribute('id').split('-');
-    let number = parseInt(newArray[1]);
-
-    div.setAttribute('class', 'form-control flex');
-    div.setAttribute('style', 'width: 100%;');
-
-    input.setAttribute('type', `text`);
-    input.setAttribute('id', `sub-${number +1}`);
-    input.setAttribute('name', `sub${number +1}`);
-    input.setAttribute('placeholder', `Subject...`);
-
-    button.setAttribute('style', 'display:inline-block; font-size: 18px; margin-left: 5px; ; background-color: #dc3545; color:white; padding:  7px; text-align: center; font-weight: bold;');
-    button.setAttribute('class', 'remove');
-    button.setAttribute('type', 'button');
-    button.innerText = 'X';
-
-    div.append(input);
-    div.append(button);
-    subChild.append(div);
-})
-
-subChild.addEventListener('click', (e) => {
-  if(e.target.classList.contains('remove')){
-    var div = e.target.parentElement;
-    subChild.removeChild(div);
-  }
-})
 </script>

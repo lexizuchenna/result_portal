@@ -146,7 +146,20 @@ body {
 /* .container {
     padding-inline: 15px;
   } */
+.pr {
+  padding-right: 5px!important;
+}
 
+.pl {
+  padding-right: 5px!important;
+}
+.mr {
+  margin-right: 5px!important;
+}
+
+.ml {
+  margin-right: 5px!important;
+}
 .icon-box {
   font-variation-settings: "wght" 300;
 }
@@ -296,8 +309,8 @@ body {
 }
 
 .card-badge.blue {
-  --bg: var(--blue-ryb_12);
-  --color: var(--blue-ryb);
+  --bg: #007bff;
+  --color: #fff;
 }
 
 .card-badge.orange {
@@ -311,8 +324,8 @@ body {
 }
 
 .card-badge.red {
-  --bg: var(--imperial-red_12);
-  --color: var(--imperial-red);
+  --bg: #dc3545;
+  --color: #fff;
 }
 
 .card-badge.green {
@@ -322,6 +335,10 @@ body {
 
 .card-badge.radius-pill {
   border-radius: 50px;
+}
+
+.white {
+  color: #fff;
 }
 
 /*-----------------------------------*\

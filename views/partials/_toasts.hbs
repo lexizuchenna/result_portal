@@ -1,0 +1,22 @@
+{{#if errors}}
+  {{#each errors}}
+    <p class="errors" style="display:none">{{this.msg}}</p>
+  {{/each}}
+{{/if}}
+
+{{#if err}}
+  {{#each err}}
+    <p class="err" style="display: none;">{{this}}</p>
+  {{/each}}
+{{/if}}
+
+{{#if succ}}
+  {{#each succ}}
+    <p class="succ" style="display: none;">{{this.msg}}</p>
+  {{/each}}
+{{/if}}
+{{#if success}}
+  {{#each success}}
+    <p class="success" style="display: none;">{{this}}</p>
+  {{/each}}
+{{/if}}

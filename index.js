@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const passport = require("passport");
+const flash = require('connect-flash')
 const dotenv = require("dotenv");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -23,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json({extended: true, limit: '30mb'}))
 
 // Handlebars Helpers
-const { formatDate, addNumbers, checkGrade, checkRemark, ifCond } = require("./middlewares/hbsHelper");
+const { formatDate, addNumbers, checkGrade, checkRemark, ifCond, capitalize } = require("./middlewares/hbsHelper");
 
 // Express-Handlbars Engine
 app.engine(
@@ -36,7 +37,8 @@ app.engine(
       addNumbers,
       checkGrade,
       checkRemark,
-      ifCond
+      ifCond,
+      capitalize
     },
   })
 );
@@ -60,6 +62,9 @@ app.use(
     },
   })
 );
+
+// Flash
+app.use(flash())
 
 // Passport Initialization
 app.use(passport.initialize());

@@ -68,7 +68,7 @@
 
   </div>
 </header>
-
+{{> _toasts}}
 <main>
   <article class="container article">
 
@@ -92,20 +92,15 @@
                   <input type="checkbox" name="task-1" id="task-1" />
 
                   <label for="task-1" class="task-label">
-                    <a
-                      href="{{host}} {{this.resultLink}}"
-                      target="_blank"
-                    >{{host}}{{this.resultLink}}</a>
+                    <a href="{{host}} {{this.resultLink}}" target="_blank">Click
+                      here to view result</a>
                   </label>
                 </div>
 
                 <div class="card-badge cyan radius-pill">{{this.name}}</div>
 
                 {{#if this.approved}}
-                  <form
-                    action="/users/teacher/send-result"
-                    method="post"
-                  >
+                  <form action="/users/teacher/send-result" method="post">
                     <ul class="card-meta-list">
                       <li>
                         <div class="meta-box icon-box">
@@ -142,20 +137,11 @@
                 {{else}}
                   <ul class="card-meta-list">
                     <li>
-                      <div class="meta-box icon-box">
-                        <span>
-                          <input
-                            type="email"
-                            placeholder="email"
-                            name="email"
-                          />
-                        </span>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="card-badge red">
-                        <a style="color: #000;" href="/users/teacher/result/{{this.resultId}}">Edit</a>
+                      <div class="card-badge blue">
+                        <a
+                          style="color: #fff;"
+                          href="/users/teacher/result/{{this.resultId}}"
+                        >Edit</a>
                       </div>
                     </li>
 
@@ -180,7 +166,7 @@
         </ul>
       {{/if}}
     </section>
-    
+
     <section class="tasks">
 
       <div class="section-title-wrapper">
@@ -224,4 +210,4 @@
   </article>
 </main>
 
-<script src="/js/gen-result.js"></script>
+{{> _toastfooter}}

@@ -18,6 +18,9 @@ const UsersSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    term: String,
+    resDate: String,
+    session: String,
   },
   {
     timestamps: true,
@@ -26,4 +29,4 @@ const UsersSchema = new mongoose.Schema(
 
 const Users = mongoose.model("Users", UsersSchema);
 
-module.exports = Users;
+module.exports = {UsersSchema, Users};

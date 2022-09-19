@@ -29,7 +29,10 @@
             </a>
           </li>
           <li>
-            <a href="/users/admin/register-teachers" class="navbar-link icon-box">
+            <a
+              href="/users/admin/register-teachers"
+              class="navbar-link icon-box"
+            >
               <span class="material-symbols-rounded icon">how_to_reg</span>
 
               <span>Register Teacher</span>
@@ -43,7 +46,10 @@
             </a>
           </li>
           <li>
-            <a href="/users/admin/results-archives" class="navbar-link icon-box">
+            <a
+              href="/users/admin/results-archives"
+              class="navbar-link icon-box"
+            >
               <span class="material-symbols-rounded icon">archive</span>
 
               <span>Archives</span>
@@ -79,7 +85,7 @@
 
   </div>
 </header>
-
+{{> _toasts}}
 <main>
   <article class="container article">
 
@@ -89,7 +95,12 @@
 
       <div class="card profile-card" style="width: 100%;">
         <div class="profile-card-wrapper">
-          <form class="fund-form" action="/users/admin/changePassword" method="POST" style="width: 100%;">
+          <form
+            class="fund-form"
+            action="/users/admin/changePassword"
+            method="POST"
+            style="width: 100%;"
+          >
             <div class="form-control" style="width: 100%;">
               <input
                 type="password"
@@ -116,9 +127,8 @@
 
         </div>
       </div>
-
-      
-      </div>
     </section>
   </article>
 </main>
+
+{{> _toastfooter}}

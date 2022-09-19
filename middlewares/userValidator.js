@@ -1,8 +1,9 @@
 const { check, validationResult } = require("express-validator");
 
 exports.validateUser = [
-  check("className").trim().notEmpty().withMessage("Enter Class Name"),
-  check("username").notEmpty().withMessage("Enter Username").trim(),
+  check("class").trim().notEmpty().withMessage("Enter Class Name"),
+  check("username").notEmpty().withMessage("Enter Username").trim().toLowerCase(),
+  check("session").notEmpty().withMessage("Enter Session").trim(),
   check("password")
     .notEmpty()
     .withMessage("Enter Password")
@@ -23,7 +24,7 @@ exports.validateUser = [
     if (!errors.isEmpty()) {
       return res
         .status(422)
-        .render("admin/admin", { errors: errors.array() });
+        .render("users/registerTeacher", { errors: errors.array() });
     }
 
     next();
