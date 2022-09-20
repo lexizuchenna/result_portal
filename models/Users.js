@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const UsersSchema = new mongoose.Schema(
   {
-    class: {
+    className: {
       type: String,
       required: true,
     },

@@ -23,5 +23,5 @@ for (i = 0; i < approval.length; i++) {
       .then((res) => {
         console.log(res);
       });
-  });
+    });
 }

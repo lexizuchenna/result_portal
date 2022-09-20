@@ -30,7 +30,7 @@ const ResultsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    class: {
+    className: {
       type: String,
       required: true,
     },
@@ -40,6 +40,7 @@ const ResultsSchema = new mongoose.Schema(
     resDate: String,
     resultId: String,
     resultLink: String,
+    token: String,
     approved: {
       type: Boolean,
       default: false

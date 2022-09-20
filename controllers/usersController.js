@@ -53,7 +53,7 @@ const deleteTeacher = async (req, res) => {
 // Register Teacher
 const registerTeacher = async (req, res) => {
   let username = await Users.findOne({ username: req.body.username });
-  let classname = await Users.findOne({ class: req.body.className });
+  let classname = await Users.findOne({ className: req.body.className });
   let err = [];
   let succ = [];
 
@@ -65,7 +65,7 @@ const registerTeacher = async (req, res) => {
     return res.status(400).render("users/registerTeacher", { err });
   } else {
     let subjects = _.omit(req.body, [
-      "class",
+      "className",
       "username",
       "resDate",
       "password",
@@ -265,7 +265,7 @@ const generateResult = async (req, res) => {
   let one = await Users.findById(req.user.id).lean();
   // console.log(Teacher)
   let newRecord = _.omit(one, [
-    "class",
+    "className",
     "email",
     "_id",
     "username",
@@ -312,7 +312,7 @@ const generateResults = async (req, res) => {
     ResultsSchema.add({ [keys]: { type: String } });
   }
 
-  req.body.class = req.user.class;
+  req.body.className = req.user.className;
   req.body.user = req.user.id;
   req.body.teacher = req.user.username;
   let id = uuid();
@@ -323,7 +323,7 @@ const generateResults = async (req, res) => {
     req.body.sex === "" ||
     req.body.term === "" ||
     req.body.session === "" ||
-    req.body.class === "" ||
+    req.body.className === "" ||
     req.body.age === ""
   ) {
     err.push("Fill all fields");
