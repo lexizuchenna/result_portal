@@ -272,8 +272,20 @@ const approve = async (req, res) => {
   res.redirect("/users/admin/results");
 };
 
-const viewTokenPage = (req, res) => {
+// Token Page
+const viewTokenPage = async (req, res) => {
+  let {session} = req.params;
+  let rawResult = await Results.find({ session }).lean();
 
+  let Result = rawResult.filter((x) => x.approved === true);
+  let host = req.headers.host;
+
+  res.render("users/admin/tokens", {
+   layout: 'result',
+    Result,
+    err: req.flash("err"),
+    success: req.flash("success"),
+  });
 }
 
 // Change Admin Password

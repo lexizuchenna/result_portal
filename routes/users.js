@@ -42,7 +42,7 @@ router.get("/admin/result/:resultId", isAdminLoggedIn, editAdminResult);
 router.get("/admin/results-archives", isAdminLoggedIn, viewArchives);
 router.get("/admin/results-archives/:session", isAdminLoggedIn, viewArchivesSession);
 router.get("/admin/results/search", isAdminLoggedIn, searchResult);
-router.get("/admin/tokens", isAdminLoggedIn, viewTokenPage);
+router.get("/admin/tokens/:session", isAdminLoggedIn, viewTokenPage);
 router.get('/admin/setting', isAdminLoggedIn, viewAdminSetting)
 
 router.post("/admin/register-teachers", isAdminLoggedIn, validateUser, registerTeacher);

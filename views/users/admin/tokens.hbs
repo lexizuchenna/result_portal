@@ -1,0 +1,53 @@
+{{#if Result}}
+  <br />
+  <page size="A4">
+    <div style="padding: 0 30px;">
+      <div class="join">
+        <div class="row"><br />
+        </div>
+          <div class="col-xs-12">
+            <div class="text-center text-uppercase" style="margin-bottom: 10px;"><strong>Tokens</strong></div>
+          </div>
+        </div>
+        <div class="row">
+          <br />
+          {{#each Result}}
+          <div class="col-xs-4 token__card">
+            <table
+              class="table table-bordered"
+              style="text-transform: capitalize;"
+            >
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td style="color: #28a745;"><b>{{capitalize this.name}}</b></td>
+                </tr>
+                <tr>
+                  <th>Class</th>
+                  <td style="color: #28a745;"><b>{{capitalize this.className}}</b></td>
+                </tr>
+                <tr>
+                  <th>Session</th>
+                  <td style="color: #28a745;"><b>{{this.session}}</b></td>
+                </tr>
+                <tr>
+                  <th>Term</th>
+                  <td style="color: #28a745;"><b>{{this.term}}</b></td>
+                </tr>
+                <tr>
+                  <th>Token</th>
+                  <td style="color: #28a745;"><b>{{this.token}}</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </page>
+{{else}}
+<div>
+  <h1 style="text-align: center; mt1">No Token for this Session</h1>
+</div>
+{{/if}}

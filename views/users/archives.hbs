@@ -103,15 +103,26 @@
       {{#if session}}
         {{#each session}}
           <ul class="tasks-list">
-            <li class="tasks-item">
+            <li class="tasks-item" style="margin-bottom: 7px;">
               <div class="card task-card">
                 <div class="card-input">
                   <label for="task-1" class="task-label">
-                    <a
-                      href="/users/admin/results-archives/{{this}}"
-                    >View {{this}} Results</a>
+                    <a href="/users/admin/results-archives/{{this}}">View
+                      {{this}}
+                      Results</a>
                   </label>
                 </div>
+                <ul class="card-meta-list">
+                  <li>
+                    <div class="card-badge blue">
+                      <a
+                        style="color: #fff;"
+                        href="/users/admin/tokens/{{this}}"
+                        target="_blank"
+                      >View generated tokens for {{this}}</a>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </li>
           </ul>

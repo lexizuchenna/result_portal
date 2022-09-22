@@ -77,10 +77,10 @@ label {
   font-size: 13px;
   padding-left: 5px;
   font-weight: bold;
-  
 }
 
-.input-group input, .input-group select {
+.input-group input,
+.input-group select {
   padding: 5px;
   margin-top: 7px;
   width: 100%;
@@ -92,9 +92,9 @@ label {
 }
 
 .card__new {
-  grid-template-columns: repeat(4, 1fr)!important;
+  grid-template-columns: repeat(4, 1fr) !important;
 }
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
   .card__new {
     grid-template-columns: repeat(1, 1fr);
   }
