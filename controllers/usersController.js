@@ -47,22 +47,23 @@ const viewAdminTeachers = async (req, res) => {
 // Delete Teacher
 const deleteTeacher = async (req, res) => {
   const Teacher = await Users.findByIdAndRemove(req.body.id);
+  req.flash('success', `${Teacher.username} deleted`)
   res.redirect("/users/admin/teachers");
 };
 
 // Register Teacher
 const registerTeacher = async (req, res) => {
-  let username = await Users.findOne({ username: req.body.username });
-  let classname = await Users.findOne({ className: req.body.className });
-  let err = [];
+  let username = await Users.findOne({ username: req.body.username.toLowerCase() });
+  let classname = await Users.findOne({ className: req.body.className.toLowerCase() });
+  let errors = [];
   let succ = [];
 
   if (username) {
-    err.push({ msg: "User or already exists" });
-    return res.status(400).render("users/registerTeacher", { err });
+    errors.push({ msg: "User already exists" });
+    return res.status(400).render("users/registerTeacher", { errors });
   } else if (classname) {
-    err.push({ msg: "Class or already exists" });
-    return res.status(400).render("users/registerTeacher", { err });
+    errors.push({ msg: "Class already exists" });
+    return res.status(400).render("users/registerTeacher", { errors });
   } else {
     let subjects = _.omit(req.body, [
       "className",
@@ -78,6 +79,7 @@ const registerTeacher = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPwd = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashedPwd;
+    req.body.username = req.body.username.toLowerCase()
     const newUser = await Users.create(req.body);
 
     newUser.save();
@@ -100,16 +102,36 @@ const viewEditTeacher = async (req, res) => {
 
 // Update Teacher
 const updateTeacher = async (req, res) => {
+  let username = await Users.findOne({ username: req.body.username.toLowerCase() });
+  let classname = await Users.findOne({ className: req.body.className.toLowerCase() });
   let errors = [];
   let succ = [];
-  if (req.body.password === "" && req.body.password2 === "") {
+  if (username && username !== req.body.username) {
+    req.flash('err', 'Username already exists')
+    res.redirect(`/users/admin/teachers`)
+  } else if (classname && classname !== req.body.classname) {
+    req.flash('err', 'Class Name already exists')
+    res.redirect(`/users/admin/teachers`)
+  } else if (req.body.password === "" && req.body.password2 === "") {
     let updates = _.omit(req.body, ["password", "password2"]);
+    let subjects = _.omit(req.body, [
+      "className",
+      "username",
+      "resDate",
+      "password",
+      "password2",
+      "year",
+    ]);
+    for (let key in subjects) {
+      UsersSchema.add({ [key]: { type: String } });
+    }
+    console.log(updates)
     await Users.findOneAndUpdate(
-      { id: req.body.id },
+      { _id: req.body.id },
       { $set: updates },
       { new: true }
     );
-    succ.push({ msg: "Teacher Updated" });
+    req.flash('success', 'Updated Successfully')
     res.status(201).redirect("/users/admin/teachers");
   } else if (req.body.password !== req.body.password2) {
     errors.push({ msg: "Passwords don" / "t match" });
@@ -119,7 +141,7 @@ const updateTeacher = async (req, res) => {
     const hashedPwd = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashedPwd;
     await Users.findOneAndUpdate(
-      { id: req.body.id },
+      { _id: req.body.id },
       { $set: req.body },
       { new: true }
     );
@@ -144,6 +166,9 @@ const viewAdminResults = async (req, res) => {
 // View Archives
 const viewArchives = async (req, res) => {
   let rawResult = await Results.find().lean();
+
+  let data = rawResult.map((result) => result.session)
+  let session = [...new Set(data)]
   let Result = rawResult.filter((x) => x.approved === true);
   let host = req.headers.host;
 
@@ -152,8 +177,41 @@ const viewArchives = async (req, res) => {
     host,
     err: req.flash("err"),
     success: req.flash("success"),
+    session
   });
 };
+
+const viewArchivesSession = async (req,res) => {
+  let session = req.params.session 
+  let rawResult = await Results.find({session: session}).lean();
+
+  let Result = rawResult.filter((x) => x.approved === true);
+  let host = req.headers.host;
+
+  
+  res.render("users/session-archives", {
+    host, Result,
+    err: req.flash("err"),
+    success: req.flash("success"),
+  });
+}
+
+// Search
+const searchResult = async (req, res) => {
+  let name = req.query.name.toLowerCase()
+  let className = req.query.className.toLowerCase()
+  let session = req.query.session.toLowerCase()
+  let Result = await Results.find({name, className, session}).lean()
+  let host = req.headers.host;
+  
+
+  res.render("users/session-archives", {
+    host, Result,
+    err: req.flash("err"),
+    success: req.flash("success"),
+  });
+
+}
 
 // Edit Result
 const editAdminResult = async (req, res) => {
@@ -431,6 +489,8 @@ module.exports = {
   editAdminResult,
   updateAdminResult,
   viewArchives,
+  viewArchivesSession,
+  searchResult,
   addMessage,
   approve,
   changeAdminPassword,

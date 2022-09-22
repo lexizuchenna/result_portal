@@ -1,9 +1,3 @@
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-/>
-
 <header class="header" data-header>
   <div class="container">
     <h1>
@@ -173,11 +167,10 @@
   'width: 100%;'); input.setAttribute('type', `text`); input.setAttribute('id',
   `sub-${number +1}`); input.setAttribute('name', `sub${number +1}`);
   input.setAttribute('placeholder', `Subject...`); button.setAttribute('style',
-  'display:inline-block; font-size: 18px; margin-left: 5px; ; background-color:
-  #dc3545; color:white; padding: 7px; text-align: center; font-weight: bold;');
+  'display:inline-block; font-size: 18px; margin-left: 5px; background-color: #dc3545; color:white; padding: 7px; text-align: center; font-weight: bold;');
   button.setAttribute('class', 'remove'); button.setAttribute('type', 'button');
   button.innerText = 'X'; div.append(input); div.append(button);
-  subChild.append(div); }) subChild.addEventListener('click', (e) => {
+  subChild.append(div) }); subChild.addEventListener('click', (e) => {
   if(e.target.classList.contains('remove')){ var div = e.target.parentElement;
   subChild.removeChild(div); } })
 </script>

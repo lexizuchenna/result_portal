@@ -13,6 +13,7 @@ const {
   updateTeacher,
   viewAdminResults,
   viewArchives,
+  viewArchivesSession,
   addMessage,
   editAdminResult,
   updateAdminResult,
@@ -28,6 +29,7 @@ const {
   sendResult,
 
   logout,
+  searchResult,
 } = require("../controllers/usersController");
 
 router.get("/admin", isAdminLoggedIn, viewAdmin);
@@ -37,6 +39,8 @@ router.get("/admin/teachers", isAdminLoggedIn, viewAdminTeachers);
 router.get("/admin/results", isAdminLoggedIn, viewAdminResults);
 router.get("/admin/result/:resultId", isAdminLoggedIn, editAdminResult);
 router.get("/admin/results-archives", isAdminLoggedIn, viewArchives);
+router.get("/admin/results-archives/:session", isAdminLoggedIn, viewArchivesSession);
+router.get("/admin/results/search", isAdminLoggedIn, searchResult);
 router.get('/admin/setting', isAdminLoggedIn, viewAdminSetting)
 
 router.post("/admin/register-teachers", isAdminLoggedIn, validateUser, registerTeacher);

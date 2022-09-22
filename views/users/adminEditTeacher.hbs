@@ -29,7 +29,10 @@
             </a>
           </li>
           <li>
-            <a href="/users/admin/register-teachers" class="navbar-link icon-box">
+            <a
+              href="/users/admin/register-teachers"
+              class="navbar-link icon-box"
+            >
               <span class="material-symbols-rounded icon">how_to_reg</span>
 
               <span>Register Teacher</span>
@@ -43,7 +46,10 @@
             </a>
           </li>
           <li>
-            <a href="/users/admin/results-archives" class="navbar-link icon-box">
+            <a
+              href="/users/admin/results-archives"
+              class="navbar-link icon-box"
+            >
               <span class="material-symbols-rounded icon">archive</span>
 
               <span>Archives</span>
@@ -79,188 +85,351 @@
 
   </div>
 </header>
-
+{{> _toasts}}
 <main>
   <article class="container article">
 
     <p class="article-subtitle">Register a new teacher</p>
-    {{#if errors}}
-    {{#each errors}}
-      <p class="err" style="display: none;">{{this.msg}}</p>
-    {{/each}}
-    {{/if}}
-
-    {{#if err}}
-      {{#each err}}
-        <p class="err" style="display: none;">{{this.msg}}</p>
-      {{/each}}
-    {{/if}}
-
-    {{#if succ}}
-      {{#each succ}}
-        <p class="succ" style="display: none;">{{this.msg}}</p>
-      {{/each}}
-    {{/if}}
-    
     <section class="home" style="width: 100%;">
       <div class="card profile-card" style="width: 100%;">
         <div class="profile-card-wrapper">
-          <form class="fund-form" action="/users/admin/update-teacher" method="POST" style="width: 100%;">
-        {{#if Teacher}}
+          <form
+            class="fund-form"
+            action="/users/admin/update-teacher"
+            method="POST"
+            style="width: 100%;"
+          >
+            {{#if Teacher}}
+              <div class="form-control" style="width: 100%;">
+                <input
+                  type="text"
+                  placeholder="Class"
+                  name="className"
+                  value="{{Teacher.className}}"
+                />
+              </div>
+              <div class="form-control" style="width: 100%;">
+                <input
+                  type="text"
+                  placeholder="Teacher's Username"
+                  name="username"
+                  value="{{Teacher.username}}"
+                />
+              </div>
+              <div class="form-control" style="width: 100%;">
+                <input
+                  type="text"
+                  placeholder="Session"
+                  name="session"
+                  value="{{Teacher.session}}"
+                />
+              </div>
+              <div class="form-control" style="width: 100%;">
+                <input
+                  type="text"
+                  placeholder="Resumption Date"
+                  name="resDate"
+                  value="{{Teacher.resDate}}"
+                />
+              </div>
+              <div id="sub-child">
+                {{#if Teacher.sub1}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub1"
+                      id="sub-1"
+                      value="{{Teacher.sub1}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub2}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub2"
+                      id="sub-2"
+                      value="{{Teacher.sub2}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub3}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub3"
+                      id="sub-3"
+                      value="{{Teacher.sub3}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub4}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub4"
+                      id="sub-4"
+                      value="{{Teacher.sub4}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub5}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub5"
+                      id="sub-5"
+                      value="{{Teacher.sub5}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub6}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub6"
+                      id="sub-6"
+                      value="{{Teacher.sub6}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub7}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub7"
+                      id="sub-7"
+                      value="{{Teacher.sub7}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub8}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub8"
+                      id="sub-8"
+                      value="{{Teacher.sub8}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub9}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub9"
+                      id="sub-9"
+                      value="{{Teacher.sub9}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub10}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub10"
+                      id="sub-10"
+                      value="{{Teacher.sub10}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub11}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub11"
+                      id="sub-11"
+                      value="{{Teacher.sub11}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub12}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub12"
+                      id="sub-12"
+                      value="{{Teacher.sub12}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub13}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub13"
+                      id="sub-13"
+                      value="{{Teacher.sub13}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub14}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub14"
+                      id="sub-14"
+                      value="{{Teacher.sub14}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub15}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub15"
+                      id="sub-15"
+                      value="{{Teacher.sub15}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub16}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub16"
+                      id="sub-16"
+                      value="{{Teacher.sub16}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub17}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub17"
+                      id="sub-17"
+                      value="{{Teacher.sub17}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub18}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub18"
+                      id="sub-18"
+                      value="{{Teacher.sub18}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub19}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub19"
+                      id="sub-19"
+                      value="{{Teacher.sub19}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub20}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub20"
+                      id="sub-20"
+                      value="{{Teacher.sub20}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub21}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub21"
+                      id="sub-21"
+                      value="{{Teacher.sub21}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub22}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub22"
+                      id="sub-22"
+                      value="{{Teacher.sub22}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub23}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub23"
+                      id="sub-23"
+                      value="{{Teacher.sub23}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub24}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub24"
+                      id="sub-24"
+                      value="{{Teacher.sub24}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub25}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub25"
+                      id="sub-25"
+                      value="{{Teacher.sub25}}"
+                    />
+                  </div>
+                {{/if}}
+                {{#if Teacher.sub26}}
+                  <div class="form-control flex" style="width: 100%;">
+                    <input
+                      type="text"
+                      placeholder="Subject..."
+                      name="sub26"
+                      id="sub-26"
+                      value="{{Teacher.sub26}}"
+                    />
+                  </div>
+                {{/if}}
+              </div>
+              <div class="form-control flex" style="width: 100%;" cl>
+                <button
+                  style="display:inline-block; font-size: 15px; margin-left: 5px; background-color: #17a2b8; color:white; padding: 5px; text-align: center; font-weight: bold;"
+                  type="button"
+                  id="add-subject"
+                >Add Subject</button>
+              </div>
+            {{/if}}
             <div class="form-control" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Class"
-                name="class"
-                value="{{Teacher.className}}"
-              />
-            </div>
-            <div class="form-control" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Teacher's Username"
-                name="username"
-                value="{{Teacher.username}}"
-              />
-            </div>
-            <div class="form-control" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Session"
-                name="session"
-                value="{{Teacher.session}}"
-              />
-            </div>
-            <div class="form-control" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Resumption Date"
-                name="resDate"
-                value="{{Teacher.resDate}}"
-              />
-            </div>
-            <div id="sub-child">
-            {{#if Teacher.sub1}}
-              <div class="form-control flex" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Subject..."
-                name="sub1"
-                id="sub-1"
-                value="{{Teacher.sub1}}"
-              />
-            </div>
-            {{/if}}
-            {{#if Teacher.sub2}}
-              <div class="form-control flex" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Subject..."
-                name="sub2"
-                id="sub-2"
-                value="{{Teacher.sub2}}"
-              />
-            </div>
-            {{/if}}
-            {{#if Teacher.sub3}}
-              <div class="form-control flex" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Subject..."
-                name="sub3"
-                id="sub-3"
-                value="{{Teacher.sub3}}"
-              />
-            </div>
-            {{/if}}
-            {{#if Teacher.sub4}}
-              <div class="form-control flex" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Subject..."
-                name="sub4"
-                id="sub-4"
-                value="{{Teacher.sub4}}"
-              />
-            </div>
-            {{/if}}
-            {{#if Teacher.sub5}}
-              <div class="form-control flex" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Subject..."
-                name="sub5"
-                id="sub-5"
-                value="{{Teacher.sub5}}"
-              />
-            </div>
-            {{/if}}
-            {{#if Teacher.sub6}}
-              <div class="form-control flex" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Subject..."
-                name="sub6"
-                id="sub-6"
-                value="{{Teacher.sub6}}"
-              />
-            </div>
-            {{/if}}
-            {{#if Teacher.sub7}}
-              <div class="form-control flex" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Subject..."
-                name="sub7"
-                id="sub-7"
-                value="{{Teacher.sub7}}"
-              />
-            </div>
-            {{/if}}
-            {{#if Teacher.sub8}}
-              <div class="form-control flex" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Subject..."
-                name="sub8"
-                id="sub-8"
-                value="{{Teacher.sub8}}"
-              />
-            </div>
-            {{/if}}
-            {{#if Teacher.sub9}}
-              <div class="form-control flex" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Subject..."
-                name="sub9"
-                id="sub-9"
-                value="{{Teacher.sub9}}"
-              />
-            </div>
-            {{/if}}
-            {{#if Teacher.sub10}}
-              <div class="form-control flex" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Subject..."
-                name="sub10"
-                id="sub-10"
-                value="{{Teacher.sub10}}"
-              />
-            </div>
-            {{/if}}
-            </div>
-            <div class="form-control flex" style="width: 100%;" cl>
-              <button style="display:inline-block; font-size: 15px; margin-left: 5px; background-color: #17a2b8; color:white; padding: 5px; text-align: center; font-weight: bold;" type="button" id="add-subject">Add Subject</button>
-            </div>
-        {{/if}}
-            <div class="form-control" style="width: 100%;">
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-              />
+              <input type="password" placeholder="Password" name="password" />
             </div>
             <div class="form-control" style="width: 100%;">
               <input
@@ -270,11 +439,7 @@
               />
             </div>
             <div class="form-control" style="width: 100%; display:none;">
-              <input
-                type="text"
-                value="{{Teacher._id}}"
-                name="id"
-              />
+              <input type="text" value="{{Teacher._id}}" name="id" />
             </div>
             <button class="user-button">Updated Teacher</button>
           </form>
@@ -282,50 +447,27 @@
         </div>
       </div>
 
-      
-      
     </section>
   </article>
 </main>
 
+{{> _toastfooter}}
 <script>
-    let errors = document.getElementsByClassName('err');
-  if (errors) {
-    for(let i = 0; i < errors.length; i++) {
-    Toastify({
-      text: errors[i].innerHTML,
-      duration: 8000,
-      destination: "",
-      newWindow: true,
-      close: true,
-      gravity: "top", // `top` or `bottom`
-      position: "right", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: '#dc3545', // "#007bff"
-      },
-      onClick: function(){} // Callback after click
-    }).showToast();
-  }
-  }
-
-  let succ = document?.getElementsByClassName('succ');
-  if(succ) {
-    for(let i = 0; i < succ.length; i++) {
-    Toastify({
-      text: succ[i].innerHTML,
-      duration: 8000,
-      destination: "",
-      newWindow: true,
-      close: true,
-      gravity: "top", // `top` or `bottom`
-      position: "right", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: '#28a745', // "#007bff"
-      },
-      onClick: function(){} // Callback after click
-    }).showToast();
-  }
-  }
+  const subChild = document.getElementById('sub-child'); const addSubject =
+  document.getElementById('add-subject'); addSubject.addEventListener('click',
+  () => { let input = document.createElement('input'); let div =
+  document.createElement('div'); let button = document.createElement('button');
+  let lastChild = subChild.lastElementChild; let firstChild =
+  lastChild.firstElementChild; let newArray =
+  firstChild.getAttribute('id').split('-'); let number = parseInt(newArray[1]);
+  div.setAttribute('class', 'form-control flex'); div.setAttribute('style',
+  'width: 100%;'); input.setAttribute('type', `text`); input.setAttribute('id',
+  `sub-${number +1}`); input.setAttribute('name', `sub${number +1}`);
+  input.setAttribute('placeholder', `Subject...`); button.setAttribute('style',
+  'display:inline-block; font-size: 18px; margin-left: 5px; background-color: #dc3545; color:white; padding: 7px; text-align: center; font-weight: bold;');
+  button.setAttribute('class', 'remove'); button.setAttribute('type', 'button');
+  button.innerText = 'X'; div.append(input); div.append(button);
+  subChild.append(div) }); subChild.addEventListener('click', (e) => {
+  if(e.target.classList.contains('remove')){ var div = e.target.parentElement;
+  subChild.removeChild(div); } })
 </script>

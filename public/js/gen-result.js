@@ -1,1 +1,0 @@
-const forms = document.getElementsByClassName('forms')

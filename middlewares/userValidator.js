@@ -1,7 +1,7 @@
 const { check, validationResult } = require("express-validator");
 
 exports.validateUser = [
-  check("class").trim().notEmpty().withMessage("Enter Class Name"),
+  check("className").trim().notEmpty().withMessage("Enter Class Name").toLowerCase(),
   check("username").notEmpty().withMessage("Enter Username").trim().toLowerCase(),
   check("session").notEmpty().withMessage("Enter Session").trim(),
   check("password")

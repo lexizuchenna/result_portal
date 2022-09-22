@@ -87,7 +87,17 @@ label {
   outline: none;
 }
 
+.input__card {
+  padding: 5px;
+}
+
+.card__new {
+  grid-template-columns: repeat(4, 1fr)!important;
+}
 @media (max-width: 600px) { 
+  .card__new {
+    grid-template-columns: repeat(1, 1fr);
+  }
   .mobile {
     flex-direction: column;
   }
@@ -111,5 +121,9 @@ label {
 
   .home-page p {
     min-width: 0;
+  }
+
+  .input__card {
+    width: 100%;
   }
 }

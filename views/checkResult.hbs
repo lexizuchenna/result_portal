@@ -11,12 +11,7 @@
     >Result Portal</a>
     <div class="authGridColumn authGridColumn--callToActionParent">
       <div class="createFreeAccount">
-        {{!-- <span class="createFreeAccount__text font">Not a Teacher?</span>
-        <a
-          class="createFreeAccount__button font"
-          tabindex="0"
-          href="/login/admin"
-        >Login as Admin</a> --}}
+        <span class="createFreeAccount__text font" style="font-size: 15px;">&copy; Result Portal 2022</span>
       </div>
     </div>
     <div class="authGridColumn authGridColumn--formParent">
@@ -70,16 +65,27 @@
               id="log"
               style="display: none;"
             >
-            No Student Found
+              No Student Found
             </span>
-            <button class="form__button" id="get-result" type="button" tabindex="0">Search</button>
-            {{!-- <a
+            <button
+              class="form__button"
+              id="get-result"
+              type="button"
+              tabindex="0"
+            >Search</button>
+            {{! <a
               class="form__pageLink form__pageLink--inFooter"
               href="/login/forgot-password"
-            >Forgot password?</a> --}}
+            >Forgot password?</a> }}
           </fieldset>
         </form>
-        <form class="form" action="/results/get-result" method="POST" style="display: none;" id="post-form">
+        <form
+          class="form"
+          action="/results/get-result"
+          method="POST"
+          style="display: none;"
+          id="post-form"
+        >
           <fieldset class="form__area">
             <h1 class="form__header" aria-level="1" id="student-name"></h1>
           </fieldset>
@@ -96,32 +102,34 @@
               />
             </fieldset>
           </fieldset>
-          {{!-- <fieldset class="form__area" style="display: none;">
+          <fieldset class="form__area" style="display: none;">
             <fieldset class="formInputContainer">
               <input
                 class="formInputContainer__textInput"
                 type="text"
-                placeholder="Token"
-                aria-label="Token input field"
-                autocomplete="autocomplete"
                 name="resultId"
                 id="resultId"
               />
             </fieldset>
-          </fieldset> --}}
+          </fieldset>
           <fieldset class="form__area">
             <span
               class="form__formAlert form__formAlert--error"
               id="token-log"
               style="display: none;"
             >
-            Incorrect Token
+              Incorrect Token
             </span>
-            <button class="form__button" id="view-result" type="button" tabindex="0">View Result</button>
-            {{!-- <a
+            <button
+              class="form__button"
+              id="view-result"
+              type="button"
+              tabindex="0"
+            >View Result</button>
+            {{! <a
               class="form__pageLink form__pageLink--inFooter"
               href="/login/forgot-password"
-            >Forgot password?</a> --}}
+            >Forgot password?</a> }}
           </fieldset>
         </form>
       </div>
@@ -129,77 +137,32 @@
   </div>
 </div>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 <script>
-  const resultBtn = document.getElementById('get-result')
-  const viewBtn = document.getElementById('view-result')
-  const log = document.getElementById('log');
-  const tokenLog = document.getElementById('token-log');
-
-  let searchForm = document.getElementById('search-form')
-  let postForm = document.getElementById('post-form')
-  let childName = document.getElementById('name');
-  let className = document.getElementById('className');
-  let session = document.getElementById('session');
-  let token = document.getElementById('token');
-  let protocol = document.location.protocol;
-  let host = document.location.hostname;
-  let url = host === 'localhost' ? `${protocol}//${host}:2023/results/get-result-api` : `${protocol}//${host}/results/get-result-api`
-  
-  let getUrl = (id) => {
-    if(host === 'localhost') {
-      return `${protocol}//${host}:2023/results/student/${id}`
-    } else {
-      return `${protocol}//${host}/results/student/${id}`
-    }
-  }
-
-  resultBtn.addEventListener('click', () => {
-    axios
-      .post(
-        url,
-        {
-          name: childName.value.toLowerCase().trim(),
-          className: className.value.toLowerCase().trim(),
-          session: session.value.trim(),
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((res) => {
-        if(res.data.length == '0') {
-          log.style.display = 'block'
-        } else if (res.data === 'Fill all fields') {
-          console.log(res.data)
-        } else {
-          let index = res.data[0]
-          searchForm.style.display = 'none'
-          postForm.style.display = ''
-          document.getElementById('student-name').innerText = index.name.toUpperCase()
-
-          viewBtn.addEventListener('click', () => {
-            if(index.token === token.value.trim()) {
-              window.location.href = getUrl(index.resultId)
-            } else {
-              tokenLog.style.display = ''
-            }
-          })
-        }
-    });
-
-  })
+  const resultBtn = document.getElementById('get-result'); const viewBtn =
+  document.getElementById('view-result'); const log =
+  document.getElementById('log'); const tokenLog =
+  document.getElementById('token-log'); let searchForm =
+  document.getElementById('search-form'); let postForm =
+  document.getElementById('post-form'); let childName =
+  document.getElementById('name'); let className =
+  document.getElementById('className'); let session =
+  document.getElementById('session'); let token =
+  document.getElementById('token'); let protocol = document.location.protocol;
+  let host = document.location.hostname; let url = host === 'localhost' ?
+  `${protocol}//${host}:2023/results/get-result-api` :
+  `${protocol}//${host}/results/get-result-api`; let getUrl = (id) => { if(host
+  === 'localhost') { return `${protocol}//${host}:2023/results/student/${id}`; }
+  else { return `${protocol}//${host}/results/student/${id}`; } };
+  resultBtn.addEventListener('click', () => { axios .post( url, { name:
+  childName.value.toLowerCase().trim(), className:
+  className.value.toLowerCase().trim(), session: session.value.trim(), }, {
+  headers: { "Content-Type": "application/json", }, } ) .then((res) => {
+  if(res.data.length == '0') { log.style.display = 'block'; } else if (res.data
+  === 'Fill all fields') { console.log(res.data); } else { let index =
+  res.data[0]; searchForm.style.display = 'none'; postForm.style.display = '';
+  document.getElementById('student-name').innerText = index.name.toUpperCase();
+  viewBtn.addEventListener('click', () => { if(index.token ===
+  token.value.trim()) { document.getElementById('resultId').value =
+  index.resultId; postForm.submit(); } else { tokenLog.style.display = ''; } })
+  } }) })
 </script>
-
-{{!-- <div class="card home-page flex">
-  <h1>Login to Result Portal</h1>
-  <form action="/login/teacher" method="POST" class="login">
-    <input type="text" name="username" placeholder="Input Username" />
-    <input type="password" name="password" placeholder="Input Password" />
-    <button type="submit">Login</button>
-  </form>
-  <p>Not a Teacher? Login in as an <a href="/login/admin"  style="display: inline;">Admin</a></p>
-</div> --}}

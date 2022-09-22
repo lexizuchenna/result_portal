@@ -85,7 +85,7 @@
 
   </div>
 </header>
-
+{{> _toasts}}
 <main>
   <article class="container article">
 
@@ -117,7 +117,7 @@
                     </label>
                   </div>
 
-                  <div class="card-badge cyan radius-pill">{{this.class}}</div>
+                  <div class="card-badge cyan radius-pill">{{capitalize this.className}}</div>
 
                   <ul class="card-meta-list">
 
@@ -169,7 +169,7 @@
     </section>
   </article>
 </main>
-
+{{> _toastfooter}}
 <script>
   teachers = document.getElementById('teachers')
   teachers.addEventListener('click', (e) => {
