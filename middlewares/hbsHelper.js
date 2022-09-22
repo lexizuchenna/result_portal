@@ -25,9 +25,9 @@ const checkGrade = (num1, num2, num3, num4) => {
     return "G";
   } else if (total >= 65) {
     return "S";
-  } else if (total >= 55) {
+  } else if (total <= 55) {
     return "NI";
-  } else {
+  } else if(total = 0 || total === '' || !total) {
     return "NA";
   }
 };

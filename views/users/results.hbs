@@ -89,15 +89,15 @@
               <div class="card task-card">
 
                 <div class="card-input">
-                  <input type="checkbox" name="task-1" id="task-1" />
+                  {{!-- <input type="checkbox" name="task-1" id="task-1" /> --}}
 
                   <label for="task-1" class="task-label">
-                    <a href="{{host}} {{this.resultLink}}" target="_blank">Click
+                    <a href="{{host}}/results/teacher/view/{{this.resultId}}" target="_blank">Click
                       here to view result</a>
                   </label>
                 </div>
 
-                <div class="card-badge cyan radius-pill">{{this.name}}</div>
+                <div class="card-badge cyan radius-pill">{{capitalize this.name}}</div>
 
                 {{#if this.approved}}
                   <form action="/users/teacher/send-result" method="post">
@@ -156,7 +156,7 @@
           <li class="tasks-item">
             <div class="card task-card">
               <div class="card-input">
-                <input type="checkbox" name="task-1" id="task-1" />
+                {{!-- <input type="checkbox" name="task-1" id="task-1" /> --}}
                 <label for="task-1" class="task-label">
                   No Result Available
                 </label>
@@ -180,14 +180,14 @@
               <div class="card task-card">
 
                 <div class="card-input">
-                  <input type="checkbox" name="task-1" id="task-1" />
+                  {{!-- <input type="checkbox" name="task-1" id="task-1" /> --}}
 
                   <label for="task-1" class="task-label">
                     {{this.message}}
                   </label>
                 </div>
 
-                <div class="card-badge cyan radius-pill">{{this.name}}</div>
+                <div class="card-badge cyan radius-pill">{{capitalize this.name}}</div>
               </div>
             </li>
           </ul>

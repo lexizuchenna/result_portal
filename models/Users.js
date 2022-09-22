@@ -21,6 +21,7 @@ const UsersSchema = new mongoose.Schema(
     term: String,
     resDate: String,
     session: String,
+    token: String,
   },
   {
     timestamps: true,
