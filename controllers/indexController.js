@@ -1,6 +1,6 @@
 // Home Route
 const viewHome = (req, res) => {
-  res.render('home')
+  res.render('home', {layout: 'home'})
 };
 
 module.exports = {

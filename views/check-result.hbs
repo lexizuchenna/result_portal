@@ -157,8 +157,7 @@
   childName.value.toLowerCase().trim(), className:
   className.value.toLowerCase().trim(), session: session.value.trim(), }, {
   headers: { "Content-Type": "application/json", }, } ) .then((res) => {
-  if(res.data.length == '0') { log.style.display = 'block'; } else if (res.data
-  === 'Fill all fields') { console.log(res.data); } else { let index =
+  if(res.data.length == '0') { log.style.display = 'block'; log.innerText = 'No Result, Check Credentials' } else if (res.data  === 'Fill all fields') { log.innerText = res.data; log.style.display = 'block'; } else { let index =
   res.data[0]; searchForm.style.display = 'none'; postForm.style.display = '';
   document.getElementById('student-name').innerText = index.name.toUpperCase();
   viewBtn.addEventListener('click', () => { if(index.token ===

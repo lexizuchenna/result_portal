@@ -10,7 +10,7 @@ const { emailText } = require("../constants/emailText");
 // View Admin
 const viewAdmin = async (req, res) => {
   const user = req.user.username;
-  res.render("users/admin", {
+  res.render("users/admin/admin", {
     user,
     err: req.flash("err"),
     success: req.flash("success"),
@@ -19,7 +19,7 @@ const viewAdmin = async (req, res) => {
 
 // View Admin Settings
 const viewAdminSetting = async (req, res) => {
-  res.render("users/adminSetting", {
+  res.render("users/admin/setting", {
     err: req.flash("err"),
     success: req.flash("success"),
   });
@@ -27,7 +27,7 @@ const viewAdminSetting = async (req, res) => {
 
 // View Register Teachers
 const viewRegTeachers = async (req, res) => {
-  res.render("users/registerTeacher", {
+  res.render("users/admin/register-teacher", {
     err: req.flash("err"),
     success: req.flash("success"),
   });
@@ -37,7 +37,7 @@ const viewRegTeachers = async (req, res) => {
 const viewAdminTeachers = async (req, res) => {
   const Teachers = await Users.find().lean();
   let newTeachers = Teachers.filter((x) => x.username != "admin");
-  res.render("users/adminTeachers", {
+  res.render("users/users/admin/teachers", {
     newTeachers,
     err: req.flash("err"),
     success: req.flash("success"),
@@ -64,10 +64,10 @@ const registerTeacher = async (req, res) => {
 
   if (username) {
     errors.push({ msg: "User already exists" });
-    return res.status(400).render("users/registerTeacher", { errors });
+    return res.status(400).render("users/admin/register-teacher", { errors });
   } else if (classname) {
     errors.push({ msg: "Class already exists" });
-    return res.status(400).render("users/registerTeacher", { errors });
+    return res.status(400).render("users/admin/register-teacher", { errors });
   } else {
     let subjects = _.omit(req.body, [
       "className",
@@ -89,7 +89,7 @@ const registerTeacher = async (req, res) => {
     newUser.save();
     succ.push({ msg: "Teacher Created" });
 
-    res.render("users/registerTeacher", { succ });
+    res.render("users/admin/register-teacher", { succ });
   }
 };
 
@@ -97,7 +97,7 @@ const registerTeacher = async (req, res) => {
 const viewEditTeacher = async (req, res) => {
   const id = req.params.id;
   let Teacher = await Users.findById(id).lean();
-  res.render("users/adminEditTeacher", {
+  res.render("users/admin/edit-teacher", {
     Teacher,
     err: req.flash("err"),
     success: req.flash("success"),
@@ -143,7 +143,7 @@ const updateTeacher = async (req, res) => {
     res.status(201).redirect("/users/admin/teachers");
   } else if (req.body.password !== req.body.password2) {
     errors.push({ msg: "Passwords don" / "t match" });
-    res.status(422).render("users/adminEditTeacher", { errors });
+    res.status(422).render("users/admin/edit-teacher", { errors });
   } else {
     const salt = await bcrypt.genSalt(10);
     const hashedPwd = await bcrypt.hash(req.body.password, salt);
@@ -163,12 +163,66 @@ const viewAdminResults = async (req, res) => {
   let Result = rawResult.filter((x) => x.approved !== true);
   let host = req.headers.host;
 
-  res.render("users/adminResults", {
+  res.render("users/admin/results", {
     Result,
     host,
     err: req.flash("err"),
     success: req.flash("success"),
   });
+};
+
+// Edit Result
+const editAdminResult = async (req, res) => {
+  let Resp = await Results.find({ resultId: req.params.resultId }).lean();
+  let Result = Resp[0];
+
+  res.render("users/admin/edit-result", {
+    Result,
+    err: req.flash("err"),
+    success: req.flash("success"),
+  });
+};
+
+// Update Result
+const updateAdminResult = async (req, res) => {
+  await Results.findOneAndUpdate(
+    { resultId: req.body.resultId },
+    { hcomment: req.body.hcomment },
+    { new: true }
+  );
+  req.flash("success", "Comment Updated");
+  res.redirect("/users/admin/results");
+};
+
+// Add Message
+const addMessage = async (req, res) => {
+  if (!req.body.message) {
+    await Results.findOneAndUpdate(
+      { resultId: req.body.resultId },
+      { message: "Null" },
+      { new: true }
+    );
+    req.flash('success', 'Message Cleared')
+    res.redirect("/users/admin/results");
+  } else {
+    await Results.findOneAndUpdate(
+      { resultId: req.body.resultId },
+      { message: req.body.message },
+      { new: true }
+    );
+    req.flash('success', 'Message Sent')
+    res.redirect("/users/admin/results");
+  }
+};
+
+// Approval
+const approve = async (req, res) => {
+  let App = await Results.findOneAndUpdate(
+    { resultId: req.body.resultId },
+    { approved: req.body.approval },
+    { new: true }
+  );
+  res.json('Approved')
 };
 
 // View Archives
@@ -180,7 +234,7 @@ const viewArchives = async (req, res) => {
   let Result = rawResult.filter((x) => x.approved === true);
   let host = req.headers.host;
 
-  res.render("users/archives", {
+  res.render("users/admin/archives", {
     Result,
     host,
     err: req.flash("err"),
@@ -188,7 +242,7 @@ const viewArchives = async (req, res) => {
     session,
   });
 };
-
+// &&
 const viewArchivesSession = async (req, res) => {
   let session = req.params.session;
   let rawResult = await Results.find({ session: session }).lean();
@@ -196,7 +250,7 @@ const viewArchivesSession = async (req, res) => {
   let Result = rawResult.filter((x) => x.approved === true);
   let host = req.headers.host;
 
-  res.render("users/session-archives", {
+  res.render("users/admin/session-archives", {
     host,
     Result,
     err: req.flash("err"),
@@ -212,7 +266,7 @@ const searchResult = async (req, res) => {
   let Result = await Results.find({ name, className, session }).lean();
   let host = req.headers.host;
 
-  res.render("users/session-archives", {
+  res.render("users/admin/session-archives", {
     host,
     Result,
     err: req.flash("err"),
@@ -220,73 +274,21 @@ const searchResult = async (req, res) => {
   });
 };
 
-// Edit Result
-const editAdminResult = async (req, res) => {
-  let Resp = await Results.find({ resultId: req.params.resultId }).lean();
-  let Result = Resp[0];
-
-  res.render("users/editAdminResult", {
-    Result,
-    err: req.flash("err"),
-    success: req.flash("success"),
-  });
-};
-
-// Update Result
-const updateAdminResult = async (req, res) => {
-  await Results.findOneAndUpdate(
-    { resultId: req.body.resultId },
-    { hcomment: req.body.hcomment },
-    { new: true }
-  );
-
-  res.redirect("/users/admin/results");
-};
-
-// Add Message
-const addMessage = async (req, res) => {
-  if (!req.body.message) {
-    await Results.findOneAndUpdate(
-      { resultId: req.body.resultId },
-      { message: "Null" },
-      { new: true }
-    );
-    res.redirect("/users/admin/results");
-  } else {
-    await Results.findOneAndUpdate(
-      { resultId: req.body.resultId },
-      { message: req.body.message },
-      { new: true }
-    );
-    res.redirect("/users/admin/results");
-  }
-};
-
-// Approval
-const approve = async (req, res) => {
-  let App = await Results.findOneAndUpdate(
-    { resultId: req.body.resultId },
-    { approved: req.body.approval },
-    { new: true }
-  );
-  res.redirect("/users/admin/results");
-};
-
 // Token Page
 const viewTokenPage = async (req, res) => {
-  let {session} = req.params;
+  let { session } = req.params;
   let rawResult = await Results.find({ session }).lean();
 
   let Result = rawResult.filter((x) => x.approved === true);
   let host = req.headers.host;
 
   res.render("users/admin/tokens", {
-   layout: 'result',
+    layout: "result",
     Result,
     err: req.flash("err"),
     success: req.flash("success"),
   });
-}
+};
 
 // Change Admin Password
 const changeAdminPassword = async (req, res) => {
@@ -298,7 +300,7 @@ const changeAdminPassword = async (req, res) => {
   const hashedPwd = await bcrypt.hash(req.body.newPass, salt);
   if (req.body.newPass !== req.body.confirmPass) {
     errors.push({ msg: "New Password don't match" });
-    res.render("users/adminSetting", {
+    res.render("users/admin/setting", {
       errors,
       err: req.flash("err"),
       success: req.flash("success"),
@@ -334,7 +336,7 @@ const changeAdminPassword = async (req, res) => {
 // View Teacher
 const viewTeacher = async (req, res) => {
   const user = req.user.username;
-  res.render("users/teacher", {
+  res.render("users/teacher/teacher", {
     user,
     err: req.flash("err"),
     success: req.flash("success"),
@@ -364,7 +366,7 @@ const generateResult = async (req, res) => {
   });
   let tSubject = updatedRecord.length;
 
-  res.render("users/generateResults", {
+  res.render("users/teacher/generate-results", {
     updatedRecord,
     tSubject,
     one,
@@ -397,13 +399,13 @@ const generateResults = async (req, res) => {
   let str = uuid();
   let token = str.split("-").slice(0, 3).join("");
 
-  req.body.name = req.body.name.toLowerCase()
+  req.body.name = req.body.name.toLowerCase();
   req.body.className = req.user.className.toLowerCase();
   req.body.user = req.user.id;
   req.body.teacher = req.user.username;
   req.body.resultId = id;
   req.body.resultLink = `/results/student/${id}`;
-  req.body.token = token
+  req.body.token = token;
   if (
     req.body.name === "" ||
     req.body.sex === "" ||
@@ -429,7 +431,7 @@ const editResult = async (req, res) => {
   let Resp = await Results.find({ resultId: req.params.resultId }).lean();
   let Result = Resp[0];
 
-  res.render("users/editResult", {
+  res.render("users/teacher/edit-result", {
     Result,
     err: req.flash("err"),
     success: req.flash("success"),
@@ -462,11 +464,11 @@ const updateResult = async (req, res) => {
 // View Results
 const viewResults = async (req, res) => {
   let data = await Results.find({ user: req.user.id }).lean();
-  let Result = data.filter((x) => x.approved !== true)
+  let Result = data.filter((x) => x.approved !== true);
   let host = req.headers.host;
   let Messages = Result.filter((x) => x.message !== "Nill");
 
-  res.render("users/results", {
+  res.render("users/teacher/results", {
     Result,
     host,
     Messages,

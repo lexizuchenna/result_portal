@@ -1,4 +1,3 @@
-const { Result } = require("express-validator");
 const { Results } = require("../models/Results");
 
 const viewResult = async (req, res) => {
@@ -24,7 +23,7 @@ const viewSecResult = async (req, res) => {
 };
 
 const viewFindResult = async (req, res) => {
-  res.render("checkResult", { layout: "login" });
+  res.render("check-result", { layout: "login" });
 };
 
 const getResultApi = async (req, res) => {
