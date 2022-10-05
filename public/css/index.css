@@ -91,12 +91,16 @@ label {
   padding: 5px;
 }
 
+input[type='text'] {
+  outline: none;
+}
+
 .card__new {
   grid-template-columns: repeat(4, 1fr) !important;
 }
 @media (max-width: 600px) {
   .card__new {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr)!important;
   }
   .mobile {
     flex-direction: column;

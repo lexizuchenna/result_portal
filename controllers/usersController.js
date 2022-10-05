@@ -7,6 +7,8 @@ const { Users, UsersSchema } = require("../models/Users");
 const { Results, ResultsSchema } = require("../models/Results");
 const { emailText } = require("../constants/emailText");
 
+let resulturl;
+
 // View Admin
 const viewAdmin = async (req, res) => {
   const user = req.user.username;
@@ -37,7 +39,7 @@ const viewRegTeachers = async (req, res) => {
 const viewAdminTeachers = async (req, res) => {
   const Teachers = await Users.find().lean();
   let newTeachers = Teachers.filter((x) => x.username != "admin");
-  res.render("users/users/admin/teachers", {
+  res.render("users/admin/teachers", {
     newTeachers,
     err: req.flash("err"),
     success: req.flash("success"),
@@ -202,7 +204,7 @@ const addMessage = async (req, res) => {
       { message: "Null" },
       { new: true }
     );
-    req.flash('success', 'Message Cleared')
+    req.flash("success", "Message Cleared");
     res.redirect("/users/admin/results");
   } else {
     await Results.findOneAndUpdate(
@@ -210,7 +212,7 @@ const addMessage = async (req, res) => {
       { message: req.body.message },
       { new: true }
     );
-    req.flash('success', 'Message Sent')
+    req.flash("success", "Message Sent");
     res.redirect("/users/admin/results");
   }
 };
@@ -222,7 +224,16 @@ const approve = async (req, res) => {
     { approved: req.body.approval },
     { new: true }
   );
-  res.json('Approved')
+  res.json("Approved");
+};
+
+// Delete Result
+const deleteResult = async (req, res) => {
+  //let url = req.headers.host + req.url
+  const Result = await Results.findByIdAndRemove(req.body.id);
+  req.flash("success", `${Result.name} deleted`);
+  console.log(resulturl);
+  res.redirect(`/users/admin/results-archives/${resulturl}`);
 };
 
 // View Archives
@@ -245,6 +256,8 @@ const viewArchives = async (req, res) => {
 // &&
 const viewArchivesSession = async (req, res) => {
   let session = req.params.session;
+  resulturl = session;
+
   let rawResult = await Results.find({ session: session }).lean();
 
   let Result = rawResult.filter((x) => x.approved === true);
@@ -263,15 +276,77 @@ const searchResult = async (req, res) => {
   let name = req.query.name.toLowerCase();
   let className = req.query.className.toLowerCase();
   let session = req.query.session.toLowerCase();
-  let Result = await Results.find({ name, className, session }).lean();
-  let host = req.headers.host;
+  if (name === "" && className === "") {
+    let Result = await Results.find({ session }).lean();
+    let host = req.headers.host;
 
-  res.render("users/admin/session-archives", {
-    host,
-    Result,
-    err: req.flash("err"),
-    success: req.flash("success"),
-  });
+    res.render("users/admin/session-archives", {
+      host,
+      Result,
+      err: req.flash("err"),
+      success: req.flash("success"),
+    });
+  } else if (className === "" && session === "") {
+    let Result = await Results.find({ name }).lean();
+    let host = req.headers.host;
+
+    res.render("users/admin/session-archives", {
+      host,
+      Result,
+      err: req.flash("err"),
+      success: req.flash("success"),
+    });
+  } else if (session === "" && name === "") {
+    let Result = await Results.find({ className }).lean();
+    let host = req.headers.host;
+
+    res.render("users/admin/session-archives", {
+      host,
+      Result,
+      err: req.flash("err"),
+      success: req.flash("success"),
+    });
+  } else if (name === "") {
+    let Result = await Results.find({ className, session }).lean();
+    let host = req.headers.host;
+
+    res.render("users/admin/session-archives", {
+      host,
+      Result,
+      err: req.flash("err"),
+      success: req.flash("success"),
+    });
+  } else if (className === "") {
+    let Result = await Results.find({ name, session }).lean();
+    let host = req.headers.host;
+
+    res.render("users/admin/session-archives", {
+      host,
+      Result,
+      err: req.flash("err"),
+      success: req.flash("success"),
+    });
+  } else if (session === "") {
+    let Result = await Results.find({ name, className }).lean();
+    let host = req.headers.host;
+
+    res.render("users/admin/session-archives", {
+      host,
+      Result,
+      err: req.flash("err"),
+      success: req.flash("success"),
+    });
+  } else {
+    let Result = await Results.find({ name, className, session }).lean();
+    let host = req.headers.host;
+
+    res.render("users/admin/session-archives", {
+      host,
+      Result,
+      err: req.flash("err"),
+      success: req.flash("success"),
+    });
+  }
 };
 
 // Token Page
@@ -519,6 +594,7 @@ module.exports = {
   viewAdminResults,
   editAdminResult,
   updateAdminResult,
+  deleteResult,
   viewArchives,
   viewArchivesSession,
   searchResult,

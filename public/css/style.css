@@ -329,8 +329,8 @@ body {
 }
 
 .card-badge.green {
-  --bg: var(--emerald_12);
-  --color: var(--emerald);
+  --bg: #28a745;;
+  --color: #fff;
 }
 
 .card-badge.radius-pill {
@@ -338,7 +338,7 @@ body {
 }
 
 .white {
-  color: #fff;
+  color: #fff!important;
 }
 
 /*-----------------------------------*\

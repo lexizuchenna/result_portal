@@ -90,6 +90,7 @@
   <article class="container article">
 
     <h2 class="h2 article-title">Hi {{user}}</h2>
+    {{url}}
 
     <p class="article-subtitle">Welcome to Result Portal</p>
 
@@ -101,7 +102,7 @@
       >
         <ul class="tasks-list">
           <li class="tasks-item">
-            <div class="card task-card card__new" >
+            <div class="card task-card card__new">
 
               <div class="card-input card__input">
                 <input
@@ -135,16 +136,17 @@
                   type="submit"
                   {{!-- id="task-{{this.resultId}}" --}}
                   class="input__card"
+                  style="background-color: #007bff; border: #007bff; color: #fff"
                 />
               </div>
-              {{!-- <li>
+              {{! <li>
                 <div class="card-badge green" style="margin-bottom: 5px;">
                   <button
                     type="button"
                     class="card-badge radius-pill green"
                   >Search</button>
                 </div>
-              </li> --}}
+              </li> }}
             </div>
           </li>
         </ul>
@@ -156,68 +158,89 @@
       </div>
 
       {{#if Result}}
+          <div id="results">
         {{#each Result}}
-          <form
-            action="/users/admin/add-message"
-            method="post"
-            style="margin-bottom: 10px;"
-          >
-            <ul class="tasks-list">
-              <li class="tasks-item">
-                <div class="card task-card">
+            <form
+              action="/users/admin/delete-result"
+              method="post"
+              style="margin-bottom: 10px;"
+            >
+              <ul class="tasks-list">
+                <li class="tasks-item">
+                  <div class="card task-card">
 
-                  <div class="card-input">
-                    <input
-                      type="checkbox"
-                      name="{{this.resultId}}"
-                      id="task-{{this.resultId}}"
-                      class="result"
-                      checked="{{this.approved}}"
-                    />
+                    <div class="card-input">
+                      <input
+                        type="checkbox"
+                        name="{{this.resultId}}"
+                        id="task-{{this.resultId}}"
+                        class="result"
+                        checked="{{this.approved}}"
+                      />
 
-                    <label for="task-1" class="task-label">
-                      <a
-                        href="{{host}}/results/admin/view/{{this.resultId}}"
-                        target="_blank"
-                      >Click here to view result</a>
-                    </label>
+                      <label for="task-1" class="task-label">
+                        <a
+                          href="{{host}}/results/admin/view/{{this.resultId}}"
+                          target="_blank"
+                        >Click here to view result</a>
+                      </label>
+                    </div>
+                    <div>
+                      <div class="card-badge cyan radius-pill">{{capitalize
+                          this.name
+                        }}</div>
+
+                      <div
+                        class="card-badge orange radius-pill"
+                      >{{this.teacher}}</div>
+                    </div>
+
+                    <ul class="card-meta-list">
+
+                      <li>
+                        <div class="meta-box icon-box">
+                          <span>
+                            <input
+                              type="text"
+                              value="{{this._id}}"
+                              name="id"
+                              style="display: none;"
+                            />
+                            <input
+                              type="text"
+                              value="{{url}}"
+                              name="url"
+                              style="display: none;"
+                            />
+                          </span>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div
+                          class="card-badge green"
+                          style="margin-bottom: 5px;"
+                        >
+                          <button type="button" class="green white">{{capitalize
+                              this.className
+                            }}</button>
+                        </div>
+                        <div class="card-badge red" style="">
+                          <button
+                            type="button"
+                            class="white delete"
+                          >DELETE</button>
+                        </div>
+                      </li>
+
+                    </ul>
+
                   </div>
-                  <div>
-                    <div class="card-badge cyan radius-pill">{{capitalize
-                        this.name
-                      }}</div>
-
-                    <div
-                      class="card-badge orange radius-pill"
-                    >{{this.teacher}}</div>
-                  </div>
-
-                  <ul class="card-meta-list">
-
-                    <li>
-                      <div class="meta-box icon-box">
-                        <span>
-
-                        </span>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="card-badge green" style="margin-bottom: 5px;">
-                        <button
-                          type="button"
-                          class="card-badge radius-pill green"
-                        >{{capitalize this.className}}</button>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                </div>
-              </li>
-            </ul>
-          </form>
+                </li>
+              </ul>
+            </form>
         {{/each}}
+          </div>
 
       {{else}}
         <ul class="tasks-list">
@@ -237,3 +260,14 @@
   </article>
 </main>
 <script src="/js/admin-result.js"></script>
+<script>
+  results = document.getElementById('results')
+  results.addEventListener('click', (e) => {
+  if(e.target.classList.contains('delete')){
+    var form = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+    if(confirm('Are You Sure?')){
+      form.submit()
+    }
+  }
+})
+</script>
