@@ -1,62 +1,62 @@
-const {Users} = require("../models/Users");
 
 // Check if Admin is logged in
 const isAdminLoggedIn = (req, res, next) => {
+  
+  if (req.user && req?.user?.username !== "admin") {
+    return res.redirect("/users/teacher");
+  }
+  
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/login/admin");
-};
 
-// Check if Admin is logged out
-const isAdminLoggedOut = (req, res, next) => {
-  if (!req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/");
+  return res.redirect("/");
 };
 
 // Check if Teacher is logged in
 const isTeacherLoggedIn = (req, res, next) => {
+  
+  if (req.user && req?.user?.username === "admin") {
+    return res.redirect("/users/admin");
+  }
+  
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/login/teacher");
+
+  return res.redirect("/");
 };
 
-// Check if Teacher is logged out
-const isTeacherLoggedOut = (req, res, next) => {
+// Check if Users are logged out
+const isUsersLoggedOut = (req, res, next) => {
   if (!req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/users/teacher");
+  return res.redirect('/users/admin')
 };
 
 // Login Only Admin
 const checkAdmin = async (req, res, next) => {
-  if(req.body.username !== 'admin') {
-    res.redirect('/login/teacher')
-  } else {
-    next()
+  if (req.body.username !== "admin") {
+    return res.redirect("/login/teacher");
   }
-}
+  next();
+};
 
 // Login Only Teacher
 const checkTeacher = async (req, res, next) => {
-  if(req.body.username === 'admin') {
-    res.redirect('/login/admin')
+  if (req.body.username === "admin") {
+    res.redirect("/login/admin");
   } else {
-    next()
+    next();
   }
-}
-
+};
 
 module.exports = {
   isAdminLoggedIn,
-  isAdminLoggedOut,
   checkAdmin,
 
   isTeacherLoggedIn,
-  isTeacherLoggedOut,
-  checkTeacher
+  isUsersLoggedOut,
+  checkTeacher,
 };

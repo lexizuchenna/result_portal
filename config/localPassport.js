@@ -10,12 +10,15 @@ module.exports = (passport) => {
           return done(err);
         }
         if (!user) {
-          return done(null, false, { msg: "User does not exist" });
+          return done(null, false, {message: 'No User Found'});
         }
-        bcrypt.compare(password, user.password, (err, isMatch) => {
-          if (err) throw err;
+  
+        bcrypt.compare(password, user.password, (errr, isMatch) => {
+          // if (err) throw err;
           if (!isMatch) {
-            return done(null, false, { msg: "Incorrect password" });
+            // req.flash('err', 'Incorrect Password')
+            
+            return done(null, false, {message: 'Incorrect Password'});
           }
         });
         return done(null, user);
@@ -24,12 +27,12 @@ module.exports = (passport) => {
   );
 
   passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    return done(null, user.id);
   });
 
   passport.deserializeUser(function (id, done) {
     Users.findById(id, function (err, user) {
-      done(err, user);
+      return done(err, user);
     });
   });
 };

@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 
 // Require Passport Config
-require("./config/localPassport")(passport);
+require("./config/localPassport")(passport)
 
 // Connect to MongoDB
 connectDB();

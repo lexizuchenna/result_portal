@@ -24,7 +24,7 @@ exports.validateUser = [
     if (!errors.isEmpty()) {
       return res
         .status(422)
-        .render("users/registerTeacher", { errors: errors.array() });
+        .render("users/admin/register-teacher", { errors: errors.array() });
     }
 
     next();

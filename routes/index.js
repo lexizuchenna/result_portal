@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const {viewHome} = require("../controllers/indexController");
 
-const { isAdminLoggedOut,isTeacherLoggedOut } = require("../middlewares/auth");
+const { viewHome } = require("../controllers/indexController");
+const { isUsersLoggedOut } = require("../middlewares/auth");
 
-router.get("/", isAdminLoggedOut || isTeacherLoggedOut, viewHome);
+router.get("/", isUsersLoggedOut, viewHome);
 
 module.exports = router;

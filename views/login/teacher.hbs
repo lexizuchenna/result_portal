@@ -67,13 +67,16 @@
             </fieldset>
           </fieldset>
           <fieldset class="form__area">
-            {{! <span class="form__formAlert form__formAlert--error">Incorrect
-                email or password!</span> }}
+            {{#if err}}
+              <span class="form__formAlert form__formAlert--error">
+                {{err}}
+              </span>
+            {{/if}}
             <button class="form__button" type="submit" tabindex="0">Log In</button>
-            {{!-- <a
+            {{! <a
               class="form__pageLink form__pageLink--inFooter"
               href="/login/forgot-password"
-            >Forgot password?</a> --}}
+            >Forgot password?</a> }}
           </fieldset>
         </form>
       </div>
@@ -81,10 +84,11 @@
   </div>
 </div>
 <script>
-  const hide=document.getElementById("hide"),pass=document.getElementById("pass");hide.addEventListener("click",(()=>{"password"===pass.getAttribute("type")?pass.setAttribute("type","text"):pass.setAttribute("type","password")}));
+  const
+  hide=document.getElementById("hide"),pass=document.getElementById("pass");hide.addEventListener("click",(()=>{"password"===pass.getAttribute("type")?pass.setAttribute("type","text"):pass.setAttribute("type","password")}));
 </script>
 
-{{!-- <div class="card home-page flex">
+{{! <div class="card home-page flex">
   <h1>Login to Result Portal</h1>
   <form action="/login/teacher" method="POST" class="login">
     <input type="text" name="username" placeholder="Input Username" />
@@ -92,4 +96,4 @@
     <button type="submit">Login</button>
   </form>
   <p>Not a Teacher? Login in as an <a href="/login/admin"  style="display: inline;">Admin</a></p>
-</div> --}}
+</div> }}

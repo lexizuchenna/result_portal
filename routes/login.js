@@ -12,14 +12,18 @@ const {
   teacherRedirect,
 } = require("../controllers/loginController");
 
-const { isAdminLoggedOut, isTeacherLoggedOut, checkAdmin, checkTeacher } = require("../middlewares/auth");
+const {
+  isUsersLoggedOut,
+  checkAdmin,
+  checkTeacher,
+} = require("../middlewares/auth");
 
-router.get("/admin", isAdminLoggedOut, viewAdminPage);
-router.get("/forgot-password", isAdminLoggedOut, forgetPasswordPage);
-router.get("/teacher", isTeacherLoggedOut, viewTeacherPage);
+router.get("/admin", isUsersLoggedOut, viewAdminPage);
+router.get("/forgot-password", isUsersLoggedOut, forgetPasswordPage);
+router.get("/teacher", isUsersLoggedOut, viewTeacherPage);
 
-router.post('/admin', checkAdmin, adminLogin, adminRedirect)
-router.post('/forgot-password', isAdminLoggedOut, resetPass)
-router.post('/teacher', checkTeacher, teacherLogin, teacherRedirect)
+router.post("/admin", checkAdmin, adminLogin, adminRedirect);
+router.post("/forgot-password", isUsersLoggedOut, resetPass);
+router.post("/teacher", checkTeacher, teacherLogin, teacherRedirect);
 
 module.exports = router;

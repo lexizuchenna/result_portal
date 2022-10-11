@@ -67,8 +67,11 @@
             </fieldset>
           </fieldset>
           <fieldset class="form__area">
-            {{! <span class="form__formAlert form__formAlert--error">Incorrect
-                email or password!</span> }}
+            {{#if err}}
+              <span class="form__formAlert form__formAlert--error">
+                {{err}}
+              </span>
+            {{/if}}
             <button class="form__button" type="submit" tabindex="0">Log In</button>
             <a
               class="form__pageLink form__pageLink--inFooter"
@@ -81,7 +84,8 @@
   </div>
 </div>
 <script>
-  const hide=document.getElementById("hide"),pass=document.getElementById("pass");hide.addEventListener("click",(()=>{"password"===pass.getAttribute("type")?pass.setAttribute("type","text"):pass.setAttribute("type","password")}));
+  const
+  hide=document.getElementById("hide"),pass=document.getElementById("pass");hide.addEventListener("click",(()=>{"password"===pass.getAttribute("type")?pass.setAttribute("type","text"):pass.setAttribute("type","password")}));
 </script>
 {{! <div class="card home-page flex">
   <h1>Login to Result Portal</h1>
