@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const { engine } = require("express-handlebars");
+const paginate = require("handlebars-paginate");
 const connectDB = require("./config/db");
 
 // Init Dotenv
@@ -40,7 +41,8 @@ app.engine(
       ifCond,
       ifArray,
       ifTrue,
-      capitalize
+      capitalize,
+      paginate
     },
   })
 );
@@ -77,6 +79,15 @@ app.use("/", require("./routes/index"));
 app.use("/login", require("./routes/login"));
 app.use("/users", require("./routes/users"));
 app.use("/results", require("./routes/results"));
+
+app.get("*", (req, res) => {
+  try {
+    return res.render("errors/400", {layout: "error", error: "Resource Not Found"})
+  } catch (error) {
+    console.log(error.message)
+    return res.render("errors/500", {layout: "error", error: error.message})
+  }
+})
 
 // Port listening
 app.listen(process.env.PORT, () => {

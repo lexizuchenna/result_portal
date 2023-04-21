@@ -1,176 +1,102 @@
-<header class="header" data-header>
-    <div class="container">
-        <h1>
-            <a href="/users/admin" class="logo">Result Portal</a>
-        </h1>
-        <button
-            class="menu-toggle-btn icon-box"
-            data-menu-toggle-btn
-            aria-label="Toggle Menu"
-        >
-            <span class="material-symbols-rounded icon">menu</span>
-        </button>
-
-        <nav class="navbar">
-            <div class="container">
-                <ul class="navbar-list">
-                    <li>
-                        <a href="/users/admin" class="navbar-link icon-box">
-                            <span
-                                class="material-symbols-rounded icon"
-                            >home</span>
-
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="/users/admin/teachers"
-                            class="navbar-link icon-box"
-                        >
-                            <span
-                                class="material-symbols-rounded icon"
-                            >group</span>
-
-                            <span>Teachers</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="/users/admin/register-teachers"
-                            class="navbar-link icon-box"
-                        >
-                            <span
-                                class="material-symbols-rounded icon"
-                            >how_to_reg</span>
-
-                            <span>Register Teacher</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="/users/admin/results"
-                            class="navbar-link icon-box"
-                        >
-                            <span
-                                class="material-symbols-rounded icon"
-                            >local_library</span>
-
-                            <span>Results</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="/users/admin/results-archives"
-                            class="navbar-link active icon-box"
-                        >
-                            <span
-                                class="material-symbols-rounded icon"
-                            >archive</span>
-
-                            <span>Archives</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="/users/admin/setting"
-                            class="navbar-link icon-box"
-                        >
-                            <span
-                                class="material-symbols-rounded icon"
-                            >settings</span>
-
-                            <span>Settings</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <ul class="user-action-list">
-                    <li>
-                        <a href="#" class="header-profile">
-                            <div>
-                                <p class="profile-title">{{name}}</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/users/logout" class="header-profile">
-                            <div>
-                                <p class="profile-title">logout</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+{{> dash_loader}}
+{{> dash_header}}
+{{> left_sidebar}}
+<div class="main-container">
+  <div class="xs-pd-20-10 pd-ltr-20">
+    <div class="card-box mb-30">
+      <div class="pd-20">
+        <h4 class="text-blue h4">Result Archives</h4>
+      </div>
+      <div class="pb-20">
+        <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
+          <div class="row">
+            {{! <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="DataTables_Table_0_length">
+                <label>Show
+                  <select
+                    name="DataTables_Table_0_length"
+                    aria-controls="DataTables_Table_0"
+                    class="custom-select custom-select-sm form-control form-control-sm"
+                  >
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="-1">All</option>
+                  </select>
+                  entries</label>
+              </div>
+            </div> }}
+            <div class="col-sm-12 col-md-6">
+              <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                <label>Search:<input
+                    type="search"
+                    class="form-control form-control-sm"
+                    placeholder="Search"
+                    aria-controls="DataTables_Table_0"
+                  />
+                </label>
+              </div>
             </div>
-        </nav>
-
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table
+                class="data-table table stripe hover nowrap dataTable no-footer dtr-inline checkbox-datatable"
+                role="grid"
+                aria-describedby="DataTables_Table_0_info"
+              >
+                <thead>
+                  <tr role="row">
+                    <th
+                      class="table-plus datatable-nosort sorting_asc"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Session"
+                    >Session</th>
+                    <th
+                      class="table-plus datatable-nosort sorting_asc"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Tokens"
+                    >Tokens</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#if session}}
+                    {{#each session}}
+                      <tr role="row" class="odd" id="{{this.resultId}}">
+                        <td class="table-plus sorting_1" tabindex="0">
+                          <a href="/users/admin/results-archives/{{this}}">
+                            View
+                            {{this}}
+                            Results
+                          </a>
+                        </td>
+                        <td class="table-plus sorting_1" tabindex="0">
+                          <a href="/users/admin/tokens/{{this}}">
+                            View Generated tokens for
+                            {{this}}
+                            Results
+                          </a>
+                        </td>
+                      </tr>
+                    {{/each}}
+                  {{else}}
+                    <tr role="row" class="even">
+                      <td class="table-plus sorting_1" tabindex="0">No Data
+                        Available</td>
+                    </tr>
+                  {{/if}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</header>
+  </div>
+</div>
 
-<main>
-    <article class="container article">
-
-        <h2 class="h2 article-title">Hi {{user}}</h2>
-
-        <p class="article-subtitle">Welcome to Result Portal</p>
-
-        <section class="tasks">
-
-            <div class="section-title-wrapper">
-                <h2 class="section-title">Results</h2>
-                <p id="host" style="display: none;">{{host}}</p>
-            </div>
-
-            {{#if session}}
-                {{#each session}}
-                    <ul class="tasks-list">
-                        <li class="tasks-item" style="margin-bottom: 7px;">
-                            <div class="card task-card">
-                                <div class="card-input">
-                                    <label for="task-1" class="task-label">
-                                        <a
-                                            href="/users/admin/results-archives/{{this}}"
-                                        >View
-                                            {{this}}
-                                            Results</a>
-                                    </label>
-                                </div>
-                                <ul class="card-meta-list">
-                                    <li>
-                                        <div class="card-badge blue">
-                                            <a
-                                                style="color: #fff;"
-                                                href="/users/admin/tokens/{{this}}"
-                                                target="_blank"
-                                            >View generated tokens for
-                                                {{this}}</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                {{/each}}
-            {{else}}
-                <ul class="tasks-list">
-                    <li class="tasks-item">
-                        <div class="card task-card">
-                            <div class="card-input">
-                                <input
-                                    type="checkbox"
-                                    name="task-1"
-                                    id="task-1"
-                                />
-                                <label for="task-1" class="task-label">
-                                    No Result Available
-                                </label>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            {{/if}}
-        </section>
-    </article>
-</main>
-
-<script src="/js/admin-result.js"></script>
+{{> scripts}}
+{{> _toasts}}
+{{> _toast_footer}}

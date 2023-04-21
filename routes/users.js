@@ -2,7 +2,12 @@ const express = require("express");
 const router = express.Router();
 const { isTeacherLoggedIn, isAdminLoggedIn } = require("../middlewares/auth");
 const { validateUser } = require("../middlewares/userValidator");
+const passport = require("passport");
 const {
+  viewLoginPage,
+  forgetPasswordPage,
+  resetPass,
+
   viewAdmin,
   registerTeacher,
   viewAdminSetting,
@@ -33,6 +38,32 @@ const {
 
   logout,
 } = require("../controllers/usersController");
+
+const {
+  isUsersLoggedOut,
+  checkAdmin,
+  checkTeacher,
+} = require("../middlewares/auth");
+
+router
+  .route("/login")
+  .get(isUsersLoggedOut, viewLoginPage)
+  .post(
+    passport.authenticate("local", {
+      failureMessage: true,
+      failureRedirect: "/users/login",
+    }),
+    (req, res) => {
+      if (req.user.role && req.user.role !== "admin") {
+        return res.status(301).redirect("/users/teacher");
+      }
+
+      return res.status(301).redirect("/users/admin");
+    }
+  );
+
+router.get("/forgot-password", isUsersLoggedOut, forgetPasswordPage);
+router.post("/forgot-password", isUsersLoggedOut, resetPass);
 
 router.get("/admin", isAdminLoggedIn, viewAdmin);
 router.get("/admin/register-teachers", isAdminLoggedIn, viewRegTeachers);

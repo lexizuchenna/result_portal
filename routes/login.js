@@ -18,6 +18,7 @@ const {
   checkTeacher,
 } = require("../middlewares/auth");
 
+router.get("/", isUsersLoggedOut, viewAdminPage);
 router.get("/admin", isUsersLoggedOut, viewAdminPage);
 router.get("/forgot-password", isUsersLoggedOut, forgetPasswordPage);
 router.get("/teacher", isUsersLoggedOut, viewTeacherPage);

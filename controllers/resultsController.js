@@ -1,19 +1,59 @@
+const _ = require("lodash");
+
 const { Results } = require("../models/Results");
 
 const viewResult = async (req, res) => {
-  let index = req.flash('Result')
+  let index = req.flash("Result");
   res.render("results", { layout: "result", Result: index[0] });
 };
 
 const viewTeacherResult = async (req, res) => {
-  const newResult = await Results.find({resultId: req.params.id}).lean()
-  let Result = newResult[0]
+  const newResult = await Results.find({ resultId: req.params.id }).lean();
+  let Result = newResult[0];
   res.render("results", { layout: "result", Result });
 };
 const viewAdminResult = async (req, res) => {
-  const newResult = await Results.find({resultId: req.params.id}).lean()
-  let Result = newResult[0]
-  res.render("results", { layout: "result", Result });
+  let data = await Results.findOne({ resultId: req.params.id }).lean();
+
+  const resultData = _.omit(data, [
+    "_id",
+    "user",
+    "teacher",
+    "name",
+    "sex",
+    "age",
+    "session",
+    "term",
+    "className",
+    "tcomment",
+    "resDate",
+    "resultId",
+    "resultLink",
+    "token",
+    "approved",
+    "message",
+    "createdAt",
+    "updatedAt",
+    "__v",
+    "hcomment",
+  ]);
+
+  const results = [];
+  for (let i = 1; i <= parseInt(resultData.totalSubject); i++) {
+    const result = {};
+    const id = `sub${i}`;
+    result.id = id;
+    result.title = resultData[`${id}title`];
+    result.firstAss = resultData[`${id}firstAss`];
+    result.secAss = resultData[`${id}secAss`];
+    result.thirdAss = resultData[`${id}thirdAss`];
+    result.project = resultData[`${id}project`];
+    result.exam = resultData[`${id}exam`];
+    result.subAve = resultData[`${id}subAve`];
+    results.push(result);
+  }
+
+  return res.render("results", { layout: "result", Result: data, admin: "admin", results });
 };
 
 const viewSecResult = async (req, res) => {

@@ -1,176 +1,204 @@
-<header class="header" data-header>
-  <div class="container">
-    <h1>
-      <a href="/users/admin" class="logo">Result Portal</a>
-    </h1>
-    <button
-      class="menu-toggle-btn icon-box"
-      data-menu-toggle-btn
-      aria-label="Toggle Menu"
-    >
-      <span class="material-symbols-rounded icon">menu</span>
-    </button>
+{{> dash_loader}}
+{{> dash_header}}
+{{> left_sidebar}}
 
-    <nav class="navbar">
-      <div class="container">
-        <ul class="navbar-list">
-          <li>
-            <a href="/users/admin" class="navbar-link icon-box">
-              <span class="material-symbols-rounded icon">home</span>
+<div class="main-container">
+  <div class="xs-pd-20-10 pd-ltr-20">
+    <div class="title pb-20">
+      <h2 class="h3 mb-0">Register Teachers</h2>
+    </div>
 
-              <span>Home</span>
-            </a>
-          </li>
-          <li>
-            <a href="/users/admin/teachers" class="navbar-link icon-box">
-              <span class="material-symbols-rounded icon">group</span>
-
-              <span>Teachers</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="/users/admin/register-teachers"
-              class="navbar-link active icon-box"
-            >
-              <span class="material-symbols-rounded icon">how_to_reg</span>
-
-              <span>Register Teacher</span>
-            </a>
-          </li>
-          <li>
-            <a href="/users/admin/results" class="navbar-link icon-box">
-              <span class="material-symbols-rounded icon">local_library</span>
-
-              <span>Results</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="/users/admin/results-archives"
-              class="navbar-link icon-box"
-            >
-              <span class="material-symbols-rounded icon">archive</span>
-
-              <span>Archives</span>
-            </a>
-          </li>
-          <li>
-            <a href="/users/admin/setting" class="navbar-link icon-box">
-              <span class="material-symbols-rounded icon">settings</span>
-
-              <span>Settings</span>
-            </a>
-          </li>
-        </ul>
-
-        <ul class="user-action-list">
-          <li>
-            <a href="#" class="header-profile">
-              <div>
-                <p class="profile-title">{{name}}</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/users/logout" class="header-profile">
-              <div>
-                <p class="profile-title">logout</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
+    <!-- Default Basic Forms Start -->
+<div class="pd-20 card-box mb-30">
+  <div class="clearfix">
+    <div class="pull-left">
+      <h4 class="text-blue h4">Default Basic Forms</h4>
+      <p class="mb-30">All bootstrap element classies</p>
+    </div>
   </div>
-</header>
-{{> _toasts}}
-<main>
-  <article class="container article">
-
-    <p class="article-subtitle">Register a new teacher</p>
-
-    <section class="home" style="width: 100%;">
-      <div class="card profile-card" style="width: 100%;">
-        <div class="profile-card-wrapper">
-          <form
-            class="fund-form"
-            action="/users/admin/register-teachers"
-            method="POST"
-            style="width: 100%;"
-          >
-            <div class="form-control" style="width: 100%;">
-              <input type="text" placeholder="Class" name="className" />
-            </div>
-            <div class="form-control" style="width: 100%;">
-              <input
-                type="text"
-                placeholder="Teacher's Username"
-                name="username"
-              />
-            </div>
-            <div class="form-control" style="width: 100%;">
-              <input type="text" placeholder="Session" name="session" />
-            </div>
-            <div class="form-control" style="width: 100%;">
-              <input type="text" placeholder="Term" name="term" />
-            </div>
-            <div class="form-control" style="width: 100%;">
-              <input type="text" placeholder="Resumption Date" name="resDate" />
-            </div>
-            <div id="sub-child">
-              <div class="form-control flex" style="width: 100%;">
-                <input
-                  type="text"
-                  placeholder="Subject..."
-                  name="sub1"
-                  id="sub-1"
-                />
-              </div>
-            </div>
-            <div class="form-control flex" style="width: 100%;" cl>
-              <button
-                style="display:inline-block; font-size: 15px; margin-left: 5px; background-color: #17a2b8; color:white; padding: 5px; text-align: center; font-weight: bold;"
-                type="button"
-                id="add-subject"
-              >Add Subject</button>
-            </div>
-            <div class="form-control" style="width: 100%;">
-              <input type="password" placeholder="Password" name="password" />
-            </div>
-            <div class="form-control" style="width: 100%;">
-              <input
-                type="password"
-                placeholder="Repeat Password"
-                name="password2"
-              />
-            </div>
-            <button class="user-button">Register</button>
-          </form>
+  <form action="/users/admin/register-teachers" method="POST" autocomplete="off">
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label">Name</label>
+      <div class="col-sm-12 col-md-10">
+        <input class="form-control" type="text" placeholder="Teacher Name" name="name" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label">Class</label>
+      <div class="col-sm-12 col-md-10">
+        <input class="form-control" type="text" placeholder="Teacher Class" name="className" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label">Username</label>
+      <div class="col-sm-12 col-md-10">
+        <input class="form-control" type="text" placeholder="Teacher Username" name="username" autocomplete="off" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label">Session</label>
+      <div class="col-sm-12 col-md-10">
+			<select class="custom-select col-12" name="session">
+				<option selected="">Select Current Session</option>
+				<option value="2020-2021">2020-2021</option>
+				<option value="2021-2022">2021-2022</option>
+				<option value="2022-2023">2022-2023</option>
+				<option value="2023-2024">2023-2024</option>
+				<option value="2024-2025">2024-2025</option>
+				<option value="2025-2026">2025-2026</option>
+				<option value="2026-2027">2027-2026</option>
+				<option value="2027-2028">2027-2028</option>
+				<option value="2029-2029">2029-2029</option>
+			</select>
+		</div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label">Term</label>
+      <div class="col-sm-12 col-md-10">
+			<select class="custom-select col-12" name="term">
+				<option selected="">Select Current Term</option>
+				<option value="1st">1st</option>
+				<option value="2nd">2nd</option>
+				<option value="3rd">3rd</option>
+			</select>
+		</div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label">Resumption</label>
+      <div class="col-sm-12 col-md-10">
+        <input class="form-control" type="text" placeholder="Next Resumption Date" name="resDate" />
+      </div>
+    </div>
+    <div id="sub-child">
+      <div class="form-group row">
+        <label class="col-sm-12 col-md-2 col-form-label">Subject 1</label>
+        <div class="col-sm-12 col-md-10">
+          <input class="form-control" type="text" placeholder="Subject" name="sub1" id="sub-1" />
         </div>
       </div>
-    </section>
-
-  </article>
-</main>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label"></label>
+      <div class="pull-right" style="margin: 10px auto;">
+      <button
+        id="add-subject"
+        class="btn btn-primary btn-sm"
+        type="button"
+      ><i class="fa fa-code"></i> Add Subject</button>
+    </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label">Email</label>
+      <div class="col-sm-12 col-md-10">
+        <input
+          class="form-control"
+          value="null@schoolportal.com"
+          type="text"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label">Password</label>
+      <div class="col-sm-12 col-md-10">
+        <input class="form-control" name="password" type="password" autocomplete="off" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label">Repeat Password</label>
+      <div class="col-sm-12 col-md-10">
+        <input class="form-control" name="password2" type="password" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label"></label>
+      <div class="pull-right" style="margin: 10px auto;">
+      <button
+        class="btn btn-primary btn-lg"
+        style="width: 100%;"
+        type="submit"
+      >Register Teacher</button>
+    </div>
+    </div>
+  </form>
+</div>
+<!-- Default Basic Forms End -->
+  </div>
+</div>
+{{> scripts}}
+{{> _toasts}}
 {{> _toastfooter}}
 <script>
-  const subChild = document.getElementById('sub-child'); const addSubject =
-  document.getElementById('add-subject'); addSubject.addEventListener('click',
-  () => { let input = document.createElement('input'); let div =
-  document.createElement('div'); let button = document.createElement('button');
-  let lastChild = subChild.lastElementChild; let firstChild =
-  lastChild.firstElementChild; let newArray =
-  firstChild.getAttribute('id').split('-'); let number = parseInt(newArray[1]);
-  div.setAttribute('class', 'form-control flex'); div.setAttribute('style',
-  'width: 100%;'); input.setAttribute('type', `text`); input.setAttribute('id',
-  `sub-${number +1}`); input.setAttribute('name', `sub${number +1}`);
-  input.setAttribute('placeholder', `Subject...`); button.setAttribute('style',
-  'display:inline-block; font-size: 18px; margin-left: 5px; background-color: #dc3545; color:white; padding: 7px; text-align: center; font-weight: bold;');
-  button.setAttribute('class', 'remove'); button.setAttribute('type', 'button');
-  button.innerText = 'X'; div.append(input); div.append(button);
-  subChild.append(div) }); subChild.addEventListener('click', (e) => {
-  if(e.target.classList.contains('remove')){ var div = e.target.parentElement;
-  subChild.removeChild(div); } })
+  const subChild = document.getElementById('sub-child');
+  const addSubject =  document.getElementById('add-subject');
+
+  addSubject.addEventListener('click',  () => { 
+    let input = document.createElement('input');
+    let firstDiv = document.createElement('div');
+    let secondDiv = document.createElement('div');
+    let thirdDiv = document.createElement('div');
+    let label = document.createElement("label")
+    let button = document.createElement('button');
+
+    let lastChild = subChild.lastElementChild;
+    let lastInput = lastChild.children[1].firstElementChild;
+
+    let newArray = lastInput.getAttribute('id').split('-');
+    let number = parseInt(newArray[1]);
+
+    firstDiv.setAttribute('class', 'form-group row');
+
+    label.setAttribute("class", "col-sm-12 col-md-2 col-form-label");
+    label.innerText = `Subject ${number +1}`;
+
+    secondDiv.setAttribute('class', 'col-sm-12 col-md-10');
+
+    input.setAttribute('type', `text`);
+    input.setAttribute('id', `sub-${number +1}`);
+    input.setAttribute('name', `sub${number +1}`);
+    input.setAttribute('placeholder', `Subject...`);
+    input.setAttribute('style', `flex: 1;`);
+    input.setAttribute('class', `form-control`);
+
+    button.setAttribute('class', 'btn btn-danger btn-sm remove');
+    button.setAttribute('href', '#');
+    button.setAttribute('type', 'button');
+    button.innerText = 'remove';
+
+    thirdDiv.setAttribute("class", "pull-right");
+    thirdDiv.setAttribute("style", "margin: 10px auto;");
+
+    thirdDiv.append(button);
+    secondDiv.append(input); secondDiv.append(thirdDiv);
+    firstDiv.append(label); firstDiv.append(secondDiv);
+
+    subChild.append(firstDiv);
+    });
+    subChild.addEventListener('click', (e) => {
+      if(e.target.classList.contains('remove')){ 
+        var div = e.target.parentElement.parentElement.parentElement;
+        subChild.removeChild(div); 
+        }
+    })
 </script>
+
+<!-- <div class="form-group row">
+        <label class="col-sm-12 col-md-2 col-form-label">Subject 2</label>
+        
+        <div class="col-sm-12 col-md-10" style="display: flex;">
+          <input class="form-control" type="text" placeholder="Subject" name="sub2" id="sub-2" style="flex: 1;"/>
+          <div class="pull-right">
+          <a
+            href="#"
+            class="btn btn-danger btn-sm scroll-click remove"
+            role="button"
+          >remove</a>
+        </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+      <label class="col-sm-12 col-md-2 col-form-label">Telephone</label>
+      <div class="col-sm-12 col-md-10">
+        <input class="form-control" value="1-(111)-111-1111" type="tel" />
+      </div>
+    </div> -->

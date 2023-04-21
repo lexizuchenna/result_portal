@@ -1,4 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@font-face {
+  font-family: euclidcircularb;
+  src: url('/fonts/euclidcircularb-regular.woff2')
+      format("woff2"),
+    url('/fonts/euclidcircularb-semibold.woff2')
+      format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: euclidcircularb;
+  src: url('/fonts/euclidcircularb-semibold.woff2')
+  format("woff2"),
+    url('/fonts/euclidcircularb-semibold.woff2')
+      format("woff2");
+  font-weight: 600 700;
+  font-style: normal;
+}
 
 :root {
   --blue: #007bff;
@@ -24,30 +41,39 @@
   --primary-color: #ffd803;
   --sec-color: #007bff;
   --dark-bg: #0b0e11;
+  --font: euclidcircularb, sans-serif;
 }
 
-.container {
+.font {
+  font-family: euclidcircularb, sans-serif;
+}
+
+/* .container {
   max-width: 1300px;
   margin: 0 auto;
 }
-
-.flex {
+*/
+.flexxx {
   display: flex;
   align-items: center;
-}
+  justify-content: center;
+} 
 
 * {
   padding: 0;
   margin: 0;
-  font-family: Roboto, sans-serif;
-  box-sizing: border-box;
+  font-family: var(--font)!important;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-a {
+body {
+  font-family: var(--font);
+}
+
+/* a {
   text-decoration: none;
 }
 
@@ -130,4 +156,4 @@ input[type='text'] {
   .input__card {
     width: 100%;
   }
-}
+} */

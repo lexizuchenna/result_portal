@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const UsersSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: true,
+    },
     className: {
       type: String,
       required: true,
@@ -10,9 +14,13 @@ const UsersSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    role: {
+      type: String,
+      default: "teacher",
+    },
     email: {
       type: String,
-      default: 'null'
+      default: "null@schoolportal.com",
     },
     password: {
       type: String,
@@ -30,4 +38,4 @@ const UsersSchema = new mongoose.Schema(
 
 const Users = mongoose.model("Users", UsersSchema);
 
-module.exports = {UsersSchema, Users};
+module.exports = { UsersSchema, Users };

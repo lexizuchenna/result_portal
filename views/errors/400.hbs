@@ -1,0 +1,22 @@
+<main>
+  <div class="container">
+    <section
+      class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center"
+    >
+      <h1>400</h1>
+      <h3>Error: 400 PAGE NOT FOUND !</h3>
+      <p id="error-name">{{error}}</p>
+      <a class="btn" href="/">Back to home</a>
+      <img
+        src="/images/not-found.svg"
+        class="img-fluid py-5"
+        alt="Page Not Found"
+      />
+    </section>
+  </div>
+</main>
+
+<script>
+  console.log(document.getElementById("error-name").innerText)
+  document.head.title = document.getElementById("error-name").innerText
+</script>

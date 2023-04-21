@@ -3,17 +3,16 @@ const nodemailer = require("nodemailer");
 const bcrypt = require("bcryptjs");
 
 const { emailText2 } = require("../constants/emailText");
-const { makeid } = require("../constants/functions");
+const { generateNum } = require("../utils/index");
 const Users = require("../models/Users");
 
 // View Admin Login Page
 const viewAdminPage = (req, res) => {
-  let last = req?.session?.messages?.pop()
+  let last = req?.session?.messages?.pop();
   res.render("login/admin", {
     layout: "login",
-    err: last
+    err: last,
   });
-  
 };
 
 // View Forget Password Page
@@ -30,7 +29,7 @@ const resetPass = async (req, res) => {
     res.render("login/forgetpass", { layout: "login", err });
   } else {
     const salt = await bcrypt.genSalt(10);
-    let pwd = makeid(6);
+    let pwd = generateNum(6);
     const hashedPwd = await bcrypt.hash(pwd, salt);
 
     await Users.findOneAndUpdate(
@@ -61,14 +60,12 @@ const resetPass = async (req, res) => {
 
 // View Teacher Login Page
 const viewTeacherPage = (req, res) => {
-  let last = req?.session?.messages?.pop()
-  console.log(last)
+  let last = req?.session?.messages?.pop();
+  console.log(last);
   res.render("login/teacher", {
     layout: "login",
     err: last,
   });
-  
-  
 };
 
 //Admin Login
@@ -85,7 +82,7 @@ const teacherLogin = passport.authenticate("local", {
 
 //Admin Login Redirect
 const adminRedirect = (req, res) => {
-  req.flash('err', 'filed')
+  req.flash("err", "filed");
   res.redirect("/users/admin");
 };
 
