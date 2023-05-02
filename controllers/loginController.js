@@ -5,7 +5,7 @@ const { sendMail, generateChars } = require("../utils/index");
 const viewLoginPage = (req, res) => {
   try {
     let last = req?.session?.messages?.pop();
-    return res.render("/login", {
+    return res.render("login", {
       layout: "login",
       error: last,
     });
@@ -20,7 +20,7 @@ const viewLoginPage = (req, res) => {
 // View Forget Password Page
 const viewForgetPasswordPage = (req, res) => {
   try {
-    return res.render("login/forgetpass", { layout: "login" });
+    return res.render("forget-password", { layout: "login" });
   } catch (error) {
     console.log(error.name, error.message);
     return res
