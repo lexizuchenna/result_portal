@@ -1,0 +1,76 @@
+{{> dash_loader}}
+{{> dash_header}}
+{{> left_sidebar }}
+<div class="main-container">
+  <div class="xs-pd-20-10 pd-ltr-20">
+    <div class="title pb-20">
+      <h2 class="h3 mb-0">Register Student</h2>
+    </div>
+
+    <!-- Default Basic Forms Start -->
+    <div class="pd-20 card-box mb-30">
+      <div class="clearfix">
+        <div class="pull-left">
+          <h4 class="text-blue h4">Default Basic Forms</h4>
+          <p class="mb-30">All bootstrap element classies</p>
+        </div>
+      </div>
+      <form
+        action="/users/teacher/update-student"
+        method="POST"
+        autocomplete="off"
+      >
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Name</label>
+          <div class="col-sm-12 col-md-10">
+            <input
+              class="form-control"
+              type="text"
+              value="{{student.name}}"
+              name="name"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Email</label>
+          <div class="col-sm-12 col-md-10">
+            <input
+              class="form-control"
+              type="text"
+              value="{{student.email}}"
+              name="email"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Term</label>
+          <div class="col-sm-12 col-md-10">
+            <select class="custom-select col-12" name="gender">
+              <option selected="">Select Gender</option>
+              <option class="gender" value="Male">Male</option>
+              <option class="gender" value="Female">Female</option>
+              <option value="{{student.gender}}" id="current-gender-value"></option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label"></label>
+          <div class="pull-right" style="margin: 10px auto;">
+            <button
+              class="btn btn-primary btn-lg"
+              style="width: 100%;"
+              type="submit"
+            >Update Student</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- Default Basic Forms End -->
+  </div>
+</div>
+
+{{> scripts}}
+{{> _toasts}}
+{{> _toast_footer}}
+
+<script src="/js/users/teacher-edit-student"></script>

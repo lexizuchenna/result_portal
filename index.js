@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const passport = require("passport");
-const flash = require('connect-flash')
+const flash = require("connect-flash");
 const dotenv = require("dotenv");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -15,17 +15,26 @@ dotenv.config();
 const app = express();
 
 // Require Passport Config
-require("./config/localPassport")(passport)
+require("./config/localPassport")(passport);
 
 // Connect to MongoDB
-connectDB();
+process.env.MODE == "DEVELOPMENT"
+  ? connectDB(process.env.MONGO_URI_DEV)
+  : connectDB(process.env.MONGO_URI);
 
 // Body Parser
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json({extended: true, limit: '30mb'}))
+app.use(express.json({ extended: true, limit: "30mb" }));
 
 // Handlebars Helpers
-const { formatDate, addNumbers, checkGrade, checkRemark, ifCond, ifArray, capitalize, ifTrue } = require("./middlewares/hbsHelper");
+const {
+  formatDate,
+  addNumbers,
+  checkGrade,
+  checkRemark,
+  capitalize,
+  ifEqual,
+} = require("./utils/hbsHelper");
 
 // Express-Handlbars Engine
 app.engine(
@@ -38,11 +47,9 @@ app.engine(
       addNumbers,
       checkGrade,
       checkRemark,
-      ifCond,
-      ifArray,
-      ifTrue,
       capitalize,
-      paginate
+      ifEqual,
+      paginate,
     },
   })
 );
@@ -59,7 +66,10 @@ app.use(
     resave: true,
     saveUninitialized: true,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URI,
+      mongoUrl:
+        process.env.MODE === "DEVELOPMENT"
+          ? process.env.MONGO_URI_DEV
+          : process.env.MONGO_URI,
     }),
     cookie: {
       maxAge: 18000000,
@@ -68,7 +78,7 @@ app.use(
 );
 
 // Flash
-app.use(flash())
+app.use(flash());
 
 // Passport Initialization
 app.use(passport.initialize());
@@ -82,12 +92,15 @@ app.use("/results", require("./routes/results"));
 
 app.get("*", (req, res) => {
   try {
-    return res.render("errors/400", {layout: "error", error: "Resource Not Found"})
+    return res.render("errors/400", {
+      layout: "error",
+      error: "Resource Not Found",
+    });
   } catch (error) {
-    console.log(error.message)
-    return res.render("errors/500", {layout: "error", error: error.message})
+    console.log(error.message);
+    return res.render("errors/500", { layout: "error", error: error.message });
   }
-})
+});
 
 // Port listening
 app.listen(process.env.PORT, () => {

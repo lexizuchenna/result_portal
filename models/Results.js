@@ -2,23 +2,19 @@ const mongoose = require("mongoose");
 
 const ResultsSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.SchemaTypes.ObjectId,
-      required: true
-    },
-    teacher: {
-      type: String,
-      required: true
-    },
     name: {
       type: String,
       required: true,
     },
-    sex: {
+    className: {
       type: String,
       required: true,
     },
-    age: {
+    username: {
+      type: String,
+      required: true,
+    },
+    gender: {
       type: String,
       required: true,
     },
@@ -30,18 +26,23 @@ const ResultsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    className: {
-      type: String,
-      required: true,
+    teacher: {
+      type: mongoose.SchemaTypes.ObjectId,
+      required: true
     },
-    perfomance: String,
+    student: mongoose.SchemaTypes.ObjectId,
     tcomment: String,
     hcomment: String,
     resDate: String,
+    tSubject: String,
     resultId: String,
     resultLink: String,
     token: String,
     approved: {
+      type: Boolean,
+      default: false
+    },
+    checked: {
       type: Boolean,
       default: false
     },

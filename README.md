@@ -14,10 +14,38 @@ Delete Result '
 
 
 Teacher Privileges
-Create Student Account
-View Students
+Create Student Account '
+    name
+    teacher
+    username
+    className
+    gender
+    role: student
+    password
+View Students '
 Edit Students
 Create Result
+    Input: session && term > select student > Generate Result
 View Result
 Edit Result
-Delete Result
+
+Students Privileges
+View Results
+    
+View Result
+    Input: session && term
+
+
+
+fee
+weapon
+popular
+delay
+flock
+trash
+space
+video
+mixed
+cloth
+table
+exile

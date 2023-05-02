@@ -39,7 +39,7 @@
                       rowspan="1"
                       colspan="1"
                       aria-label="Start Date: activate to sort column ascending"
-                    >Message</th>
+                    >Result</th>
                     <th
                       class="datatable-nosort sorting_disabled"
                       rowspan="1"
@@ -49,89 +49,60 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{#if approvedResults}}
-                    {{#each approvedResults}}
+                  {{#if generatedStudents}}
+                    {{#each generatedStudents}}
                       <tr role="row" class="odd">
-
+    
                         <td
                           class="table-plus sorting_1"
                           tabindex="0"
                         >{{capitalize this.name}}</td>
                         <td>{{this.username}}</td>
                         <td>
-                          <span
-                            class="badge badge-pill"
-                            data-bgcolor="#e7ebf5"
-                            data-color="#265ed7"
-                            style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);"
-                          >{{this.message}}
-                          </span>
+                            <span
+                                class="badge badge-pill"
+                                data-bgcolor="#e7ebf5"
+                                data-color="#265ed7"
+                                style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);"
+                                >Generated
+                            </span>
                         </td>
                         <td>
-
-                          <div
-                            class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                            style=""
-                          >
-                            <a
-                              class="dropdown-item"
-                              href="javascript:null"
-                              onclick="viewResult('{{this.resultId}}')"
-                            ><i class="dw dw-eye"></i>
-                              View</a>
-
-                          </div>
+                          <a
+                          class="dropdown-item"
+                            href="javascript:null"
+                            onclick="viewEditResult('{{this._id}}')"
+                          ><i class="dw dw-edit2"></i>
+                            Edit</a>
                         </td>
                       </tr>
                     {{/each}}
                   {{/if}}
-                  {{#if unApprovedResults}}
-                    {{#each unApprovedResults}}
+                  {{#if unGeneratedStudents}}
+                    {{#each unGeneratedStudents}}
                       <tr role="row" class="odd">
+    
                         <td
                           class="table-plus sorting_1"
                           tabindex="0"
                         >{{capitalize this.name}}</td>
                         <td>{{this.username}}</td>
                         <td>
-                          <span
-                            class="badge badge-pill"
-                            data-bgcolor="#e7ebf5"
-                            data-color="#dc3545"
-                            style="color: #dc3545; background-color: rgb(231, 235, 245);"
-                          >{{this.message}}
-                          </span>
+                            <span
+                                class="badge badge-pill"
+                                data-bgcolor="#e7ebf5"
+                                data-color="#dc3545"
+                                style="color: #dc3545; background-color: rgb(231, 235, 245);"
+                                >Not Generated
+                            </span>
                         </td>
                         <td>
-                          <div class="dropdown">
-                            <a
-                              class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                              href="#"
-                              role="button"
-                              data-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              <i class="dw dw-more"></i>
-                            </a>
-                            <div
-                              class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
-                              style=""
-                            >
-                              <a
-                                class="dropdown-item"
-                                href="javascript:null"
-                                onclick="viewResult('{{this.resultId}}')"
-                              ><i class="dw dw-eye"></i>
-                                View</a>
-                              <a
-                                class="dropdown-item"
-                                href="javascript:null"
-                                onclick="viewEditResult('{{this.student}}', '{{this.term}}', '{{this.session}}')"
-                              ><i class="dw dw-edit2"></i>
-                                Edit</a>
-                            </div>
-                          </div>
-
+                          <a
+                            class="dropdown-item"
+                            href="javascript:null"
+                            onclick="viewGenerateResult('{{this._id}}')"
+                          ><i class="dw dw-edit2"></i>
+                            Generate</a>
                         </td>
                       </tr>
                     {{/each}}
@@ -149,10 +120,10 @@
       </div>
     </div>
   </div>
-</div>
+</div> 
 
 {{> scripts}}
 {{> _toasts}}
 {{> _toast_footer}}
 
-<script src="/js/users/teacher-results"></script>
+<script src="/js/users/teacher-result-session"></script>

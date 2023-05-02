@@ -1,4 +1,4 @@
-{{#if Result}}
+{{#if result}}
   <br />
   <page size="A4">
     <div style="padding: 0 30px;">
@@ -23,15 +23,15 @@
             </div>
           </center>
           {{! <div class="col-xs-3">
-          <img
-            src="Student%20Mark%20Sheet_files/1759.jpg"
-            class="img-circle"
-            width="110"
-          />
-        </div> }}
+            <img
+              src="Student%20Mark%20Sheet_files/1759.jpg"
+              class="img-circle"
+              width="110"
+            />
+          </div> }}
           <div class="col-xs-12">
-            <div class="text-center text-uppercase"><strong>Student Termly
-                Report Sheet</strong></div>
+            <div class="text-center text-uppercase"><strong>Student Termly Report
+                Sheet</strong></div>
           </div>
         </div>
         <div class="row">
@@ -45,22 +45,22 @@
                 <tr>
                   <th>Name</th>
                   <td style="color: #28a745;"><b>{{capitalize
-                        Result.name
+                        result.name
                       }}</b></td>
                 </tr>
                 <tr>
                   <th>Class</th>
                   <td style="color: #28a745;"><b>{{capitalize
-                        Result.className
+                        result.className
                       }}</b></td>
                 </tr>
                 <tr>
                   <th>Session</th>
-                  <td style="color: #28a745;"><b>{{Result.session}}</b></td>
+                  <td style="color: #28a745;"><b>{{result.session}}</b></td>
                 </tr>
                 <tr>
                   <th>Term</th>
-                  <td style="color: #28a745;"><b>{{Result.term}}</b></td>
+                  <td style="color: #28a745;"><b>{{result.term}}</b></td>
                 </tr>
               </tbody>
             </table>
@@ -73,7 +73,7 @@
               <tbody>
                 <tr>
                   <th>Term Perfomance</th>
-                  <td><b>{{Result.perfomance}}</b></td>
+                  <td><b>{{result.perfomance}}</b></td>
                 </tr>
                 <tr>
                   <th>Class Average</th>
@@ -85,7 +85,7 @@
                 </tr>
                 <tr>
                   <th>Total Subjects</th>
-                  <td><b id="total-sub">{{Result.totalSubject}}</b></td>
+                  <td><b id="total-sub">{{result.totalSubject}}</b></td>
                 </tr>
               </tbody>
             </table>
@@ -96,25 +96,25 @@
               style="text-transform: capitalize;"
             >
               {{! <tbody>
-              <tr>
-                <th>General Performance</th>
-                <td> 64%</td>
-              </tr>
-              <tr>
-                <th>Grade Performance</th>
-                <td>
-                  64.44%
-                </td>
-              </tr>
-              <tr>
-                <th>psychomotor Performance</th>
-                <td>63.33%</td>
-              </tr>
-              <tr>
-                <th>affective Performance</th>
-                <td>63.33%</td>
-              </tr>
-            </tbody> }}
+                <tr>
+                  <th>General Performance</th>
+                  <td> 64%</td>
+                </tr>
+                <tr>
+                  <th>Grade Performance</th>
+                  <td>
+                    64.44%
+                  </td>
+                </tr>
+                <tr>
+                  <th>psychomotor Performance</th>
+                  <td>63.33%</td>
+                </tr>
+                <tr>
+                  <th>affective Performance</th>
+                  <td>63.33%</td>
+                </tr>
+              </tbody> }}
             </table>
           </div>
         </div>
@@ -135,8 +135,8 @@
                   <th class="cap">SUBJECT AVERAGE</th>
                   <th class="cap">GRADE</th>
                 </tr>
-                {{#if results}}
-                  {{#each results}}
+                {{#if subjects}}
+                  {{#each subjects}}
                     <tr class="table-row">
                       <td>{{this.title}}</td>
                       <td class="firstAss">{{this.firstAss}}</td>
@@ -172,95 +172,102 @@
                   <td><b id="average-total"></b></td>
                   <td style="display: none;">
                     <b style="display: none;" id="total-sub">
-                      {{Result.totalSubject}}
+                      {{result.totalSubject}}
                     </b>
                   </td>
                   <td></td>
                 </tr>
               </tbody></table>
             {{! <div class="row">
-            <div class="col-xs-6">
-              <div>
-                <h5 class="dock">Total Marks Obtained:
-                  <strong>1095.5 / 1700</strong>
-                  <br />&nbsp;(17 Subjects recorded)</h5>
+              <div class="col-xs-6">
+                <div>
+                  <h5 class="dock">Total Marks Obtained:
+                    <strong>1095.5 / 1700</strong>
+                    <br />&nbsp;(17 Subjects recorded)</h5>
+                </div>
               </div>
-            </div>
-            <div class="col-xs-6">
-              <div>
-                <h5 class="dock"><b>Position overall in UB 3 (cummulative)</b>:
-                  <strong>102</strong>
-                  out of
-                  <strong>176</strong></h5>
+              <div class="col-xs-6">
+                <div>
+                  <h5 class="dock"><b>Position overall in UB 3 (cummulative)</b>:
+                    <strong>102</strong>
+                    out of
+                    <strong>176</strong></h5>
+                </div>
               </div>
-            </div>
-          </div> }}
+            </div> }}
             <div class="row">
               <br />
               <div class="col-xs-12">
                 <p class="text-bold dock">Head Teacher's Comment: &nbsp; &nbsp;
-                  <span><i>{{Result.hcomment}}</i></span>
+                  <span><i>{{result.hcomment}}</i></span>
                 </p>
                 <p class="text-bold dock">Teacher's Comment: &nbsp; &nbsp;
-                  <span><i>{{Result.tcomment}}</i></span>
+                  <span><i>{{result.tcomment}}</i></span>
                 </p>
               </div>
             </div>
           </div>
           <!-- domians -->
-          {{! <div class="col-xs-3">
-          <h5 class="text-bold">PSYCHOMOTOR Domain (1-5)</h5>
-          <table class="table table-bordered">
-            <tbody><tr>
-                <th>Skills</th>
-                <th>Rating</th>
-              </tr>
-              <tr>
-                <td>GAMES</td>
-                <td>
-                  4
-                </td>
-              </tr>
-              <tr>
-                <td>CARRYING OUT ASSIGNMENT</td>
-                <td>
-                  3
-                </td>
-              </tr>
-              <tr>
-                <td>NEATNESS</td>
-                <td>
-                  2.5
-                </td>
-              </tr>
-            </tbody></table>
-          <h5 class="text-bold">AFFECTIVE Domain (1-5)</h5>
-          <table class="table table-bordered">
-            <tbody><tr>
-                <th>Skills</th>
-                <th>Rating</th>
-              </tr>
-              <tr>
-                <td>POLITENESS</td>
-                <td>
-                  3.5
-                </td>
-              </tr>
-              <tr>
-                <td>OBEDIENCE</td>
-                <td>
-                  3
-                </td>
-              </tr>
-              <tr>
-                <td>COMMUNICATION</td>
-                <td>
-                  3
-                </td>
-              </tr>
-            </tbody></table>
-        </div> }}
-
+          <div class="row">
+            <br />
+            <div class="col-xs-3">
+              <h5 class="text-bold">PSYCHOMOTOR Domain (1-5)</h5>
+              <table class="table table-bordered">
+                <tbody><tr>
+                    <th>Skills</th>
+                    <th>Rating</th>
+                  </tr>
+                  <tr>
+                    <td>GAMES</td>
+                    <td>
+                      4
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CARRYING OUT ASSIGNMENT</td>
+                    <td>
+                      3
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>NEATNESS</td>
+                    <td>
+                      2.5
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-xs-3">
+              <h5 class="text-bold">AFFECTIVE Domain (1-5)</h5>
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <th>Skills</th>
+                    <th>Rating</th>
+                  </tr>
+                  <tr>
+                    <td>POLITENESS</td>
+                    <td>
+                      3.5
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>OBEDIENCE</td>
+                    <td>
+                      3
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>COMMUNICATION</td>
+                    <td>
+                      3
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
         <div class="row">
           <br />
@@ -296,12 +303,12 @@
 
           <div class="col-xs-3" style="float: right;">
             <h5 class="text-bold">Next Term Begins:</h5>
-            <h4>{{Result.resDate}}</h4>
+            <h4>{{result.resDate}}</h4>
             {{! <img
-            src="Student%20Mark%20Sheet_files/1759.png"
-            class="img-responsive"
-            style="width:120px"
-          /> }}
+              src="Student%20Mark%20Sheet_files/1759.png"
+              class="img-responsive"
+              style="width:120px"
+            /> }}
           </div>
         </div>
       </div>
@@ -313,7 +320,7 @@
   </div>
 {{/if}}
 
-{{#if Result}}
+{{#if admin}}
   <div
     style="margin: 20px auto; display: flex; align-items: center; justify-content: center; max-width: 760px"
   >
@@ -330,10 +337,10 @@
           cols="30"
           rows="10"
           style="display: block;"
-        >{{Result.message}}</textarea>
+        >{{result.message}}</textarea>
         <input
           type="input"
-          value="{{Result.resultId}}"
+          value="{{result.resultId}}"
           name="resultId"
           style="display:none"
           id="id"
@@ -351,8 +358,6 @@
       </form>
     </div>
   </div>
-{{/if}}
-
 <script>
   const form = document.createElement("form")
   const input = document.querySelector("#id")
@@ -370,5 +375,7 @@
     })
     
 </script>
+{{/if}}
+
 
 <script src="/js/result-main.js"></script>

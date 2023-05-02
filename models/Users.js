@@ -14,6 +14,7 @@ const UsersSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    gender: String,
     role: {
       type: String,
       default: "teacher",
@@ -30,6 +31,8 @@ const UsersSchema = new mongoose.Schema(
     resDate: String,
     session: String,
     token: String,
+    teacher: mongoose.Types.ObjectId,
+    results: []
   },
   {
     timestamps: true,

@@ -1,14 +1,14 @@
 {{> dash_loader}}
 {{> dash_header}}
-{{> left_sidebar }}
+{{> left_sidebar}}
 <div class="main-container">
   <div class="xs-pd-20-10 pd-ltr-20">
     <div class="title pb-20">
-      <h2 class="h3 mb-0">Teachers Overview</h2>
+      <h2 class="h3 mb-0">Students Overview</h2>
     </div>
 
     <div class="card-box pb-10">
-      <div class="h5 pd-20 mb-0">Teachers List</div>
+      <div class="h5 pd-20 mb-0">Yours Students List</div>
       <div
         id="DataTables_Table_0_wrapper"
         class="dataTables_wrapper dt-bootstrap4 no-footer"
@@ -42,22 +42,6 @@
                     aria-label="Gender: activate to sort column ascending"
                   >Username</th>
                   <th
-                    class="sorting"
-                    tabindex="0"
-                    aria-controls="DataTables_Table_0"
-                    rowspan="1"
-                    colspan="1"
-                    aria-label="Weight: activate to sort column ascending"
-                  >Classname</th>
-                  <!--<th
-                    class="sorting"
-                    tabindex="0"
-                    aria-controls="DataTables_Table_0"
-                    rowspan="1"
-                    colspan="1"
-                    aria-label="Disease: activate to sort column ascending"
-                  >Disease</th> -->
-                  <th
                     class="datatable-nosort sorting_disabled"
                     rowspan="1"
                     colspan="1"
@@ -65,18 +49,18 @@
                   >Actions</th></tr>
               </thead>
               <tbody>
-                {{#if Teachers}}
-                  {{#each Teachers}}
+                {{#if students}}
+                  {{#each students}}
                     <tr role="row" class="odd">
                       <td class="table-plus sorting_1" tabindex="0">
                         <div class="name-avatar d-flex align-items-center">
                           <div class="avatar mr-2 flex-shrink-0">
                             <img
                               src="/images/user.png"
-                              class="border-radius-100 shadow"
-                              width="40"
-                              height="40"
-                              alt="teacher user"
+                              class="border-radius-100"
+                              width="30"
+                              height="30"
+                              alt="student user"
                             />
                           </div>
                           <div class="txt">
@@ -85,7 +69,6 @@
                         </div>
                       </td>
                       <td>{{this.username}}</td>
-                      <td>{{this.className}}</td>
                       <td>
                           <div class="table-actions">
                             <a
@@ -94,23 +77,8 @@
                               data-color="#265ed7"
                               style="color: rgb(38, 94, 215);"
                             ><i class="icon-copy dw dw-edit2 edit"></i></a>
-                            <a
-                              href="javascript:null"
-                              onclick="deleteEl('{{this._id}}')"
-                              data-color="#e95959"
-                              style="color: rgb(233, 89, 89);"
-                            ><i class="icon-copy dw dw-delete-3 delete"></i></a>
                           </div>
                       </td>
-                      <!-- <td>
-                    <span
-                      class="badge badge-pill"
-                      data-bgcolor="#e7ebf5"
-                      data-color="#265ed7"
-                      style="color: rgb(38, 94, 215); background-color: rgb(231, 235, 245);"
-                    >Diabetes</span>
-                  </td> -->
-                      
                     </tr>
                   {{/each}}
                 {{else}}
@@ -127,7 +95,7 @@
                         />
                       </div>
                       <div class="txt">
-                        <div class="weight-600">No Teacher Found!</div>
+                        <div class="weight-600">No Student Found!</div>
                       </div>
                     </div>
                   </td>
@@ -200,10 +168,9 @@
   </div>
 </div>
 {{> scripts}}
-<script src="/plugins/apexcharts/apexcharts.min.js"></script>
 <script src="/vendors/scripts/dashboard.js"></script>
 {{> _toasts}}
 {{> _toast_footer}}
 
 
-<script src="/js/users/admin-teachers"></script>
+<script src="/js/users/teacher-students.js"></script>

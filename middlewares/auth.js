@@ -1,11 +1,13 @@
-
 // Check if Admin is logged in
 const isAdminLoggedIn = (req, res, next) => {
-  
-  if (req.user && req?.user?.username !== "admin") {
+  if (req.user && req?.user?.role === "teacher") {
     return res.redirect("/users/teacher");
   }
-  
+
+  if (req.user && req?.user?.role === "student") {
+    return res.redirect("/users/student");
+  }
+
   if (req.isAuthenticated()) {
     return next();
   }
@@ -15,11 +17,30 @@ const isAdminLoggedIn = (req, res, next) => {
 
 // Check if Teacher is logged in
 const isTeacherLoggedIn = (req, res, next) => {
-  
-  if (req.user && req?.user?.username === "admin") {
+  if (req.user && req?.user?.role === "admin") {
     return res.redirect("/users/admin");
   }
-  
+
+  if (req.user && req?.user?.role === "student") {
+    return res.redirect("/users/student");
+  }
+
+  if (req.isAuthenticated()) {
+    return next();
+  }
+
+  return res.redirect("/");
+};
+
+const isStudentLoggedIn = (req, res, next) => {
+  if (req.user && req?.user?.role === "admin") {
+    return res.redirect("/users/admin");
+  }
+
+  if (req.user && req?.user?.role === "teacher") {
+    return res.redirect("/users/teacher");
+  }
+
   if (req.isAuthenticated()) {
     return next();
   }
@@ -32,31 +53,24 @@ const isUsersLoggedOut = (req, res, next) => {
   if (!req.isAuthenticated()) {
     return next();
   }
-  return res.redirect('/users/admin')
-};
 
-// Login Only Admin
-const checkAdmin = async (req, res, next) => {
-  if (req.body.username !== "admin") {
-    return res.redirect("/login/teacher");
+  if (req.user.role === "admin") {
+    return res.redirect("/users/admin");
   }
-  next();
-};
 
-// Login Only Teacher
-const checkTeacher = async (req, res, next) => {
-  if (req.body.username === "admin") {
-    res.redirect("/login/admin");
-  } else {
-    next();
+  if (req.user.role === "teacher") {
+    return res.redirect("/users/teacher");
+  }
+
+  if (req.user.role === "student") {
+    return res.redirect("/users/student");
   }
 };
 
 module.exports = {
   isAdminLoggedIn,
-  checkAdmin,
-
   isTeacherLoggedIn,
+  isStudentLoggedIn,
+
   isUsersLoggedOut,
-  checkTeacher,
 };

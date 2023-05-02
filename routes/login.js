@@ -1,30 +1,44 @@
 const express = require("express");
-const router = express.Router();
+const passport = require("passport");
 
 const {
-  adminLogin,
-  viewAdminPage,
-  forgetPasswordPage,
+  viewLoginPage,
+  viewForgetPasswordPage,
   resetPass,
-  viewTeacherPage,
-  adminRedirect,
-  teacherLogin,
-  teacherRedirect,
 } = require("../controllers/loginController");
 
-const {
-  isUsersLoggedOut,
-  checkAdmin,
-  checkTeacher,
-} = require("../middlewares/auth");
+const { isUsersLoggedOut } = require("../middlewares/auth");
 
-router.get("/", isUsersLoggedOut, viewAdminPage);
-router.get("/admin", isUsersLoggedOut, viewAdminPage);
-router.get("/forgot-password", isUsersLoggedOut, forgetPasswordPage);
-router.get("/teacher", isUsersLoggedOut, viewTeacherPage);
+const router = express.Router();
 
-router.post("/admin", checkAdmin, adminLogin, adminRedirect);
-router.post("/forgot-password", isUsersLoggedOut, resetPass);
-router.post("/teacher", checkTeacher, teacherLogin, teacherRedirect);
+router
+  .route("/")
+  .get(isUsersLoggedOut, viewLoginPage)
+  .post(
+    passport.authenticate("local", {
+      failureMessage: true,
+      failureRedirect: "/login",
+    }),
+    (req, res) => {
+      if (req.user.role && req.user.role === "admin") {
+        return res.status(301).redirect("/users/admin");
+      }
+
+      if (req.user.role && req.user.role === "teacher") {
+        return res.status(301).redirect("/users/teacher");
+      }
+
+      if (req.user.role && req.user.role === "student") {
+        return res.status(301).redirect("/users/student");
+      }
+
+      return res.status(301).redirect("/users/logout");
+    }
+  );
+
+router
+  .route("/forgot-password")
+  .get(isUsersLoggedOut, viewForgetPasswordPage)
+  .post(isUsersLoggedOut, resetPass);
 
 module.exports = router;

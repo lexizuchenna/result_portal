@@ -17,23 +17,23 @@
       <p class="mb-30">All bootstrap element classies</p>
     </div>
   </div>
-  <form action="/users/teacher/update-result" method="POST">
+  <form action="/users/teacher/generate-result" method="POST" autocomplete="off">
     <div class="form-group row">
       <label class="col-sm-12 col-md-2 col-form-label">Name</label>
       <div class="col-sm-12 col-md-10">
-        <input class="form-control" type="text" readonly name="name" value="{{result.name}}" />
+        <input class="form-control" type="text" readonly name="name" value="{{student.name}}" />
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-12 col-md-2 col-form-label">Username</label>
       <div class="col-sm-12 col-md-10">
-        <input class="form-control" type="text" readonly name="username" value="{{result.username}}" />
+        <input class="form-control" type="text" readonly name="username" value="{{student.username}}" />
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-12 col-md-2 col-form-label">Gender</label>
       <div class="col-sm-12 col-md-10">
-        <input class="form-control" type="text" readonly name="gender" value="{{result.gender}}" />
+        <input class="form-control" type="text" readonly name="gender" value="{{student.gender}}" />
       </div>
     </div>
     <div class="form-group row">
@@ -50,34 +50,34 @@
     </div>
     {{#each subjects}}
     <div class="form-group row">
-      <label class="col-sm-12 col-md-2 col-form-label">{{this.title}}</label>
+      <label class="col-sm-12 col-md-2 col-form-label">{{this.sub}}</label>
       <div class="col-sm-12 col-md-10">
-        <input class="form-control" type="text" name="{{this.id}}title" value="{{this.title}}" readonly />
-        <input class="form-control" type="text" name="{{this.id}}firstAss" value="{{this.firstAss}}" placeholder="First Assesment" />
-        <input class="form-control" type="text" name="{{this.id}}secAss" value="{{this.secAss}}" placeholder="Second Assesment" />
-        <input class="form-control" type="text" name="{{this.id}}thirdAss" value="{{this.thirdAss}}" placeholder="Third Assesment" />
-        <input class="form-control" type="text" name="{{this.id}}project" value="{{this.project}}" placeholder="Project" />
-        <input class="form-control" type="text" name="{{this.id}}exam" value="{{this.exam}}" placeholder="Exam" />
-        <input class="form-control" type="text" name="{{this.id}}subAve" value="{{this.subAve}}" placeholder="Subject Average" />
+        <input class="form-control" type="text" name="{{this.id}}title" value="{{this.sub}}" readonly />
+        <input class="form-control" type="text" name="{{this.id}}firstAss" placeholder="First Assesment" />
+        <input class="form-control" type="text" name="{{this.id}}secAss" placeholder="Second Assesment" />
+        <input class="form-control" type="text" name="{{this.id}}thirdAss" placeholder="Third Assesment" />
+        <input class="form-control" type="text" name="{{this.id}}project" placeholder="Project" />
+        <input class="form-control" type="text" name="{{this.id}}exam" placeholder="Exam" />
+        <input class="form-control" type="text" name="{{this.id}}subAve" placeholder="Subject Average" />
       </div>
     </div>
     {{/each}}
     <div class="form-group row">
       <label class="col-sm-12 col-md-2 col-form-label">Comment</label>
       <div class="col-sm-12 col-md-10">
-        <input class="form-control" type="text" name="tcomment" value="{{result.tcomment}}" placeholder="Teachers Comment" />
+        <input class="form-control" type="text" name="tcomment" placeholder="Teachers Comment" />
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-12 col-md-2 col-form-label">Resumption Date</label>
       <div class="col-sm-12 col-md-10">
-        <input class="form-control" type="text" readonly name="resDate" value="{{result.resDate}}" />
+        <input class="form-control" type="text" readonly name="resDate" value="{{teacher.resDate}}" />
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-12 col-md-2 col-form-label">Total Subject</label>
       <div class="col-sm-12 col-md-10">
-        <input class="form-control" type="text" readonly name="tSubject" value="{{result.tSubject}}" />
+        <input class="form-control" type="text" readonly name="tSubject" value="{{ts}}" />
       </div>
     </div>
     <div class="form-group row">
@@ -87,7 +87,7 @@
         class="btn btn-primary btn-lg"
         style="width: 100%;"
         type="submit"
-      >Update Result</button>
+      >Generate Result</button>
     </div>
     </div>
   </form>

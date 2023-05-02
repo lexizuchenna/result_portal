@@ -1,14 +1,15 @@
 const express = require("express");
-const router = express.Router();
-const { isTeacherLoggedIn, isAdminLoggedIn } = require("../middlewares/auth");
-const { validateUser } = require("../middlewares/userValidator");
-const passport = require("passport");
-const {
-  viewLoginPage,
-  forgetPasswordPage,
-  resetPass,
 
-  viewAdmin,
+const {
+  isTeacherLoggedIn,
+  isAdminLoggedIn,
+  isStudentLoggedIn,
+} = require("../middlewares/auth");
+
+const { validateUser } = require("../middlewares/userValidator");
+
+const {
+  /*-------- Admin Section --------*/
   registerTeacher,
   viewAdminSetting,
   viewAdminTeachers,
@@ -28,45 +29,46 @@ const {
   approve,
   changeAdminPassword,
 
-  viewTeacher,
+  /*-------- Teacher Section --------*/
+  viewStudents,
+  viewRegisterStudent,
+  registerStudent,
   generateResult,
-  generateResults,
-  editResult,
   updateResult,
   viewResults,
   sendResult,
+  viewGenerateResult,
+  viewCreateResults,
+  viewSessionResults,
+  viewEditResult,
+  viewEditStudent,
+  updateStudent,
 
+  /*-------- Student Section --------*/
+  viewCheckResult,
+
+  /*-------- General Section --------*/
+  viewHome,
   logout,
+  checkResult,
+  viewStudentResults,
 } = require("../controllers/usersController");
 
-const {
-  isUsersLoggedOut,
-  checkAdmin,
-  checkTeacher,
-} = require("../middlewares/auth");
+/*  
+    --------------------------
+    Admin Section
+    --------------------------
+*/
+
+const router = express.Router();
 
 router
-  .route("/login")
-  .get(isUsersLoggedOut, viewLoginPage)
-  .post(
-    passport.authenticate("local", {
-      failureMessage: true,
-      failureRedirect: "/users/login",
-    }),
-    (req, res) => {
-      if (req.user.role && req.user.role !== "admin") {
-        return res.status(301).redirect("/users/teacher");
-      }
+  .route("/admin/register-teachers")
+  .get(isAdminLoggedIn, viewRegTeachers)
+  .post(isAdminLoggedIn, validateUser, registerTeacher);
 
-      return res.status(301).redirect("/users/admin");
-    }
-  );
+router.get("/admin", isAdminLoggedIn, viewHome);
 
-router.get("/forgot-password", isUsersLoggedOut, forgetPasswordPage);
-router.post("/forgot-password", isUsersLoggedOut, resetPass);
-
-router.get("/admin", isAdminLoggedIn, viewAdmin);
-router.get("/admin/register-teachers", isAdminLoggedIn, viewRegTeachers);
 router.get("/admin/edit-teacher/:id", isAdminLoggedIn, viewEditTeacher);
 router.get("/admin/teachers", isAdminLoggedIn, viewAdminTeachers);
 router.get("/admin/results", isAdminLoggedIn, viewAdminResults);
@@ -81,12 +83,6 @@ router.get("/admin/results/search", isAdminLoggedIn, searchResult);
 router.get("/admin/tokens/:session", isAdminLoggedIn, viewTokenPage);
 router.get("/admin/setting", isAdminLoggedIn, viewAdminSetting);
 
-router.post(
-  "/admin/register-teachers",
-  isAdminLoggedIn,
-  validateUser,
-  registerTeacher
-);
 router.post("/admin/update-teacher", isAdminLoggedIn, updateTeacher);
 router.post("/admin/changePassword", isAdminLoggedIn, changeAdminPassword);
 router.post("/admin/update-result", isAdminLoggedIn, updateAdminResult);
@@ -101,14 +97,46 @@ router.post("/admin/delete-teacher", isAdminLoggedIn, deleteTeacher);
     --------------------------
 */
 
-router.get("/teacher", isTeacherLoggedIn, viewTeacher);
-router.get("/teacher/generate-results", isTeacherLoggedIn, generateResult);
-router.get("/teacher/results", isTeacherLoggedIn, viewResults);
-router.get("/teacher/result/:resultId", isTeacherLoggedIn, editResult);
+router
+  .route("/teacher/register-students")
+  .get(isTeacherLoggedIn, viewRegisterStudent)
+  .post(isTeacherLoggedIn, registerStudent);
 
-router.post("/teacher/generate-result", isTeacherLoggedIn, generateResults);
+router
+  .route("/teacher/generate-result")
+  .get(isTeacherLoggedIn, viewGenerateResult)
+  .post(isTeacherLoggedIn, generateResult);
+
+router.get("/teacher", isTeacherLoggedIn, viewHome);
+router.get("/teacher/create-results", isTeacherLoggedIn, viewCreateResults);
+router.get("/teacher/result-session", isTeacherLoggedIn, viewSessionResults);
+router.get("/teacher/results", isTeacherLoggedIn, viewResults);
+router.get("/teacher/students", isTeacherLoggedIn, viewStudents);
+router.get("/teacher/edit-student/:id", isTeacherLoggedIn, viewEditStudent);
+router.get("/teacher/edit-result", isTeacherLoggedIn, viewEditResult);
+
+router.post("/teacher/update-student", isTeacherLoggedIn, updateStudent);
 router.post("/teacher/update-result", isTeacherLoggedIn, updateResult);
 router.post("/teacher/send-result", isTeacherLoggedIn, sendResult);
+
+/*  
+    --------------------------
+    Student Section
+    --------------------------
+*/
+
+router.route("/student").get(isStudentLoggedIn, viewHome);
+router
+  .route("/student/check-result")
+  .get(isStudentLoggedIn, viewCheckResult)
+  .post(checkResult);
+router.route("/student/results").get(isStudentLoggedIn, viewStudentResults);
+
+/*  
+    --------------------------
+    General Section
+    --------------------------
+*/
 
 router.get("/logout", logout);
 

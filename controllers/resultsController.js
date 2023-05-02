@@ -3,57 +3,84 @@ const _ = require("lodash");
 const { Results } = require("../models/Results");
 
 const viewResult = async (req, res) => {
-  let index = req.flash("Result");
-  res.render("results", { layout: "result", Result: index[0] });
-};
+  try {
 
-const viewTeacherResult = async (req, res) => {
-  const newResult = await Results.find({ resultId: req.params.id }).lean();
-  let Result = newResult[0];
-  res.render("results", { layout: "result", Result });
-};
-const viewAdminResult = async (req, res) => {
-  let data = await Results.findOne({ resultId: req.params.id }).lean();
+    if(!req.isAuthenticated()) return res.status(403).render("results", { layout: "result" }); 
 
-  const resultData = _.omit(data, [
-    "_id",
-    "user",
-    "teacher",
-    "name",
-    "sex",
-    "age",
-    "session",
-    "term",
-    "className",
-    "tcomment",
-    "resDate",
-    "resultId",
-    "resultLink",
-    "token",
-    "approved",
-    "message",
-    "createdAt",
-    "updatedAt",
-    "__v",
-    "hcomment",
-  ]);
+    let result = await Results.findOne({ resultId: req.params.id }).lean();
 
-  const results = [];
-  for (let i = 1; i <= parseInt(resultData.totalSubject); i++) {
-    const result = {};
-    const id = `sub${i}`;
-    result.id = id;
-    result.title = resultData[`${id}title`];
-    result.firstAss = resultData[`${id}firstAss`];
-    result.secAss = resultData[`${id}secAss`];
-    result.thirdAss = resultData[`${id}thirdAss`];
-    result.project = resultData[`${id}project`];
-    result.exam = resultData[`${id}exam`];
-    result.subAve = resultData[`${id}subAve`];
-    results.push(result);
+    let data = _.omit(result, [
+      "_id",
+      "name",
+      "className",
+      "username",
+      "student",
+      "gender",
+      "session",
+      "term",
+      "teacher",
+      "tcomment",
+      "resDate",
+      "tSubject",
+      "resultId",
+      "resultLink",
+      "token",
+      "approved",
+      "message",
+      "createdAt",
+      "updatedAt",
+      "__v",
+    ]);
+
+    const subjects = [];
+    for (let i = 1; i <= parseInt(result.tSubject); i++) {
+      const subject = {};
+      const id = `sub${i}`;
+      subject.id = id;
+      subject.title = data[`${id}title`];
+      subject.firstAss = data[`${id}firstAss`];
+      subject.secAss = data[`${id}secAss`];
+      subject.thirdAss = data[`${id}thirdAss`];
+      subject.project = data[`${id}project`];
+      subject.exam = data[`${id}exam`];
+      subject.subAve = data[`${id}subAve`];
+      subjects.push(subject);
+    }
+
+    if (req.user.role === "student" && req.user.username !== result.username) {
+      return res.status(403).render("results", {
+        layout: "result",
+        role: req.user.role,
+      });
+    }
+
+    if (req.user.role === "student" && result.checked !== true) {
+      return res.status(403).render("results", {
+        layout: "result",
+        role: req.user.role,
+      });
+    }
+
+    if (req.user.role === "student") {
+      await Results.findByIdAndUpdate(
+        result._id,
+        { checked: true },
+        { new: true }
+      );
+    }
+
+    return res.render("results", {
+      layout: "result",
+      result,
+      subjects,
+      role: req.user.role,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(500)
+      .render("errors/500", { layout: "error", error: error.message });
   }
-
-  return res.render("results", { layout: "result", Result: data, admin: "admin", results });
 };
 
 const viewSecResult = async (req, res) => {
@@ -62,48 +89,7 @@ const viewSecResult = async (req, res) => {
   res.render("sec-result", { layout: "sec-result", Result });
 };
 
-const viewFindResult = async (req, res) => {
-  res.render("check-result", { layout: "login" });
-};
-
-const getResultApi = async (req, res) => {
-  if (
-    !req.body.name ||
-    !req.body.className ||
-    !req.body.session ||
-    req.body.name === "" ||
-    req.body.className === "" ||
-    req.body.session === ""
-  ) {
-    res.json("Fill all fields");
-  } else {
-    const Result = await Results.find({
-      name: req.body.name,
-      className: req.body.className,
-      session: req.body.session,
-    }).lean();
-
-    res.json(Result);
-  }
-};
-
-const submitForm = async (req, res) => {
-  const index = await Results.find({
-    resultId: req.body.resultId,
-  }).lean();
-
-  let Result = index[0];
-
-  req.flash("Result", Result);
-  res.redirect(`/results/student/${req.body.resultId}`);
-};
-
 module.exports = {
   viewResult,
   viewSecResult,
-  viewTeacherResult,
-  viewAdminResult,
-  viewFindResult,
-  getResultApi,
-  submitForm,
 };

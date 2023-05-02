@@ -23,7 +23,7 @@
             >Home</span>
           </a>
         </li>
-        {{#if admin}}
+        {{#ifEqual role "admin"}}
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle">
             <span class="micon bi bi-textarea-resize"></span>
@@ -58,8 +58,8 @@
             <li><a href="/users/admin/results-archives">Archive</a></li>
           </ul>
         </li>
-        {{/if}}
-        {{#if teacher}}
+        {{/ifEqual}}
+        {{#ifEqual role "teacher"}}
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle">
             <span class="micon bi bi-table"></span><span
@@ -79,34 +79,27 @@
           </a>
           <ul class="submenu">
             <li><a href="/users/teacher/results">View Results</a></li>
+            <li><a href="/users/teacher/create-results">Create Results</a></li>
           </ul>
         </li>
-        {{/if}}
-        {{#if student}}
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon bi bi-table"></span><span
-              class="mtext"
-            >Students</span>
-          </a>
-          <ul class="submenu">
-            <li><a href="/users/admin/students">View Students</a></li>
-            <li><a href="/users/admin/register-students">Register Students</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon bi bi-table"></span><span
+        {{/ifEqual}}
+        {{#ifEqual role "student"}}
+        <li>
+          <a href="/users/student/results" class="dropdown-toggle no-arrow {{result}}">
+            <span class="micon bi bi-calendar4-week"></span><span
               class="mtext"
             >Results</span>
           </a>
-          <ul class="submenu">
-            <li><a href="/users/admin/results">View Results</a></li>
-            <li><a href="/users/admin/results-archives">Archive</a></li>
-          </ul>
         </li>
-        {{/if}}
-        {{#if admin}}
+        <li>
+          <a href="/users/student/check-result" class="dropdown-toggle no-arrow {{checkResult}}">
+            <span class="micon bi bi-calendar4-week"></span><span
+              class="mtext"
+            >Result Checker</span>
+          </a>
+        </li>
+        {{/ifEqual}}
+        {{#ifEqual role "admin"}}
         <li>
           <a href="/users/admin/gallery" class="dropdown-toggle no-arrow {{gallery}}">
             <span class="micon bi bi-calendar4-week"></span><span
@@ -114,7 +107,7 @@
             >Gallery</span>
           </a>
         </li>
-        {{/if}}
+        {{/ifEqual}}
         <li>
           <div class="dropdown-divider"></div>
         </li>

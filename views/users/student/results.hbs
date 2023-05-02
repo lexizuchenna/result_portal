@@ -1,0 +1,79 @@
+{{> dash_loader}}
+{{> dash_header}}
+{{> left_sidebar result="active"}}
+<div class="main-container">
+  <div class="xs-pd-20-10 pd-ltr-20">
+    <div class="card-box mb-30">
+      <div class="pd-20">
+        <h4 class="text-blue h4">Result Data Table</h4>
+      </div>
+      <div class="pb-20">
+        <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
+          <div class="row">
+            <div class="col-sm-12">
+              <table
+                class="data-table table stripe hover nowrap dataTable no-footer dtr-inline checkbox-datatable"
+                role="grid"
+                aria-describedby="DataTables_Table_0_info"
+              >
+                <thead>
+                  <tr role="row">
+                    <th
+                      class="table-plus datatable-nosort sorting_asc"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Name"
+                    >Term</th>
+                    <th
+                      class="sorting"
+                      tabindex="0"
+                      aria-controls="DataTables_Table_0"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Address: activate to sort column ascending"
+                    >Session</th>
+                    <th
+                      class="datatable-nosort sorting_disabled"
+                      rowspan="1"
+                      colspan="1"
+                      aria-label="Action"
+                    >Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#if results}}
+                    {{#each results}}
+                      <tr role="row" class="odd">
+
+                        <td
+                          class="table-plus sorting_1"
+                          tabindex="0"
+                        >{{this.term}}</td>
+                        <td>{{this.session}}</td>
+                        <td>
+                          <a
+                            class="dropdown-item"
+                            href="/results/student/view/{{this.resultId}}"
+                          ><i class="dw dw-eye"></i>
+                            View</a>
+                        </td>
+                      </tr>
+                    {{/each}}
+                  {{else}}
+                    <tr role="row" class="even">
+                      <td class="table-plus sorting_1" tabindex="0">No data
+                        Available</td>
+                    </tr>
+                  {{/if}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{> scripts}}
+{{> _toasts}}
+{{> _toast_footer}}
