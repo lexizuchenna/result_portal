@@ -2,7 +2,7 @@ const tokenForm = document.getElementById("token-form");
 const token = document.getElementById("token-input");
 const submitBtn = document.getElementById("submit-btn");
 
-let result;
+let result = "";
 
 const checkResult = (form, username) => {
   const url = `${window.location.protocol}//${window.location.host}/users/student/check-result`;

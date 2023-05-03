@@ -5,7 +5,7 @@ const { Results } = require("../models/Results");
 const viewResult = async (req, res) => {
   try {
 
-    if(!req.isAuthenticated()) return res.status(403).render("results", { layout: "result" }); 
+    if(!req.isAuthenticated()) return res.status(403).render("error/400", { layout: "error", error: "Bad Request" }); 
 
     let result = await Results.findOne({ resultId: req.params.id }).lean();
 
@@ -48,17 +48,11 @@ const viewResult = async (req, res) => {
     }
 
     if (req.user.role === "student" && req.user.username !== result.username) {
-      return res.status(403).render("results", {
-        layout: "result",
-        role: req.user.role,
-      });
+      return res.status(403).render("results", { layout: "error", error: "Bad Request" });
     }
 
     if (req.user.role === "student" && result.checked !== true) {
-      return res.status(403).render("results", {
-        layout: "result",
-        role: req.user.role,
-      });
+      return res.status(403).render("results", { layout: "error", error: "Bad Request" });
     }
 
     if (req.user.role === "student") {

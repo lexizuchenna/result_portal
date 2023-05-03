@@ -125,12 +125,12 @@ router.post("/teacher/send-result", isTeacherLoggedIn, sendResult);
     --------------------------
 */
 
-router.route("/student").get(isStudentLoggedIn, viewHome);
-router
-  .route("/student/check-result")
-  .get(isStudentLoggedIn, viewCheckResult)
-  .post(checkResult);
-router.route("/student/results").get(isStudentLoggedIn, viewStudentResults);
+// router.route("/student").get(isStudentLoggedIn, viewHome);
+// router
+//   .route("/student/check-result")
+//   .get(isStudentLoggedIn, viewCheckResult)
+//   .post(isStudentLoggedIn, checkResult);
+// router.route("/student/results").get(isStudentLoggedIn, viewStudentResults);
 
 /*  
     --------------------------

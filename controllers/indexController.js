@@ -4,7 +4,6 @@ module.exports = {
     try {
       return res.render("public/home", {
         layout: "home",
-        active: "active",
       });
     } catch (error) {
       console.log(error);
@@ -17,10 +16,6 @@ module.exports = {
     try {
       return res.render("public/about", {
         layout: "home",
-        props: {
-          state: "home",
-        },
-        active: "active",
       });
     } catch (error) {
       console.log(error);

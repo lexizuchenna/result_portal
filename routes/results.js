@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { isTeacherLoggedIn, isAdminLoggedIn } = require("../middlewares/auth");
+const { isTeacherLoggedIn, isAdminLoggedIn, isStudentLoggedIn } = require("../middlewares/auth");
 
 const { viewResult } = require("../controllers/resultsController");
 
@@ -10,6 +10,6 @@ router.get("/admin/view/:id", isAdminLoggedIn, viewResult);
 
 router.get("/teacher/view/:id", isTeacherLoggedIn, viewResult);
 
-router.get("/student/view/:id", viewResult);
+// router.get("/student/view/:id", isStudentLoggedIn, viewResult);
 
 module.exports = router;
